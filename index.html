@@ -52,23 +52,38 @@ section{padding:64px 0}
 .pill:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 
 /* HERO */
-.hero{background:var(--bg);padding:56px 0 64px}
-.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
-.hero h1{font-size:38px;font-weight:600;line-height:1.15;margin-bottom:18px}
-.hero-sub{font-size:17px;color:var(--text2);margin-bottom:24px;max-width:520px}
-.badges{display:flex;flex-wrap:wrap;gap:10px 20px;margin-bottom:28px}
-.badge{font-size:13px;color:var(--text);display:flex;align-items:center;gap:6px;font-weight:500}
+.hero{background:var(--bg);padding:56px 0 72px;text-align:center}
+.hero-center{display:flex;flex-direction:column;align-items:center;gap:0}
+.hero-logo-wrap{position:relative;display:inline-block;margin-bottom:28px}
+.hero-logo{width:220px;height:220px;border-radius:50%;
+  background:rgba(255,255,255,0.45);
+  backdrop-filter:blur(24px) saturate(1.8);
+  -webkit-backdrop-filter:blur(24px) saturate(1.8);
+  border:1px solid rgba(255,255,255,0.75);
+  box-shadow:0 8px 32px rgba(180,148,132,0.22),0 2px 0 rgba(255,255,255,0.8) inset,0 -2px 0 rgba(180,148,132,0.12) inset;
+  display:flex;align-items:center;justify-content:center;
+  will-change:transform;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.hero-logo:hover{transform:scale(1.03) translateY(-4px)}
+.hero-logo img{width:78%;height:78%;border-radius:50%;object-fit:cover}
+.hero-logo-shine{position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,255,255,0.5) 0%,transparent 50%);
+  pointer-events:none}
+.hero-ring1{position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(180,148,132,0.22);animation:rp 4s ease-in-out infinite}
+.hero-ring2{position:absolute;inset:-28px;border-radius:50%;border:1px solid rgba(180,148,132,0.12);animation:rp 4s ease-in-out infinite .9s}
+@keyframes rp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.01)}}
+.hero-brand{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:600;color:var(--text);letter-spacing:-.01em;margin-bottom:6px}
+.hero-brand em{font-style:italic;font-weight:400;color:var(--primary2)}
+.hero-tagline{font-size:14px;color:var(--text2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:28px}
+.badges{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:28px;justify-content:center}
+.badge{font-size:13px;color:var(--text);display:flex;align-items:center;gap:5px;font-weight:500}
 .badge b{color:var(--primary2)}
-.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:30px;font-size:15px;font-weight:600;transition:.2s}
 .btn-wa{background:var(--wa);color:#fff}
 .btn-wa:hover{background:var(--wa2);transform:translateY(-1px)}
 .btn-wa svg{width:18px;height:18px;fill:#fff}
 .btn-outline{background:transparent;border:1.5px solid var(--primary);color:var(--primary2)}
 .btn-outline:hover{background:var(--primary);color:#fff}
-.hero-visual{display:flex;justify-content:center}
-.hero-logo{width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.7);box-shadow:0 30px 70px -20px rgba(156,124,107,.4);display:flex;align-items:center;justify-content:center;will-change:transform}
-.hero-logo img{width:64%;border-radius:50%}
 
 /* PRODUCT GRID */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 16px}
@@ -256,27 +271,29 @@ section{padding:64px 0}
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-grid">
-      <div class="reveal in">
-        <div class="eyebrow">Personal Shopper · USA → Chile</div>
-        <h1>Los productos más buscados de Estados Unidos, ahora en Chile.</h1>
-        <p class="hero-sub">Descubre suplementos, skincare y productos virales importados directamente desde USA.</p>
-        <div class="badges">
-          <div class="badge"><b>✓</b> Productos originales</div>
-          <div class="badge"><b>✓</b> Importación directa USA</div>
-          <div class="badge"><b>✓</b> Envíos a todo Chile</div>
-          <div class="badge"><b>✓</b> Atención personalizada</div>
+    <div class="hero-center">
+      <div class="hero-logo-wrap">
+        <div class="hero-ring1"></div>
+        <div class="hero-ring2"></div>
+        <div class="hero-logo" id="heroLogo">
+          <img src="assets/img/logo.png" alt="PShopper.cl" onerror="this.closest('.hero-logo').style.background='var(--cream)'">
         </div>
-        <div class="cta-row">
-          <a class="btn btn-wa" href="https://wa.me/56912345678?text=Hola%20PShopper!%20Quiero%20hacer%20una%20consulta." target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.3.1.7-.1 1.3z"/></svg>
-            Comprar por WhatsApp
-          </a>
-          <a class="btn btn-outline" href="#bestsellers">Ver productos</a>
-        </div>
+        <div class="hero-logo-shine"></div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-logo" id="heroLogo"><img src="assets/img/logo.png" alt="PShopper.cl"></div>
+      <h1 class="hero-brand">P<em>Shopper</em>.cl</h1>
+      <p class="hero-tagline">Personal Shopper · USA → Chile</p>
+      <div class="badges">
+        <div class="badge"><b>✓</b> Productos originales</div>
+        <div class="badge"><b>✓</b> Importación directa USA</div>
+        <div class="badge"><b>✓</b> Envíos a todo Chile</div>
+        <div class="badge"><b>✓</b> Atención personalizada</div>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-wa" href="https://wa.me/56912345678?text=Hola%20PShopper!%20Quiero%20hacer%20una%20consulta." target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.3.1.7-.1 1.3z"/></svg>
+          Comprar por WhatsApp
+        </a>
+        <a class="btn btn-outline" href="#bestsellers">Ver productos</a>
       </div>
     </div>
   </div>
