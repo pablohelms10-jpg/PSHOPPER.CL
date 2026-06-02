@@ -76,13 +76,13 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 .card-visual { height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden; }
 .card-visual .emoji { font-size:3rem;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));transition:transform 0.3s ease; }
 .card:hover .card-visual .emoji { transform:scale(1.15)translateY(-4px); }
-.card-visual.catalog-img { background-size:200% auto;background-repeat:no-repeat;background-position:center; }
-.crop-tl { background-position:0% 22%; }
-.crop-tr { background-position:100% 22%; }
-.crop-bl { background-position:0% 80%; }
-.crop-br { background-position:100% 80%; }
-.crop-solo { background-size:cover;background-position:center 25%; }
-.crop-solo-bot { background-size:cover;background-position:center 60%; }
+.card-visual.catalog-img { background-size:200% auto;background-repeat:no-repeat; }
+.card-visual.catalog-img.crop-tl { background-position:0% 8%; }
+.card-visual.catalog-img.crop-tr { background-position:100% 8%; }
+.card-visual.catalog-img.crop-bl { background-position:0% 65%; }
+.card-visual.catalog-img.crop-br { background-position:100% 65%; }
+.card-visual.catalog-img.crop-solo { background-size:cover;background-position:center 25%; }
+.card-visual.catalog-img.crop-solo-bot { background-size:cover;background-position:center 60%; }
 .card-body { padding:16px; }
 .card-name { font-size:0.88rem;font-weight:600;color:var(--text-primary);line-height:1.4;margin-bottom:12px;min-height:2.5em; }
 .card-pricing { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
