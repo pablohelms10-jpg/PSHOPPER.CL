@@ -576,14 +576,17 @@ function cardHTML(it){
   const visual = it.img ? '<img src="'+it.img+'" alt="'+esc(it.n)+'" loading="lazy">' : '<div class="ph">'+it.n+'</div>';
   const badge = it.badge ? '<span class="card-badge">'+it.badge+'</span>' : '';
   const price = it.old ? fmt(it.p)+'<span class="old">'+fmt(it.old)+'</span>' : fmt(it.p);
+  const nm=esc(it.n), im=esc(it.img||""), pr=it.p;
   return '<div class="card" data-name="'+esc(it.n.toLowerCase())+'" data-tags="'+(it.tags||"")+'">'
     +'<div class="card-img">'+badge+visual+'</div>'
     +'<div class="card-name">'+it.n+'</div>'
     +'<div class="card-price">'+price+'</div>'
-    +'<div class="qty-row"><button class="qty-btn" onclick="stepQty(\''+id+'\',-1)">−</button>'
-    +'<span class="qty-val" id="q_'+id+'">1</span>'
-    +'<button class="qty-btn" onclick="stepQty(\''+id+'\',1)">+</button></div>'
-    +'<button class="card-wa" onclick="consult(\''+id+'\',\''+esc(it.n)+'\','+it.p+',\''+(it.img||"")+'\')">Consultar →</button>'
+    +'<div class="qty-row">'
+    +'<button class="qty-btn" onclick="stepQty(\''+id+'\',-1,\''+nm+'\','+pr+',\''+im+'\')">−</button>'
+    +'<span class="qty-val" id="q_'+id+'">0</span>'
+    +'<button class="qty-btn" onclick="stepQty(\''+id+'\',1,\''+nm+'\','+pr+',\''+im+'\')">+</button>'
+    +'</div>'
+    +'<button class="card-wa" onclick="consult(\''+id+'\',\''+nm+'\','+pr+',\''+im+'\')">Consultar →</button>'
     +'</div>';
 }
 
@@ -594,46 +597,71 @@ document.getElementById("catalog").innerHTML = SECTIONS.map(s=>
   +'<div class="grid">'+s.items.map(cardHTML).join("")+'</div></div></section>'
 ).join("");
 
-/* ============ QTY + CART ============ */
-const qtys={};
-function stepQty(id,d){qtys[id]=Math.max(1,(qtys[id]||1)+d);document.getElementById("q_"+id).textContent=qtys[id];}
-let cart=[];
-function addToCart(name,price,image,qty){
-  const ex=cart.find(c=>c.name===name);
-  if(ex)ex.qty+=qty;else cart.push({name,price,image,qty});
+/* ============ CART ============ */
+let cart={};  // { id: {name,price,image,qty} }
+function getCartItem(id){return cart[id]||null;}
+function stepQty(id,d,name,price,image){
+  const cur=(cart[id]?cart[id].qty:0)+d;
+  if(cur<=0){delete cart[id];}
+  else{cart[id]={name,price,image:image||"",qty:cur};}
+  const el=document.getElementById("q_"+id);
+  if(el)el.textContent=cart[id]?cart[id].qty:0;
   renderCart();
 }
 function consult(id,name,price,image){
-  const q=qtys[id]||1;
-  addToCart(name,price,image,q);
+  // Add 1 to cart if qty is 0, else use current
+  if(!cart[id])stepQty(id,1,name,price,image);
   const msg="Hola PShopper! Me interesa: "+name+". ¿Está disponible?";
   window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank");
 }
 function renderCart(){
-  const count=cart.reduce((a,c)=>a+c.qty,0);
+  const items=Object.values(cart);
+  const count=items.reduce((a,c)=>a+c.qty,0);
   document.getElementById("cartCount").textContent=count;
   const body=document.getElementById("cartBody");
-  if(!cart.length){body.innerHTML='<div class="cart-empty">Tu carrito está vacío.<br>Agrega productos para comenzar.</div>';}
-  else{body.innerHTML=cart.map((c,i)=>{
-    const vis=c.image?'<img class="cart-item-img" src="'+c.image+'">':'<div class="cart-item-img"></div>';
-    return '<div class="cart-item">'+vis+'<div class="cart-item-info"><div class="cart-item-name">'+c.name+'</div>'
-    +'<div class="cart-item-price">'+fmt(c.price)+'</div>'
-    +'<div class="cart-item-ctrl"><button class="qty-btn" onclick="cartStep('+i+',-1)">−</button>'
-    +'<span class="qty-val">'+c.qty+'</span>'
-    +'<button class="qty-btn" onclick="cartStep('+i+',1)">+</button>'
-    +'<button class="cart-rm" onclick="cartRemove('+i+')">Eliminar</button></div></div></div>';
-  }).join("");}
-  document.getElementById("cartTotal").textContent=fmt(cart.reduce((a,c)=>a+c.price*c.qty,0));
+  if(!items.length){
+    body.innerHTML='<div class="cart-empty">Tu carrito está vacío.<br>Usa el botón <b>+</b> para agregar productos.</div>';
+  } else {
+    const ids=Object.keys(cart);
+    body.innerHTML=ids.map((id)=>{
+      const c=cart[id];
+      const vis=c.image?'<img class="cart-item-img" src="'+c.image+'" onerror="this.style.display=\'none\'">':'<div class="cart-item-img"></div>';
+      return '<div class="cart-item">'+vis+'<div class="cart-item-info">'
+        +'<div class="cart-item-name">'+c.name+'</div>'
+        +'<div class="cart-item-price">'+fmt(c.price)+'</div>'
+        +'<div class="cart-item-ctrl">'
+        +'<button class="qty-btn" onclick="cartStep(\''+id+'\',-1)">−</button>'
+        +'<span class="qty-val">'+c.qty+'</span>'
+        +'<button class="qty-btn" onclick="cartStep(\''+id+'\',1)">+</button>'
+        +'<button class="cart-rm" onclick="cartRemove(\''+id+'\')">Eliminar</button>'
+        +'</div></div></div>';
+    }).join("");
+  }
+  const total=items.reduce((a,c)=>a+c.price*c.qty,0);
+  document.getElementById("cartTotal").textContent=fmt(total);
 }
-function cartStep(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);renderCart();}
-function cartRemove(i){cart.splice(i,1);renderCart();}
+function cartStep(id,d){
+  if(!cart[id])return;
+  cart[id].qty+=d;
+  if(cart[id].qty<1)delete cart[id];
+  const el=document.getElementById("q_"+id);
+  if(el)el.textContent=cart[id]?cart[id].qty:0;
+  renderCart();
+}
+function cartRemove(id){
+  const el=document.getElementById("q_"+id);
+  if(el)el.textContent=0;
+  delete cart[id];
+  renderCart();
+}
 function openCart(){document.getElementById("drawer").classList.add("open");document.getElementById("overlay").classList.add("open");}
 function closeCart(){document.getElementById("drawer").classList.remove("open");document.getElementById("overlay").classList.remove("open");}
 function checkout(){
-  if(!cart.length){alert("Tu carrito está vacío.");return;}
-  let msg="Hola PShopper! Quiero hacer este pedido:\n\n";
-  cart.forEach(c=>{msg+="• "+c.qty+"x "+c.name+" — "+fmt(c.price)+"\n";});
-  msg+="\nTotal: "+fmt(cart.reduce((a,c)=>a+c.price*c.qty,0));
+  const items=Object.values(cart);
+  if(!items.length){alert("Tu carrito está vacío.");return;}
+  let msg="Hola PShopper! 👋 Quiero hacer este pedido:\n\n";
+  items.forEach(c=>{msg+="• "+c.qty+"x "+c.name+" — "+fmt(c.price)+"\n";});
+  msg+="\nTotal: "+fmt(items.reduce((a,c)=>a+c.price*c.qty,0));
   window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank");
 }
 renderCart();
@@ -691,75 +719,166 @@ function toggleAI(){
   p.classList.toggle("open");
   if(p.classList.contains("open")&&!aiStarted){aiStarted=true;aiWelcome();}
 }
-function bot(html){const d=document.createElement("div");d.className="ai-msg ai-bot";d.innerHTML=html;aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;}
+function bot(html,delay=0){
+  setTimeout(()=>{
+    const d=document.createElement("div");d.className="ai-msg ai-bot";d.innerHTML=html;
+    aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
+  },delay);
+}
 function usr(t){const d=document.createElement("div");d.className="ai-msg ai-user";d.textContent=t;aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;}
-function opts(list){
-  const d=document.createElement("div");d.className="ai-opts";
-  list.forEach(o=>{const b=document.createElement("button");b.className="ai-opt";b.textContent=o.label;b.onclick=()=>{usr(o.label);d.remove();o.fn();};d.appendChild(b);});
+function opts(list,delay=0){
+  setTimeout(()=>{
+    const d=document.createElement("div");d.className="ai-opts";
+    list.forEach(o=>{const b=document.createElement("button");b.className="ai-opt";b.textContent=o.label;b.onclick=()=>{usr(o.label);d.remove();o.fn();};d.appendChild(b);});
+    aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
+  },delay);
+}
+function waBtn(txt,msg){
+  const d=document.createElement("div");d.className="ai-rec";
+  d.innerHTML='<a href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'" target="_blank">'+txt+'</a>';
   aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
 }
-function recCard(name,price){
-  const msg=encodeURIComponent("Hola PShopper! Me interesa: "+name+". ¿Está disponible?");
+function recCard(name,price,img){
+  const msg="Hola PShopper! Me interesa: "+name+". ¿Está disponible?";
   const d=document.createElement("div");d.className="ai-rec";
-  d.innerHTML='<b>'+name+'</b><span>'+fmt(price)+'</span><br><a href="https://wa.me/'+WA+'?text='+msg+'" target="_blank">Consultar por WhatsApp</a>';
+  const vis=img?'<img src="'+img+'" style="width:100%;border-radius:8px;margin-bottom:6px;">':'';
+  d.innerHTML=vis+'<b>'+name+'</b><span style="float:right;color:var(--primary2)">'+fmt(price)+'</span><br>'
+    +'<a href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'" target="_blank" style="margin-top:6px;display:inline-block">Consultar →</a>';
   aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
 }
 function aiWelcome(){
-  bot("¡Hola! Soy tu asistente PShopper ✨ ¿Para quién buscas el producto?");
+  bot("¡Hola! Soy tu asistente PShopper ✨<br>Puedes escribirme lo que buscas o elegir una opción:");
   opts([
-    {label:"Niño/a",fn:()=>aiNeed("nino")},
-    {label:"Adulto/a",fn:()=>aiNeed("adulto")},
-    {label:"Para mí",fn:()=>aiNeed("adulto")},
-  ]);
+    {label:"🛍️ Recomendar producto",fn:()=>aiStep1()},
+    {label:"❓ Preguntas frecuentes",fn:()=>aiFAQMenu()},
+    {label:"💬 Hablar con asesor",fn:()=>aiEscalar("consulta general")},
+  ],300);
 }
-function aiNeed(who){
+function aiStep1(){
+  bot("¿Para quién es el producto?");
+  opts([
+    {label:"👧 Niño/a",fn:()=>aiStep2("nino")},
+    {label:"👩 Mujer adulta",fn:()=>aiStep2("mujer")},
+    {label:"👨 Hombre adulto",fn:()=>aiStep2("hombre")},
+    {label:"👥 Para mí / no sé",fn:()=>aiStep2("adulto")},
+  ],300);
+}
+function aiStep2(who){
   bot("¿Qué necesitas?");
   const mk=(label,key)=>({label,fn:()=>aiRecommend(key,who)});
   opts([
-    mk("Dormir mejor","dormir"),mk("Estrés/Ansiedad","estrés"),mk("Vitaminas","vitaminas"),
-    mk("Skincare","skincare"),mk("Cabello","cabello"),mk("Digestión","digestión"),mk("Concentración","concentración"),
-  ]);
+    mk("😴 Dormir mejor","dormir"),
+    mk("😰 Estrés o ansiedad","estrés"),
+    mk("💊 Vitaminas / defensas","vitaminas"),
+    mk("✨ Skincare / piel","skincare"),
+    mk("💇 Cabello y biotina","cabello"),
+    mk("🌱 Digestión / probióticos","digestión"),
+    mk("🧠 Concentración / energía","concentración"),
+    mk("💆 Bienestar general","bienestar"),
+  ],300);
 }
 function aiRecommend(key,who){
-  const terms=(KEYWORDS[key]||key).split(" ");
+  // Expanded keyword map per intent
+  const intentMap={
+    dormir:["melatonina","sleep","calm","sueño","dormir","magnesio"],
+    estrés:["estrés","stress","ansiedad","calma","chillax","ashwagandha","theanine","calm"],
+    vitaminas:["vitamina","multivitamínico","omega","flintstones","centrum","nordic"],
+    skincare:["serum","crema","cream","mascarilla","cleanser","tónico","toner","mist","retinol","vitamina c","colágeno","ácido","kojic","contorno","ampoule","gloss"],
+    cabello:["biotina","cabello","capilar","romero","mielle","tigi","wow","capilar"],
+    digestión:["vinagre","manzana","goli","probiótico","probiotic","debloat","digestión"],
+    concentración:["omega","focus","concentración","melena de león","lion","lemme focus","energía","nad"],
+    bienestar:["bienestar","magnesio","ashwagandha","colágeno","stress","estrés"],
+  };
+  const terms=intentMap[key]||[key];
   let pool=[];
   SECTIONS.forEach(s=>s.items.forEach(it=>{
     const hay=(it.n+" "+(it.tags||"")).toLowerCase();
     let score=terms.reduce((a,t)=>a+(hay.includes(t)?1:0),0);
-    if(who==="nino"&&/niñ|kids/.test(hay))score+=2;
+    if(who==="nino"&&/niñ|kids/.test(hay))score+=3;
+    if(who==="nino"&&/adulto|10mg|12mg|90 c/.test(hay))score-=2;
+    if(who==="mujer"&&/mujer|women|colágeno|hair|nails|skin|purr|uno pro/.test(hay))score+=2;
     if(score>0)pool.push({it,score});
   }));
   pool.sort((a,b)=>b.score-a.score);
-  const recs=pool.slice(0,3);
-  if(!recs.length){bot("No encontré coincidencias exactas, pero te puedo ayudar por WhatsApp.");aiFallback();return;}
-  bot("Te recomiendo estos productos ✨");
-  recs.forEach(r=>recCard(r.it.n,r.it.p));
-  bot("¿Quieres ver algo más? Escríbeme tu pregunta o pídeme que te derive por WhatsApp.");
+  const recs=pool.slice(0,4);
+  if(!recs.length){
+    bot("No encontré productos exactos para eso. ¡Pero podemos buscar juntos!");
+    aiEscalar("buscar producto para: "+key);return;
+  }
+  bot("Aquí mis recomendaciones para ti ✨",200);
+  recs.forEach((r,i)=>setTimeout(()=>recCard(r.it.n,r.it.p,r.it.img),400+i*150));
+  setTimeout(()=>{
+    bot("¿Necesitas más info o quieres ver algo diferente?",400+recs.length*150);
+    opts([
+      {label:"Ver otra categoría",fn:()=>aiStep2(who)},
+      {label:"💬 Hablar con asesor",fn:()=>aiEscalar("quiero más información sobre productos")},
+    ],600+recs.length*150);
+  },200);
 }
-function aiFallback(){
-  const msg=encodeURIComponent("Hola PShopper! Necesito ayuda para elegir un producto.");
-  bot("Te derivo por WhatsApp para una atención personalizada 💬");
-  const d=document.createElement("div");d.className="ai-rec";
-  d.innerHTML='<a href="https://wa.me/'+WA+'?text='+msg+'" target="_blank">Hablar por WhatsApp</a>';
-  aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
+function aiFAQMenu(){
+  bot("¿Sobre qué tienes dudas?");
+  opts([
+    {label:"¿Son productos originales?",fn:()=>{bot("✅ Sí, todos nuestros productos son 100% originales importados directamente desde Estados Unidos. Trabajamos solo con marcas reconocidas y verificamos cada producto.");askMore();}},
+    {label:"¿Hacen envíos a regiones?",fn:()=>{bot("🚚 Sí, despachamos a todas las regiones de Chile. El costo varía según tu ubicación y lo coordinamos al confirmar el pedido por WhatsApp.");askMore();}},
+    {label:"¿Cómo se paga?",fn:()=>{bot("💳 Aceptamos transferencia bancaria. Al hacer tu pedido por WhatsApp te enviamos los datos de pago. Es simple y seguro.");askMore();}},
+    {label:"¿Cuánto demora el envío?",fn:()=>{bot("⏱️ Para Santiago: 1-2 días hábiles tras confirmar el pago. Para regiones: 3-5 días hábiles dependiendo del courier y tu ubicación.");askMore();}},
+    {label:"¿Puedo pedir algo que no está?",fn:()=>{bot("🔍 ¡Claro! Si buscas un producto específico de USA que no tienes en el catálogo, podemos cotizarlo. Escríbenos por WhatsApp.");waBtn("Cotizar producto →","Hola PShopper! Quiero cotizar un producto que no está en el catálogo.");askMore();}},
+  ],300);
 }
-const AI_FAQ=[
-  {k:["original","autentic","falso"],a:"Sí, todos nuestros productos son 100% originales e importados directamente desde USA. 🇺🇸"},
-  {k:["envío","envio","despacho","llega"],a:"Hacemos envíos a todo Chile. El costo depende de tu región y lo coordinamos por WhatsApp. 🚚"},
-  {k:["pago","pagar","transfer"],a:"Aceptamos transferencia y otros medios que coordinamos por WhatsApp al confirmar tu pedido. 💳"},
-  {k:["región","region","regiones"],a:"¡Sí! Despachamos a todas las regiones de Chile mediante courier. 📦"},
-  {k:["pedido","comprar","orden"],a:"Para pedir: agrega al carrito o haz clic en Consultar y finaliza por WhatsApp. ¡Es muy rápido! ✨"},
-];
+function askMore(){
+  setTimeout(()=>{
+    opts([
+      {label:"Otra pregunta",fn:()=>aiFAQMenu()},
+      {label:"Ver productos",fn:()=>aiStep1()},
+      {label:"💬 Hablar con asesor",fn:()=>aiEscalar("tengo más preguntas")},
+    ]);
+  },400);
+}
+function aiEscalar(ctx){
+  bot("Te derivo con nuestro equipo para darte la mejor atención 💬");
+  waBtn("Hablar por WhatsApp →","Hola PShopper! "+ctx+". ¿Me pueden ayudar?");
+}
 function aiSend(){
   const inp=document.getElementById("aiInput");
   const t=inp.value.trim();if(!t)return;
   usr(t);inp.value="";
   const low=t.toLowerCase();
-  const f=AI_FAQ.find(f=>f.k.some(k=>low.includes(k)));
-  if(f){bot(f.a);return;}
-  const kw=Object.keys(KEYWORDS).find(k=>low.includes(k));
-  if(kw){aiRecommend(kw,/niñ|kids|hijo/.test(low)?"nino":"adulto");return;}
-  bot("No estoy seguro de eso 🤔");aiFallback();
+
+  // Detect FAQ keywords
+  const faqRules=[
+    {k:["original","autentic","falso","seguro","garantia","garantía"],fn:()=>bot("✅ Sí, todos nuestros productos son 100% originales directamente importados de USA. Sin copias ni réplicas.")},
+    {k:["envío","envio","despacho","llega","region","región","santiago","provincia"],fn:()=>bot("🚚 Hacemos envíos a todo Chile. Santiago 1-2 días hábiles, regiones 3-5 días. Coordinamos por WhatsApp.")},
+    {k:["pago","pagar","transfer","precio","costo","cobran","cuanto cuesta","cuánto cuesta"],fn:()=>bot("💳 Aceptamos transferencia bancaria. Los precios incluyen el producto; el envío se calcula según tu ubicación.")},
+    {k:["pedido","comprar","como pido","cómo pido","orden","proceso"],fn:()=>bot("🛍️ Muy simple: agrega productos con el botón +, luego abre el carrito 🛒 y finaliza por WhatsApp. ¡O escríbenos directamente!")},
+    {k:["hola","buenas","buen","hey","ola"],fn:()=>{bot("¡Hola! ¿En qué te puedo ayudar hoy?");opts([{label:"Ver productos",fn:()=>aiStep1()},{label:"Preguntas",fn:()=>aiFAQMenu()},{label:"💬 Asesor",fn:()=>aiEscalar("consulta")}]);}},
+    {k:["gracias","perfecto","listo","genial","ok"],fn:()=>bot("¡Con gusto! Estoy aquí si necesitas algo más 😊")},
+    {k:["demora","tiempo","rapido","rápido","dias","días"],fn:()=>bot("⏱️ Santiago: 1-2 días hábiles. Regiones: 3-5 días. Una vez confirmado el pago.")},
+  ];
+  const faq=faqRules.find(r=>r.k.some(k=>low.includes(k)));
+  if(faq){faq.fn();return;}
+
+  // Detect product intent
+  const intentRules=[
+    {k:["dormir","sueño","melatonina","sleep","descanso"],fn:()=>aiRecommend("dormir","adulto")},
+    {k:["niño","niña","bebé","bebe","hijo","hija","kids","infantil"],fn:()=>{bot("Buscando productos para niños... 👧");aiRecommend("dormir","nino");}},
+    {k:["estres","estrés","ansied","nervios","relajar","calmar"],fn:()=>aiRecommend("estrés","adulto")},
+    {k:["vitamina","vitamínico","multivita","defensas","omega","inmune"],fn:()=>aiRecommend("vitaminas","adulto")},
+    {k:["piel","cara","serum","crema","skincare","acne","manchas","retinol","colágeno","hidra"],fn:()=>aiRecommend("skincare","adulto")},
+    {k:["cabello","pelo","caída","biotina","romero","capilar"],fn:()=>aiRecommend("cabello","adulto")},
+    {k:["digestión","estomago","estómago","probiotico","vinagre","inflamacion","inflamación"],fn:()=>aiRecommend("digestión","adulto")},
+    {k:["concentración","concentracion","memoria","focus","energía","energia","mental"],fn:()=>aiRecommend("concentración","adulto")},
+    {k:["magnesio","stress","cortisol","hormonal"],fn:()=>aiRecommend("bienestar","adulto")},
+  ];
+  const intent=intentRules.find(r=>r.k.some(k=>low.includes(k)));
+  if(intent){intent.fn();return;}
+
+  // Fallback
+  bot("No estoy seguro de eso, pero puedo ayudarte de otra forma:");
+  opts([
+    {label:"Buscar producto",fn:()=>aiStep1()},
+    {label:"Ver preguntas frecuentes",fn:()=>aiFAQMenu()},
+    {label:"💬 Hablar con asesor",fn:()=>aiEscalar(t)},
+  ],300);
 }
 </script>
 </body>
