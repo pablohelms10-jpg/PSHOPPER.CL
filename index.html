@@ -139,7 +139,11 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 .footer-sub { color:var(--text-muted);font-size:0.9rem;margin-bottom:28px; }
 .wa-btn { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:999px;background:linear-gradient(135deg,#25d366,#128c7e);color:white;font-size:1.05rem;font-weight:600;text-decoration:none;box-shadow:0 8px 30px rgba(37,211,102,0.35);transition:var(--transition); }
 .wa-btn:hover { transform:translateY(-3px);box-shadow:0 14px 40px rgba(37,211,102,0.45); }
+.ig-btn { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:999px;background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);color:white;font-size:1.05rem;font-weight:600;text-decoration:none;box-shadow:0 8px 30px rgba(221,42,123,0.35);transition:var(--transition); }
+.ig-btn:hover { transform:translateY(-3px);box-shadow:0 14px 40px rgba(221,42,123,0.45); }
+.footer-btns { display:flex;gap:16px;justify-content:center;flex-wrap:wrap; }
 .wa-icon { width:26px;height:26px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#25d366; }
+.ig-icon { width:26px;height:26px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem; }
 .footer-copy { margin-top:32px;font-size:0.78rem;color:var(--text-muted); }
 
 /* SCROLL TOP */
@@ -361,9 +365,14 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <footer class="footer">
   <div class="footer-logo">PShopper.cl</div>
   <p class="footer-sub">Personal Shopper • Productos originales importados desde USA 🇺🇸 a Chile 🇨🇱</p>
-  <a href="https://wa.me/56912345678?text=Hola%20PShopper!%20Me%20interesa%20hacer%20un%20pedido" class="wa-btn" target="_blank" rel="noopener">
-    <span class="wa-icon">💬</span> Hacer pedido por WhatsApp
-  </a>
+  <div class="footer-btns">
+    <a href="https://wa.me/56912345678?text=Hola%20PShopper!%20Me%20interesa%20hacer%20un%20pedido" class="wa-btn" target="_blank" rel="noopener">
+      <span class="wa-icon">💬</span> Hacer pedido por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/pshoppper.cl?igsh=YTZtanE3ZmZlb3g4" class="ig-btn" target="_blank" rel="noopener">
+      <span class="ig-icon">📷</span> Seguir en Instagram
+    </a>
+  </div>
   <p class="footer-copy">© 2024 PShopper.cl — Todos los derechos reservados · IG: @PSHOPPER.CL</p>
 </footer>
 
