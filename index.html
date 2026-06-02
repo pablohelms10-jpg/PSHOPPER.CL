@@ -13,9 +13,9 @@
 <style>
 /* ─── PALETTE — Warm Terracotta ─── */
 :root {
-  --terra:   #C09080;
-  --terra2:  #A87868;
-  --terra3:  #8A6050;
+  --terra:   #B07868;
+  --terra2:  #98665A;
+  --terra3:  #7A5448;
   --cream:   #F5EDE6;
   --cream2:  #EDE0D6;
   --cream3:  #E2D0C4;
@@ -123,9 +123,9 @@ main{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px 1
 @media(max-width:560px){.product-grid{grid-template-columns:repeat(2,1fr);gap:9px}}
 
 /* ─── CARD — Rare Beauty minimal ─── */
-.card{background:transparent;border:none;border-radius:0;overflow:visible;cursor:default;position:relative;transition:transform 0.35s var(--ease);display:flex;flex-direction:column}
+.card{background:transparent;border:none;border-radius:0;overflow:visible;cursor:default;position:relative;transition:transform 0.35s var(--ease);display:flex;flex-direction:column;gap:0}
 .card:hover{transform:translateY(-4px)}
-.card-visual{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;background:var(--cream);border-radius:2px}
+.card-visual{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;background:var(--cream);border-radius:3px 3px 0 0}
 .card-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s var(--ease)}
 .card:hover .card-visual img{transform:scale(1.04)}
 .card-visual.catalog-img{background-repeat:no-repeat}
@@ -135,11 +135,11 @@ main{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px 1
 .card-visual.catalog-img.crop-br{background-size:400% auto;background-position:78% 74%}
 .card-visual.catalog-img.crop-solo{background-size:280% auto;background-position:27% 19%}
 .card-visual.catalog-img.crop-solo-bot{background-size:280% auto;background-position:27% 55%}
-.card-body{padding:12px 10px 14px;flex:1;display:flex;flex-direction:column;text-align:center;background:rgba(255,255,255,0.12);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border-radius:0 0 2px 2px;margin-top:1px}
-.card-name{font-family:'Playfair Display',serif;font-size:0.76rem;font-weight:600;color:var(--white);line-height:1.4;margin-bottom:8px;flex:1;letter-spacing:0.01em}
+.card-body{padding:12px 10px 14px;flex:1;display:flex;flex-direction:column;text-align:center;background:transparent}
+.card-name{font-family:'Playfair Display',serif;font-size:0.76rem;font-weight:600;color:rgba(255,255,255,0.92);line-height:1.4;margin-bottom:6px;flex:1;letter-spacing:0.01em}
 .card-footer{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px}
 .card-pricing{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
-.price-current{font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.9)}
+.price-current{font-size:0.76rem;font-weight:400;color:rgba(255,255,255,0.75)}
 .price-original{font-size:0.65rem;color:rgba(255,255,255,0.5);text-decoration:line-through}
 /* +/- quantity control */
 .qty-ctrl{display:flex;align-items:center;width:100%}
