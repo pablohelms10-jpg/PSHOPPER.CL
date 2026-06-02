@@ -177,6 +177,52 @@ main{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px 1
   .cart-fab{bottom:72px;right:14px;width:48px;height:48px} .scroll-top{bottom:16px;right:16px}
 }
 @media(max-width:360px){.product-grid{gap:8px} .card-name{font-size:0.73rem}}
+
+/* ─── CATALOG INDEX ─── */
+.catalog-index { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:0 28px; }
+.catalog-index-header { display:flex; align-items:center; justify-content:space-between; padding:28px 0 20px; cursor:pointer; user-select:none; }
+.catalog-index-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:600; color:var(--espresso); letter-spacing:0.02em; }
+.catalog-index-toggle { display:flex; align-items:center; gap:8px; font-size:0.72rem; color:var(--text3); letter-spacing:0.08em; text-transform:uppercase; }
+.catalog-index-toggle .toggle-icon { width:28px; height:28px; border-radius:50%; border:1px solid var(--border); background:rgba(255,255,255,0.5); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--espresso); transition:all 0.4s var(--ease); }
+.catalog-index-header:hover .toggle-icon { background:var(--espresso); color:var(--white); border-color:var(--espresso); }
+.catalog-index-body { overflow:hidden; max-height:0; transition:max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease; opacity:0; }
+.catalog-index-body.open { max-height:600px; opacity:1; }
+.catalog-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; padding-bottom:32px; }
+@media(max-width:1000px){ .catalog-grid { grid-template-columns:repeat(4,1fr); } }
+@media(max-width:600px){ .catalog-grid { grid-template-columns:repeat(3,1fr); gap:8px; } }
+.catalog-tile {
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  padding:16px 10px; border-radius:12px;
+  background:rgba(255,255,255,0.45);
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1px solid rgba(255,255,255,0.72);
+  box-shadow:0 2px 12px rgba(91,74,62,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;
+  text-decoration:none; color:var(--text);
+  transition:transform 0.35s var(--ease), box-shadow 0.35s ease, border-color 0.25s ease;
+  cursor:pointer; }
+.catalog-tile:hover {
+  transform:translateY(-4px) scale(1.04);
+  box-shadow:0 12px 32px rgba(91,74,62,0.12), 0 1px 0 rgba(255,255,255,0.9) inset;
+  border-color:rgba(203,191,175,0.6); }
+.catalog-tile-icon { font-size:1.8rem; line-height:1; transition:transform 0.3s ease; }
+.catalog-tile:hover .catalog-tile-icon { transform:scale(1.15) translateY(-2px); }
+.catalog-tile-name { font-size:0.68rem; font-weight:500; color:var(--text2); text-align:center; line-height:1.3; letter-spacing:0.01em; }
+.catalog-tile-count { font-size:0.6rem; color:var(--text3); letter-spacing:0.06em; }
+.catalog-divider { border:none; border-top:1px solid var(--border); margin:0; }
+
+/* ─── CARDS SMALLER ─── */
+.product-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+@media(max-width:1400px){ .product-grid { grid-template-columns:repeat(5,1fr); } }
+@media(max-width:1100px){ .product-grid { grid-template-columns:repeat(4,1fr); } }
+@media(max-width:800px){ .product-grid { grid-template-columns:repeat(3,1fr); gap:10px; } }
+@media(max-width:520px){ .product-grid { grid-template-columns:repeat(2,1fr); gap:8px; } }
+.card-visual { width:100%; aspect-ratio:2/3; }
+.card-body { padding:10px 12px 12px; }
+.card-name { font-size:0.72rem; margin-bottom:8px; }
+.price-current { font-size:0.85rem; }
+.qty-btn { width:22px; height:22px; font-size:0.9rem; }
+.qty-num { font-size:0.75rem; }
 </style>
 </head>
 <body>
@@ -227,6 +273,34 @@ main{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px 1
     <div class="hero-stat"><span class="num">⚡</span><span class="lbl">Entrega Rápida</span></div>
   </div>
 </section>
+
+<!-- CATALOG INDEX -->
+<div class="catalog-index">
+  <div class="catalog-index-header" id="catalogToggle" onclick="toggleCatalog()">
+    <span class="catalog-index-title">✦ Explorar categorías</span>
+    <span class="catalog-index-toggle">
+      <span id="toggleLabel">Ver todas</span>
+      <span class="toggle-icon" id="toggleIcon">↓</span>
+    </span>
+  </div>
+  <div class="catalog-index-body" id="catalogBody">
+    <div class="catalog-grid">
+      <a href="#melatonina-kids" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌙</span><span class="catalog-tile-name">Melatonina Kids</span><span class="catalog-tile-count">5 productos</span></a>
+      <a href="#melatonina-adulto" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">💜</span><span class="catalog-tile-name">Melatonina Adulto</span><span class="catalog-tile-count">8 productos</span></a>
+      <a href="#vitaminas-ninos" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌈</span><span class="catalog-tile-name">Vitaminas Niños</span><span class="catalog-tile-count">11 productos</span></a>
+      <a href="#gomitas" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">💊</span><span class="catalog-tile-name">Gomitas y Cápsulas</span><span class="catalog-tile-count">24 productos</span></a>
+      <a href="#lemme" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">✨</span><span class="catalog-tile-name">Lemme</span><span class="catalog-tile-count">5 productos</span></a>
+      <a href="#tums" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🔵</span><span class="catalog-tile-name">Tums</span><span class="catalog-tile-count">3 productos</span></a>
+      <a href="#botellas" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🧊</span><span class="catalog-tile-name">Botellas y Termos</span><span class="catalog-tile-count">4 productos</span></a>
+      <a href="#skincare" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌸</span><span class="catalog-tile-name">Skincare Coreano</span><span class="catalog-tile-count">10 productos</span></a>
+      <a href="#byoma" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌿</span><span class="catalog-tile-name">Byoma</span><span class="catalog-tile-count">11 productos</span></a>
+      <a href="#supergoop" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">☀️</span><span class="catalog-tile-name">Supergoop</span><span class="catalog-tile-count">2 productos</span></a>
+      <a href="#capilares" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">💚</span><span class="catalog-tile-name">Capilares</span><span class="catalog-tile-count">8 productos</span></a>
+    </div>
+  </div>
+  <hr class="catalog-divider">
+</div>
+
 
 <main>
 
@@ -616,6 +690,27 @@ document.querySelectorAll('.card').forEach((card, idx) => {
     updateCartUI();
   });
 });
+
+// ─── CATALOG INDEX ───────────────────────────────────────────
+function toggleCatalog() {
+  const body = document.getElementById('catalogBody');
+  const icon = document.getElementById('toggleIcon');
+  const label = document.getElementById('toggleLabel');
+  const open = body.classList.toggle('open');
+  icon.textContent = open ? '↑' : '↓';
+  icon.style.transform = open ? 'rotate(0deg)' : '';
+  label.textContent = open ? 'Cerrar' : 'Ver todas';
+}
+function closeCatalog() {
+  setTimeout(() => {
+    const body = document.getElementById('catalogBody');
+    const icon = document.getElementById('toggleIcon');
+    const label = document.getElementById('toggleLabel');
+    body.classList.remove('open');
+    icon.textContent = '↓';
+    label.textContent = 'Ver todas';
+  }, 300);
+}
 </script>
 </body>
 </html>
