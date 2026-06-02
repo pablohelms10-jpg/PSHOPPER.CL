@@ -45,17 +45,29 @@ body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--
 main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px 80px; }
 
 /* HERO */
-.hero { text-align:center;padding:80px 24px 60px;position:relative; }
-.hero-badge { display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:999px;background:rgba(200,149,110,0.12);border:1px solid rgba(200,149,110,0.3);font-size:0.82rem;font-weight:500;color:var(--gold-dark);margin-bottom:20px; }
-.hero h1 { font-size:clamp(2.4rem,6vw,4.5rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:var(--text-primary);margin-bottom:16px; }
+.hero { text-align:center;padding:60px 24px 50px;position:relative; }
+.hero-badge { display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:999px;background:rgba(200,149,110,0.12);border:1px solid rgba(200,149,110,0.3);font-size:0.82rem;font-weight:500;color:var(--gold-dark);margin-bottom:28px; }
+
+/* LOGO HERO */
+.hero-logo-wrap { position:relative;display:inline-block;margin-bottom:28px; }
+.hero-logo-glass { width:160px;height:160px;border-radius:50%;overflow:hidden;position:relative;
+  box-shadow:0 8px 40px rgba(200,149,110,0.25),0 2px 0 rgba(255,255,255,0.9) inset,0 0 0 1.5px rgba(255,255,255,0.6);
+  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+  transition:transform 0.6s cubic-bezier(0.22,1,0.36,1),box-shadow 0.6s ease; }
+.hero-logo-glass:hover { transform:scale(1.04) translateY(-4px);box-shadow:0 20px 60px rgba(200,149,110,0.35),0 2px 0 rgba(255,255,255,0.9) inset; }
+.hero-logo-glass img { width:100%;height:100%;object-fit:cover;border-radius:50%;display:block; }
+.hero-logo-shine { position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,rgba(255,255,255,0.35) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.08) 100%);pointer-events:none;z-index:2; }
+.hero-logo-ring { position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(200,149,110,0.3);pointer-events:none; }
+
+.hero h1 { font-size:clamp(1.6rem,4vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-primary);margin-bottom:12px; }
 .hero h1 .g { background:linear-gradient(135deg,var(--gold-dark),var(--gold),#e8b898);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-.hero-sub { font-size:clamp(1rem,2.5vw,1.2rem);color:var(--text-secondary);max-width:560px;margin:0 auto 32px;line-height:1.6; }
+.hero-sub { font-size:clamp(0.88rem,2vw,1rem);color:var(--text-secondary);max-width:480px;margin:0 auto 28px;line-height:1.6; }
 .hero-cta { display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:999px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:white;font-size:1rem;font-weight:600;text-decoration:none;box-shadow:0 8px 30px rgba(200,149,110,0.4);transition:var(--transition); }
 .hero-cta:hover { transform:translateY(-3px);box-shadow:0 12px 40px rgba(200,149,110,0.5); }
-.hero-stats { display:flex;justify-content:center;gap:40px;margin-top:48px;flex-wrap:wrap; }
+.hero-stats { display:flex;justify-content:center;gap:32px;margin-top:40px;flex-wrap:wrap; }
 .hero-stat { text-align:center; }
-.hero-stat .num { font-size:1.8rem;font-weight:800;color:var(--gold-dark);display:block; }
-.hero-stat .lbl { font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em; }
+.hero-stat .num { font-size:1.5rem;font-weight:800;color:var(--gold-dark);display:block; }
+.hero-stat .lbl { font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em; }
 
 /* SECTION */
 .section { margin-top:72px;opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1); }
@@ -205,6 +217,13 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 
 <section class="hero">
   <div class="hero-badge">🛍️ Personal Shopper • Envíos desde USA a Chile</div>
+  <div class="hero-logo-wrap" id="heroLogo">
+    <div class="hero-logo-glass">
+      <img src="assets/img/logo.png" alt="PShopper.cl Logo" id="heroLogoImg" onerror="this.parentElement.style.display='none'">
+      <div class="hero-logo-shine"></div>
+    </div>
+    <div class="hero-logo-ring"></div>
+  </div>
   <h1>Los mejores productos<br><span class="g">de salud &amp; belleza</span><br>directo desde USA</h1>
   <p class="hero-sub">Importamos los productos de salud, belleza y bienestar más populares de Estados Unidos — con precios accesibles y entrega en Chile.</p>
   <a href="https://wa.me/56912345678" class="hero-cta" target="_blank">💬 Hacer pedido por WhatsApp</a>
@@ -466,8 +485,9 @@ const stBtn = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => stBtn.classList.toggle('show', window.scrollY > 400), { passive: true });
 stBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// Parallax blobs
+// Parallax blobs + logo
 let tick = false;
+const heroLogo = document.getElementById('heroLogo');
 window.addEventListener('scroll', () => {
   if (!tick) {
     requestAnimationFrame(() => {
@@ -477,6 +497,7 @@ window.addEventListener('scroll', () => {
       if (b[1]) b[1].style.transform = `translateY(${-y*0.08}px)`;
       if (b[2]) b[2].style.transform = `translateY(${y*0.06}px)`;
       if (b[3]) b[3].style.transform = `translateY(${-y*0.10}px)`;
+      if (heroLogo) heroLogo.style.transform = `translateY(${y*0.18}px) scale(${1 - y*0.0003})`;
       tick = false;
     });
     tick = true;
