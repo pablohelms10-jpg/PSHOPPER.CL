@@ -71,24 +71,61 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 @media(max-width:640px){.product-grid{grid-template-columns:1fr}}
 
 /* CARD */
-.card { background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:var(--card-radius);overflow:hidden;cursor:pointer;transition:var(--transition);position:relative;box-shadow:0 2px 12px rgba(0,0,0,0.06);transform-style:preserve-3d; }
-.card:hover { transform:translateY(-6px)rotateX(2deg)rotateY(1deg);box-shadow:0 20px 50px rgba(0,0,0,0.12);border-color:rgba(200,149,110,0.4); }
-.card-visual { height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden; }
-.card-visual .emoji { font-size:3rem;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));transition:transform 0.3s ease; }
-.card:hover .card-visual .emoji { transform:scale(1.15)translateY(-4px); }
+.card { background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:var(--card-radius);overflow:hidden;cursor:default;transition:var(--transition);position:relative;box-shadow:0 2px 12px rgba(0,0,0,0.06);transform-style:preserve-3d;display:flex;flex-direction:column; }
+.card:hover { transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.1);border-color:rgba(200,149,110,0.35); }
+.card-visual { height:200px;width:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0; }
+.card-visual .emoji { font-size:3.5rem;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));transition:transform 0.3s ease; }
+.card:hover .card-visual .emoji { transform:scale(1.1)translateY(-4px); }
 .card-visual.catalog-img { background-size:200% auto;background-repeat:no-repeat; }
-.card-visual.catalog-img.crop-tl { background-position:0% 8%; }
-.card-visual.catalog-img.crop-tr { background-position:100% 8%; }
-.card-visual.catalog-img.crop-bl { background-position:0% 65%; }
-.card-visual.catalog-img.crop-br { background-position:100% 65%; }
-.card-visual.catalog-img.crop-solo { background-size:cover;background-position:center 25%; }
+.card-visual.catalog-img.crop-tl { background-position:0% 18%; }
+.card-visual.catalog-img.crop-tr { background-position:100% 18%; }
+.card-visual.catalog-img.crop-bl { background-position:0% 70%; }
+.card-visual.catalog-img.crop-br { background-position:100% 70%; }
+.card-visual.catalog-img.crop-solo { background-size:cover;background-position:center 20%; }
 .card-visual.catalog-img.crop-solo-bot { background-size:cover;background-position:center 60%; }
-.card-body { padding:16px; }
-.card-name { font-size:0.88rem;font-weight:600;color:var(--text-primary);line-height:1.4;margin-bottom:12px;min-height:2.5em; }
-.card-pricing { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
-.price-current { font-size:1.1rem;font-weight:700;color:var(--gold-dark); }
-.price-original { font-size:0.82rem;color:var(--text-muted);text-decoration:line-through; }
-.badge-oferta { position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#ef4444,#f97316);color:white;font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:0.05em;text-transform:uppercase;box-shadow:0 2px 8px rgba(239,68,68,0.4);z-index:2; }
+.card-body { padding:14px 16px 16px;display:flex;flex-direction:column;flex:1; }
+.card-name { font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.4;margin-bottom:10px;flex:1; }
+.card-footer { display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto; }
+.card-pricing { display:flex;align-items:center;gap:6px;flex-wrap:wrap; }
+.price-current { font-size:1.05rem;font-weight:700;color:var(--gold-dark); }
+.price-original { font-size:0.78rem;color:var(--text-muted);text-decoration:line-through; }
+.badge-oferta { position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ef4444,#f97316);color:white;font-size:0.62rem;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:0.05em;text-transform:uppercase;box-shadow:0 2px 8px rgba(239,68,68,0.4);z-index:2; }
+
+/* QTY CONTROLS */
+.qty-ctrl { display:flex;align-items:center;gap:4px;flex-shrink:0; }
+.qty-btn { width:28px;height:28px;border-radius:50%;border:none;background:rgba(200,149,110,0.15);color:var(--gold-dark);font-size:1.1rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);line-height:1; }
+.qty-btn:hover { background:var(--gold);color:white; }
+.qty-num { min-width:22px;text-align:center;font-size:0.9rem;font-weight:700;color:var(--text-primary); }
+
+/* CART FAB */
+.cart-fab { position:fixed;bottom:88px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:white;border:none;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(200,149,110,0.5);z-index:200;transition:var(--transition); }
+.cart-fab:hover { transform:translateY(-3px) scale(1.05); }
+.cart-fab .cart-badge { position:absolute;top:-4px;right:-4px;background:#ef4444;color:white;font-size:0.65rem;font-weight:700;min-width:20px;height:20px;border-radius:999px;display:flex;align-items:center;justify-content:center;padding:0 4px;opacity:0;transform:scale(0.5);transition:var(--transition); }
+.cart-fab .cart-badge.show { opacity:1;transform:scale(1); }
+
+/* CART DRAWER */
+.cart-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:300;opacity:0;pointer-events:none;transition:opacity 0.3s; }
+.cart-overlay.open { opacity:1;pointer-events:all; }
+.cart-drawer { position:fixed;top:0;right:0;height:100%;width:min(400px,100vw);background:rgba(250,247,242,0.97);backdrop-filter:blur(30px);z-index:301;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);display:flex;flex-direction:column; }
+.cart-drawer.open { transform:translateX(0); }
+.cart-header { padding:20px 20px 16px;border-bottom:1px solid rgba(200,149,110,0.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0; }
+.cart-title { font-size:1.15rem;font-weight:700;color:var(--text-primary); }
+.cart-close { width:36px;height:36px;border-radius:50%;border:none;background:rgba(200,149,110,0.12);color:var(--text-secondary);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition); }
+.cart-close:hover { background:var(--gold);color:white; }
+.cart-items { flex:1;overflow-y:auto;padding:16px 20px; }
+.cart-empty { text-align:center;padding:60px 20px;color:var(--text-muted);font-size:0.9rem; }
+.cart-item { display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(200,149,110,0.1); }
+.cart-item-name { flex:1;font-size:0.82rem;font-weight:500;color:var(--text-primary);line-height:1.3; }
+.cart-item-qty { font-size:0.82rem;color:var(--text-muted);white-space:nowrap; }
+.cart-item-price { font-size:0.9rem;font-weight:700;color:var(--gold-dark);white-space:nowrap; }
+.cart-item-del { width:26px;height:26px;border-radius:50%;border:none;background:rgba(239,68,68,0.1);color:#ef4444;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0; }
+.cart-item-del:hover { background:#ef4444;color:white; }
+.cart-footer { padding:16px 20px 24px;border-top:1px solid rgba(200,149,110,0.2);flex-shrink:0; }
+.cart-total { display:flex;justify-content:space-between;font-size:1rem;font-weight:700;margin-bottom:16px; }
+.cart-wa-btn { display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:999px;background:linear-gradient(135deg,#25d366,#128c7e);color:white;font-size:1rem;font-weight:600;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(37,211,102,0.3);transition:var(--transition); }
+.cart-wa-btn:hover { transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,0.4); }
+.cart-clear-btn { display:block;width:100%;margin-top:10px;padding:10px;border-radius:999px;background:transparent;border:1px solid rgba(200,149,110,0.3);color:var(--text-muted);font-size:0.82rem;cursor:pointer;transition:var(--transition); }
+.cart-clear-btn:hover { border-color:var(--gold);color:var(--gold-dark); }
 
 /* RIPPLE */
 .ripple-container { position:relative;overflow:hidden; }
@@ -155,11 +192,11 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="melatonina-kids">
   <div class="section-header"><span class="section-icon">🌙</span><h2 class="section-title">Melatonina Kids</h2><span class="section-count">5 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ede9fe,#c4b5fd55)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Zero Azúcar (para niños desde 2 años)</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ddd6fe,#a78bfa44)"><span class="emoji">😴</span></div><div class="card-body"><p class="card-name">Gomitas Sleep and Calm Melatonina + Magnesio y L-Theanina</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#c4b5fd,#8b5cf655)"><span class="emoji">⭐</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Natrol 1mg (para niños desde 4 años)</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-solo" style="background-image:url('assets/img/melatonina-kids.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-solo" style="background-image:url('assets/img/melatonina-kids-2.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años) 30 gomitas</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ede9fe,#c4b5fd55)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Zero Azúcar (para niños desde 2 años)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ddd6fe,#a78bfa44)"><span class="emoji">😴</span></div><div class="card-body"><p class="card-name">Gomitas Sleep and Calm Melatonina + Magnesio y L-Theanina</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#c4b5fd,#8b5cf655)"><span class="emoji">⭐</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Natrol 1mg (para niños desde 4 años)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-solo" style="background-image:url('assets/img/melatonina-kids.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-solo" style="background-image:url('assets/img/melatonina-kids-2.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años) 30 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -167,14 +204,14 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="melatonina-adulto">
   <div class="section-header"><span class="section-icon">💜</span><h2 class="section-title">Melatonina Adulto</h2><span class="section-count">8 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 140 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 90 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 120 cápsulas (Spring Valley)</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 5mg 90 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#3b186622,#c4b5fd44)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg Sugar Free 50 unidades (Olly)</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#130d3322,#6d28d955)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 10mg 30 cápsulas (Sleep3)</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#1a0a3322,#7c3aed44)"><span class="emoji">🫐</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 12mg 90 cápsulas (Olly)</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#2d2a6622,#818cf833)"><span class="emoji">🔮</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 10mg 60 cápsulas</p><div class="card-pricing"><span class="price-current">$17.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 140 cápsulas (Natrol)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 90 cápsulas (Natrol)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 120 cápsulas (Spring Valley)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 5mg 90 cápsulas (Natrol)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#3b186622,#c4b5fd44)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg Sugar Free 50 unidades (Olly)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#130d3322,#6d28d955)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 10mg 30 cápsulas (Sleep3)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#1a0a3322,#7c3aed44)"><span class="emoji">🫐</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 12mg 90 cápsulas (Olly)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#2d2a6622,#818cf833)"><span class="emoji">🔮</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 10mg 60 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$17.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -182,17 +219,17 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="vitaminas-ninos">
   <div class="section-header"><span class="section-icon">🌈</span><h2 class="section-title">Vitaminas Niños</h2><span class="section-count">11 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fde68a55)"><span class="emoji">😌</span></div><div class="card-body"><p class="card-name">Olly Gomitas Chillax Calma y Relajación L-Theanine y Magnesio 50 und.</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fcd34d55)"><span class="emoji">🧘</span></div><div class="card-body"><p class="card-name">Olly Gomitas Chillax 70 gomitas</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#6ee7b755)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Olly Kids Sleep Libres de Melatonina 75 gomitas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fed7aa55)"><span class="emoji">🐟</span></div><div class="card-body"><p class="card-name">Nordic Omega 3 en gomitas 30 unidades</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe55)"><span class="emoji">🐠</span></div><div class="card-body"><p class="card-name">Nordic Omega 2 en cápsulas 90 cápsulas</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#fca5a555)"><span class="emoji">🐡</span></div><div class="card-body"><p class="card-name">Lil Critters Omega 3 en gomitas 90 gomitas</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c44)"><span class="emoji">🦕</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids 70 gomitas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#a3e63555)"><span class="emoji">🦖</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids Sin Azúcar</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">📏</span></div><div class="card-body"><p class="card-name">Nurest Tall Suplemento que ayuda a los niños a crecer 90 cápsulas</p><div class="card-pricing"><span class="price-current">$35.000</span><span class="price-original">$55.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39944)"><span class="emoji">🗣️</span></div><div class="card-body"><p class="card-name">Lingo Leap Suplemento en gotas para estimular el habla en niños TEA</p><div class="card-pricing"><span class="price-current">$35.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#f9731655)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Multivitamínico en gomitas Kids 190 gomitas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fde68a55)"><span class="emoji">😌</span></div><div class="card-body"><p class="card-name">Olly Gomitas Chillax Calma y Relajación L-Theanine y Magnesio 50 und.</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fcd34d55)"><span class="emoji">🧘</span></div><div class="card-body"><p class="card-name">Olly Gomitas Chillax 70 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#6ee7b755)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Olly Kids Sleep Libres de Melatonina 75 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fed7aa55)"><span class="emoji">🐟</span></div><div class="card-body"><p class="card-name">Nordic Omega 3 en gomitas 30 unidades</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe55)"><span class="emoji">🐠</span></div><div class="card-body"><p class="card-name">Nordic Omega 2 en cápsulas 90 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#fca5a555)"><span class="emoji">🐡</span></div><div class="card-body"><p class="card-name">Lil Critters Omega 3 en gomitas 90 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c44)"><span class="emoji">🦕</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids 70 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#a3e63555)"><span class="emoji">🦖</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids Sin Azúcar</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">📏</span></div><div class="card-body"><p class="card-name">Nurest Tall Suplemento que ayuda a los niños a crecer 90 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span><span class="price-original">$55.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39944)"><span class="emoji">🗣️</span></div><div class="card-body"><p class="card-name">Lingo Leap Suplemento en gotas para estimular el habla en niños TEA</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#f9731655)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Multivitamínico en gomitas Kids 190 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -200,29 +237,29 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="gomitas">
   <div class="section-header"><span class="section-icon">💊</span><h2 class="section-title">Gomitas y Cápsulas</h2><span class="section-count">24 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#ef444433)"><span class="emoji">🍎</span></div><div class="card-body"><p class="card-name">Gomitas Vinagre de Manzana Goli 60 gomitas</p><div class="card-pricing"><span class="price-current">$24.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#ef444422)"><span class="emoji">🍏</span></div><div class="card-body"><p class="card-name">Gomitas Vinagre de Manzana Sin Azúcar Goli</p><div class="card-pricing"><span class="price-current">$26.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#dc262633)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Cápsulas Vinagre de Manzana 90 tabletas</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#f59e0b44)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Gomitas de Cúrcuma y Gengibre 70 gomitas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#16a34a44)"><span class="emoji">🧲</span></div><div class="card-body"><p class="card-name">Spring Valley Citrato de Magnesio 100 cápsulas</p><div class="card-pricing"><span class="price-current">$23.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#22c55e44)"><span class="emoji">🍊</span></div><div class="card-body"><p class="card-name">Spring Valley Citrato de Magnesio 60 gomitas Sabor Naranja Vainilla</p><div class="card-pricing"><span class="price-current">$23.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fbcfe844)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Bloom Sabor Peach</p><div class="card-pricing"><span class="price-current">$35.000</span><span class="price-original">$40.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#14b8a655)"><span class="emoji">🦠</span></div><div class="card-body"><p class="card-name">Gomitas Probiotic + Prebiotic Olly 30 gomitas</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$24.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f955)"><span class="emoji">😮‍💨</span></div><div class="card-body"><p class="card-name">Olly Gomitas Goodbye Stress 42 unidades</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#d946ef55)"><span class="emoji">🧘</span></div><div class="card-body"><p class="card-name">Olly Gomitas Goodbye Stress 60 unidades</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#f43f5e44)"><span class="emoji">🍬</span></div><div class="card-body"><p class="card-name">Olly Cápsulas para combatir Antojos 60 cápsulas</p><div class="card-pricing"><span class="price-current">$25.000</span><span class="price-original">$32.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">⚡</span></div><div class="card-body"><p class="card-name">Olly Citrato de Magnesio Gomitas</p><div class="card-pricing"><span class="price-current">$22.000</span><span class="price-original">$27.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fbbf2444)"><span class="emoji">👩</span></div><div class="card-body"><p class="card-name">Centrum Women +50 Multivitamínico en gomitas 140 gomitas</p><div class="card-pricing"><span class="price-current">$35.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#f9731655)"><span class="emoji">💃</span></div><div class="card-body"><p class="card-name">Centrum Women Multivitamínico en gomitas 170 gomitas</p><div class="card-pricing"><span class="price-current">$35.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c026d355)"><span class="emoji">🌺</span></div><div class="card-body"><p class="card-name">Uno Probióticos Vaginales 30 cápsulas</p><div class="card-pricing"><span class="price-current">$35.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#f9a8d455)"><span class="emoji">💖</span></div><div class="card-body"><p class="card-name">Multivitamínico de Mujer con Colágeno incluido</p><div class="card-pricing"><span class="price-current">$15.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#e879f944)"><span class="emoji">💅</span></div><div class="card-body"><p class="card-name">Gomitas Hair Nails Skin 80 gomitas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#ec489955)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Gomitas Hair Nails Skin 140 gomitas</p><div class="card-pricing"><span class="price-current">$35.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fcd34d55)"><span class="emoji">💇</span></div><div class="card-body"><p class="card-name">Biotina en Gomitas 90 gomitas</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#f59e0b33)"><span class="emoji">🧴</span></div><div class="card-body"><p class="card-name">Biotina en Cápsulas 120 unidades para 4 meses</p><div class="card-pricing"><span class="price-current">$19.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#86efac55)"><span class="emoji">🔬</span></div><div class="card-body"><p class="card-name">NAD + Resveratrol Suplemento Antienvejecimiento</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#a3e63555)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Gomitas Ashwagandha Sin Azúcar Goli</p><div class="card-pricing"><span class="price-current">$26.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0f9ff,#7dd3fc55)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Cápsulas para la Ansiedad y Stress 30 cápsulas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#ef444433)"><span class="emoji">🍎</span></div><div class="card-body"><p class="card-name">Gomitas Vinagre de Manzana Goli 60 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#ef444422)"><span class="emoji">🍏</span></div><div class="card-body"><p class="card-name">Gomitas Vinagre de Manzana Sin Azúcar Goli</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#dc262633)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Cápsulas Vinagre de Manzana 90 tabletas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#f59e0b44)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Gomitas de Cúrcuma y Gengibre 70 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#16a34a44)"><span class="emoji">🧲</span></div><div class="card-body"><p class="card-name">Spring Valley Citrato de Magnesio 100 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#22c55e44)"><span class="emoji">🍊</span></div><div class="card-body"><p class="card-name">Spring Valley Citrato de Magnesio 60 gomitas Sabor Naranja Vainilla</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fbcfe844)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Bloom Sabor Peach</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span><span class="price-original">$40.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#14b8a655)"><span class="emoji">🦠</span></div><div class="card-body"><p class="card-name">Gomitas Probiotic + Prebiotic Olly 30 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f955)"><span class="emoji">😮‍💨</span></div><div class="card-body"><p class="card-name">Olly Gomitas Goodbye Stress 42 unidades</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#d946ef55)"><span class="emoji">🧘</span></div><div class="card-body"><p class="card-name">Olly Gomitas Goodbye Stress 60 unidades</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#f43f5e44)"><span class="emoji">🍬</span></div><div class="card-body"><p class="card-name">Olly Cápsulas para combatir Antojos 60 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$25.000</span><span class="price-original">$32.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">⚡</span></div><div class="card-body"><p class="card-name">Olly Citrato de Magnesio Gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$22.000</span><span class="price-original">$27.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fbbf2444)"><span class="emoji">👩</span></div><div class="card-body"><p class="card-name">Centrum Women +50 Multivitamínico en gomitas 140 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#f9731655)"><span class="emoji">💃</span></div><div class="card-body"><p class="card-name">Centrum Women Multivitamínico en gomitas 170 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c026d355)"><span class="emoji">🌺</span></div><div class="card-body"><p class="card-name">Uno Probióticos Vaginales 30 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#f9a8d455)"><span class="emoji">💖</span></div><div class="card-body"><p class="card-name">Multivitamínico de Mujer con Colágeno incluido</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$15.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#e879f944)"><span class="emoji">💅</span></div><div class="card-body"><p class="card-name">Gomitas Hair Nails Skin 80 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#ec489955)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Gomitas Hair Nails Skin 140 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fcd34d55)"><span class="emoji">💇</span></div><div class="card-body"><p class="card-name">Biotina en Gomitas 90 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#f59e0b33)"><span class="emoji">🧴</span></div><div class="card-body"><p class="card-name">Biotina en Cápsulas 120 unidades para 4 meses</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#86efac55)"><span class="emoji">🔬</span></div><div class="card-body"><p class="card-name">NAD + Resveratrol Suplemento Antienvejecimiento</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#a3e63555)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Gomitas Ashwagandha Sin Azúcar Goli</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0f9ff,#7dd3fc55)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Cápsulas para la Ansiedad y Stress 30 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -230,11 +267,11 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="lemme">
   <div class="section-header"><span class="section-icon">✨</span><h2 class="section-title">Lemme <span style="font-size:0.65em;font-weight:400;color:var(--text-muted)">by Kourtney Kardashian</span></h2><span class="section-count">5 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Debloat</p><div class="card-pricing"><span class="price-current">$40.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Purr Gomitas de Probióticos Vaginales</p><div class="card-pricing"><span class="price-current">$40.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Tone</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#faf5ff,#a855f744)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Lemme Focus Gomitas para la Concentración Cortizol-Melena de León 30 gomitas</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f944)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Lemme Smooth Reduce la Celulitis 30 cápsulas</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Debloat</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$40.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Purr Gomitas de Probióticos Vaginales</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$40.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Tone</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#faf5ff,#a855f744)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Lemme Focus Gomitas para la Concentración Cortizol-Melena de León 30 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f944)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Lemme Smooth Reduce la Celulitis 30 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -242,9 +279,9 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="tums">
   <div class="section-header"><span class="section-icon">🔵</span><h2 class="section-title">Tums</h2><span class="section-count">3 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido Formato Cálcico</p><div class="card-pricing"><span class="price-current">$13.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido y Antigas Masticable</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido Ultra Strength 1000 72 tabletas</p><div class="card-pricing"><span class="price-current">$16.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido Formato Cálcico</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$13.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido y Antigas Masticable</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido Ultra Strength 1000 72 tabletas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$16.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -252,10 +289,10 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="botellas">
   <div class="section-header"><span class="section-icon">🧊</span><h2 class="section-title">Botellas y Termos</h2><span class="section-count">4 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Botella Owala Kids Celeste 16 onzas</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes</p><div class="card-pricing"><span class="price-current">$39.000</span><span class="price-original">$45.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Botella Owala Fucsia 24 onzas</p><div class="card-pricing"><span class="price-current">$39.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes 20 onzas</p><div class="card-pricing"><span class="price-current">$55.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Botella Owala Kids Celeste 16 onzas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$39.000</span><span class="price-original">$45.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Botella Owala Fucsia 24 onzas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$39.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes 20 onzas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$55.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -263,16 +300,16 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="skincare">
   <div class="section-header"><span class="section-icon">🌸</span><h2 class="section-title">Skincare Coreano</h2><span class="section-count">10 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Radiance Mascarilla de Colágeno (Biodance)</p><div class="card-pricing"><span class="price-current">$8.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">TXA Niacinamide Serum 15% (Medicube)</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Collagen Jelly Cream (Medicube)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Collagen Night Wrapping Mask (Medicube)</p><div class="card-pricing"><span class="price-current">$33.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fbbf2455)"><span class="emoji">🍋</span></div><div class="card-body"><p class="card-name">Deep Vita C Capsule Cream</p><div class="card-pricing"><span class="price-current">$38.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#d9770655)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Kojic Acid Turmeric Night Wrapping Mask</p><div class="card-pricing"><span class="price-current">$32.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fcd34d44)"><span class="emoji">💎</span></div><div class="card-body"><p class="card-name">Tone Brightening Capsule Ampoule</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#f0abfc44)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Ampoule Foam</p><div class="card-pricing"><span class="price-current">$24.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fb718555)"><span class="emoji">🪡</span></div><div class="card-body"><p class="card-name">Mascarilla con 100 Micro Agujas VT Cosmetics</p><div class="card-pricing"><span class="price-current">$8.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#fda4af55)"><span class="emoji">💉</span></div><div class="card-body"><p class="card-name">Serum 500 Micro Agujas VT Cosmetics</p><div class="card-pricing"><span class="price-current">$29.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Radiance Mascarilla de Colágeno (Biodance)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$8.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">TXA Niacinamide Serum 15% (Medicube)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Collagen Jelly Cream (Medicube)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Collagen Night Wrapping Mask (Medicube)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$33.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fbbf2455)"><span class="emoji">🍋</span></div><div class="card-body"><p class="card-name">Deep Vita C Capsule Cream</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$38.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#d9770655)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Kojic Acid Turmeric Night Wrapping Mask</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fcd34d44)"><span class="emoji">💎</span></div><div class="card-body"><p class="card-name">Tone Brightening Capsule Ampoule</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#f0abfc44)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Ampoule Foam</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fb718555)"><span class="emoji">🪡</span></div><div class="card-body"><p class="card-name">Mascarilla con 100 Micro Agujas VT Cosmetics</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$8.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#fda4af55)"><span class="emoji">💉</span></div><div class="card-body"><p class="card-name">Serum 500 Micro Agujas VT Cosmetics</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$29.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -280,17 +317,17 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="byoma">
   <div class="section-header"><span class="section-icon">🌿</span><h2 class="section-title">Byoma</h2><span class="section-count">11 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Hydrating Milky Toner</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Tónico Facial Aliviador de Rojeces</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Face Mist 50 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$25.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Milky Gel Cleanser 50 ml</p><div class="card-pricing"><span class="price-current">$17.000</span><span class="price-original">$23.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fbbf2455)"><span class="emoji">☀️</span></div><div class="card-body"><p class="card-name">Bloqueador de Cara SPF 30 Ácido Hialurónico Textura Leviana</p><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#86efac55)"><span class="emoji">💚</span></div><div class="card-body"><p class="card-name">Serum Hidratante 30 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c084fc44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Aceite de Retinol 30 ml</p><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fde68a55)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Serum Clarifying 30 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fda4af55)"><span class="emoji">👁️</span></div><div class="card-body"><p class="card-name">Gel Contorno de Ojos Vitamina C y Triple Hialurónico</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$23.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c55)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Glow Serum 30 ml</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#f9a8d455)"><span class="emoji">💋</span></div><div class="card-body"><p class="card-name">Lip Gel</p><div class="card-pricing"><span class="price-current">$13.000</span><span class="price-original">$25.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Hydrating Milky Toner</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Tónico Facial Aliviador de Rojeces</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Face Mist 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Milky Gel Cleanser 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$17.000</span><span class="price-original">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fbbf2455)"><span class="emoji">☀️</span></div><div class="card-body"><p class="card-name">Bloqueador de Cara SPF 30 Ácido Hialurónico Textura Leviana</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#86efac55)"><span class="emoji">💚</span></div><div class="card-body"><p class="card-name">Serum Hidratante 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c084fc44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Aceite de Retinol 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fde68a55)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Serum Clarifying 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fda4af55)"><span class="emoji">👁️</span></div><div class="card-body"><p class="card-name">Gel Contorno de Ojos Vitamina C y Triple Hialurónico</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c55)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Glow Serum 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#f9a8d455)"><span class="emoji">💋</span></div><div class="card-body"><p class="card-name">Lip Gel</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$13.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -298,8 +335,8 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="supergoop">
   <div class="section-header"><span class="section-icon">☀️</span><h2 class="section-title">Supergoop</h2><span class="section-count">2 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/supergoop.jpg')"></div><div class="card-body"><p class="card-name">Unseen Sunscreen SPF 50</p><div class="card-pricing"><span class="price-current">$45.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/supergoop.jpg')"></div><div class="card-body"><p class="card-name">Glowscreen SPF 40</p><div class="card-pricing"><span class="price-current">$45.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/supergoop.jpg')"></div><div class="card-body"><p class="card-name">Unseen Sunscreen SPF 50</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$45.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/supergoop.jpg')"></div><div class="card-body"><p class="card-name">Glowscreen SPF 40</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$45.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -307,14 +344,14 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 <section class="section" id="capilares">
   <div class="section-header"><span class="section-icon">💚</span><h2 class="section-title">Productos Capilares</h2><span class="section-count">8 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero para Fomentar el Crecimiento del Pelo</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero Light para Fomentar el Crecimiento del Pelo</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">TIGI Bed Head After Party Crema Suavidad y Brillo</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">TIGI Bed Head Cera Capilar para Peinar</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#05966955)"><span class="emoji">💦</span></div><div class="card-body"><p class="card-name">Spray WOW 200 ml</p><div class="card-pricing"><span class="price-current">$39.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#6d28d955)"><span class="emoji">🌀</span></div><div class="card-body"><p class="card-name">Spray WOW Curly 200 ml</p><div class="card-pricing"><span class="price-current">$21.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#d1fae5,#065f4655)"><span class="emoji">💪</span></div><div class="card-body"><p class="card-name">Spray WOW Extra Fuerte 50 ml</p><div class="card-pricing"><span class="price-current">$24.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39944)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Spray WOW 50 ml</p><div class="card-pricing"><span class="price-current">$21.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero para Fomentar el Crecimiento del Pelo</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero Light para Fomentar el Crecimiento del Pelo</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">TIGI Bed Head After Party Crema Suavidad y Brillo</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">TIGI Bed Head Cera Capilar para Peinar</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#05966955)"><span class="emoji">💦</span></div><div class="card-body"><p class="card-name">Spray WOW 200 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$39.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#6d28d955)"><span class="emoji">🌀</span></div><div class="card-body"><p class="card-name">Spray WOW Curly 200 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$21.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#d1fae5,#065f4655)"><span class="emoji">💪</span></div><div class="card-body"><p class="card-name">Spray WOW Extra Fuerte 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39944)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Spray WOW 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$21.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
   </div>
 </section>
 
@@ -330,6 +367,32 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 </footer>
 
 <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">↑</button>
+
+<!-- CART FAB -->
+<button class="cart-fab" id="cartFab" aria-label="Ver carrito">
+  🛒
+  <span class="cart-badge" id="cartBadge">0</span>
+</button>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">🛒 Mi Pedido</span>
+    <button class="cart-close" id="cartClose">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Tu carrito está vacío.<br>Agrega productos con los botones + de cada tarjeta.</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0</span>
+    </div>
+    <button class="cart-wa-btn" id="cartWaBtn">💬 Pedir por WhatsApp</button>
+    <button class="cart-clear-btn" id="cartClearBtn">Vaciar carrito</button>
+  </div>
+</div>
 
 <script>
 // Scroll reveal — opacity stays 1, only translateY moves
@@ -389,11 +452,120 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('mousemove', function(e) {
     const r = this.getBoundingClientRect();
-    const rx = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -6;
-    const ry = ((e.clientX - r.left - r.width/2) / (r.width/2)) * 6;
-    this.style.transform = `translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    const rx = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -4;
+    const ry = ((e.clientX - r.left - r.width/2) / (r.width/2)) * 4;
+    this.style.transform = `translateY(-4px) rotateX(${rx}deg) rotateY(${ry}deg)`;
   });
   card.addEventListener('mouseleave', function() { this.style.transform = ''; });
+});
+
+// ─── CART ───────────────────────────────────────────────────────────────────
+const cart = {}; // { cardId: { name, price, qty } }
+
+function parsePrice(str) {
+  return parseInt(str.replace(/\D/g, ''), 10) || 0;
+}
+function formatPrice(n) {
+  return '$' + n.toLocaleString('es-CL');
+}
+
+function updateCartUI() {
+  const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
+  const totalQty = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = totalQty;
+  badge.classList.toggle('show', totalQty > 0);
+
+  const itemsEl = document.getElementById('cartItems');
+  const footerEl = document.getElementById('cartFooter');
+  document.getElementById('cartTotal').textContent = formatPrice(total);
+
+  if (totalQty === 0) {
+    itemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío.<br>Agrega productos con los botones + de cada tarjeta.</div>';
+    footerEl.style.display = 'none';
+    return;
+  }
+  footerEl.style.display = '';
+  itemsEl.innerHTML = Object.entries(cart).map(([id, item]) => `
+    <div class="cart-item">
+      <div class="cart-item-name">${item.name}</div>
+      <div class="cart-item-qty">×${item.qty}</div>
+      <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
+      <button class="cart-item-del" data-id="${id}">✕</button>
+    </div>`).join('');
+
+  itemsEl.querySelectorAll('.cart-item-del').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      if (cart[id]) {
+        const card = document.querySelector(`[data-card-id="${id}"]`);
+        if (card) { card.querySelector('.qty-num').textContent = '0'; }
+        delete cart[id];
+        updateCartUI();
+      }
+    });
+  });
+}
+
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+document.getElementById('cartFab').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+document.getElementById('cartClearBtn').addEventListener('click', () => {
+  Object.keys(cart).forEach(id => {
+    delete cart[id];
+    const card = document.querySelector(`[data-card-id="${id}"]`);
+    if (card) card.querySelector('.qty-num').textContent = '0';
+  });
+  updateCartUI();
+});
+
+document.getElementById('cartWaBtn').addEventListener('click', () => {
+  const lines = Object.values(cart).map(i => `• ${i.name} ×${i.qty} — ${formatPrice(i.price * i.qty)}`).join('\n');
+  const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
+  const msg = `Hola PShopper! 👋 Quiero hacer el siguiente pedido:\n\n${lines}\n\n*Total: ${formatPrice(total)}*\n\nQuedo atent@, gracias!`;
+  window.open(`https://wa.me/56912345678?text=${encodeURIComponent(msg)}`, '_blank');
+});
+
+// Wire up qty buttons on all cards
+document.querySelectorAll('.card').forEach((card, idx) => {
+  const id = 'p' + idx;
+  card.dataset.cardId = id;
+  const nameEl = card.querySelector('.card-name');
+  const priceEl = card.querySelector('.price-current');
+  const qtyNumEl = card.querySelector('.qty-num');
+  const minusBtn = card.querySelector('.qty-minus');
+  const plusBtn = card.querySelector('.qty-plus');
+  if (!nameEl || !priceEl || !qtyNumEl) return;
+
+  const name = nameEl.textContent.trim();
+  const price = parsePrice(priceEl.textContent);
+
+  plusBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const prev = cart[id] ? cart[id].qty : 0;
+    cart[id] = { name, price, qty: prev + 1 };
+    qtyNumEl.textContent = cart[id].qty;
+    updateCartUI();
+  });
+
+  minusBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!cart[id] || cart[id].qty === 0) return;
+    cart[id].qty -= 1;
+    qtyNumEl.textContent = cart[id].qty;
+    if (cart[id].qty === 0) delete cart[id];
+    updateCartUI();
+  });
 });
 </script>
 </body>
