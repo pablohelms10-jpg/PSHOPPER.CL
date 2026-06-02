@@ -6,705 +6,748 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>PShopper.cl — Personal Shopper desde USA</title>
+<title>PShopper.cl — Personal Shopper USA → Chile</title>
+<meta name="description" content="Los productos más buscados de Estados Unidos, ahora en Chile. Suplementos, skincare y productos virales importados directamente desde USA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ─── PALETTE — Warm Terracotta ─── */
-:root {
-  --terra:   #B49484;
-  --terra2:  #9A7A6A;
-  --terra3:  #7A5A4A;
-  --cream:   #ECE4DC;
-  --cream2:  #E8DDD5;
-  --cream3:  #E0D4CA;
-  --bg:      #B49484;
-  --white:   #F8F6F3;
-  --text:    #FFFFFF;
-  --text2:   #7A5A4A;
-  --text3:   rgba(255,255,255,0.6);
-  --border:  #E8DDD5;
-  --ease:    cubic-bezier(0.22,1,0.36,1);
+:root{
+  --bg:#F8F3EE;--primary:#B49484;--primary2:#9C7C6B;--text:#2E2520;
+  --text2:#6E6258;--white:#FFFFFF;--border:#E8DDD5;--cream:#ECE4DC;
+  --wa:#25D366;--wa2:#1da851;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img{max-width:100%;display:block}
+.container{max-width:1240px;margin:0 auto;padding:0 20px}
+section{padding:64px 0}
+.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--primary2);font-weight:600;margin-bottom:16px}
+.sec-title{font-size:30px;font-weight:600;text-align:center;margin-bottom:8px}
+.sec-sub{text-align:center;color:var(--text2);margin-bottom:40px;font-size:15px}
 
-/* ─── ANIMATED BACKGROUND ─── */
-.bg-wrap{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.bg-orb{position:absolute;border-radius:50%;filter:blur(100px);will-change:transform}
-.bg-orb-1{width:70vw;height:70vw;max-width:750px;max-height:750px;background:radial-gradient(circle,rgba(255,200,170,0.18) 0%,transparent 70%);top:-20%;left:-15%;animation:orbDrift1 24s ease-in-out infinite alternate}
-.bg-orb-2{width:60vw;height:60vw;max-width:650px;max-height:650px;background:radial-gradient(circle,rgba(138,96,80,0.5) 0%,transparent 70%);top:25%;right:-12%;animation:orbDrift2 30s ease-in-out infinite alternate}
-.bg-orb-3{width:50vw;height:50vw;max-width:520px;max-height:520px;background:radial-gradient(circle,rgba(200,150,120,0.2) 0%,transparent 70%);bottom:0%;left:15%;animation:orbDrift3 36s ease-in-out infinite alternate}
-.bg-orb-4{width:40vw;height:40vw;max-width:400px;max-height:400px;background:radial-gradient(circle,rgba(100,60,40,0.4) 0%,transparent 70%);bottom:25%;right:8%;animation:orbDrift4 28s ease-in-out infinite alternate}
-@keyframes orbDrift1{0%{transform:translate(0,0)scale(1)}50%{transform:translate(5%,7%)scale(1.07)}100%{transform:translate(2%,3%)scale(0.95)}}
-@keyframes orbDrift2{0%{transform:translate(0,0)scale(1)}50%{transform:translate(-6%,4%)scale(1.05)}100%{transform:translate(-3%,8%)scale(1.02)}}
-@keyframes orbDrift3{0%{transform:translate(0,0)scale(1)}50%{transform:translate(4%,-5%)scale(1.09)}100%{transform:translate(-2%,-2%)scale(0.94)}}
-@keyframes orbDrift4{0%{transform:translate(0,0)scale(1)}50%{transform:translate(-4%,-7%)scale(1.04)}100%{transform:translate(3%,2%)scale(0.97)}}
+/* NAV */
+.nav{position:sticky;top:0;z-index:1000;background:var(--white);border-bottom:1px solid var(--border)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
+.logo img{width:32px;height:32px;border-radius:50%}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--text);transition:.2s;position:relative}
+.icon-btn:hover{background:var(--cream)}
+.icon-btn svg{width:20px;height:20px}
+.cart-count{position:absolute;top:-2px;right:-2px;background:var(--primary);color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.wa-nav{background:var(--wa);color:#fff;border-radius:24px;padding:0 16px;height:42px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.wa-nav:hover{background:var(--wa2)}
+.wa-nav svg{width:17px;height:17px;fill:#fff}
+.nav-search{display:none;border-top:1px solid var(--border);padding:12px 0}
+.nav-search.open{display:block}
+.nav-search input{width:100%;border:1px solid var(--border);background:var(--bg);border-radius:24px;padding:12px 18px;font-size:14px;font-family:inherit}
+.pills{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+.pill{white-space:nowrap;font-size:13px;color:var(--text2);background:var(--bg);border:1px solid var(--border);padding:7px 14px;border-radius:20px;transition:.2s}
+.pill:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 
-/* ─── NAV ─── */
-.nav{position:sticky;top:0;z-index:100;background:var(--white);backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1400px;margin:0 auto;padding:0 28px;height:58px;display:flex;align-items:center;gap:20px}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--text2);letter-spacing:0.04em;text-decoration:none;flex-shrink:0;text-transform:uppercase}
-.nav-logo span{font-style:italic;font-weight:400;color:var(--terra2)}
-.nav-pills{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px 0}
-.nav-pills::-webkit-scrollbar{display:none}
-.nav-pill{display:inline-block;padding:5px 13px;border-radius:4px;font-size:0.7rem;font-weight:500;color:var(--text2);background:transparent;border:none;cursor:pointer;white-space:nowrap;transition:all 0.22s ease;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase}
-.nav-pill:hover,.nav-pill.active{color:var(--terra3);background:rgba(180,148,132,0.12)}
+/* HERO */
+.hero{background:var(--bg);padding:56px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+.hero h1{font-size:38px;font-weight:600;line-height:1.15;margin-bottom:18px}
+.hero-sub{font-size:17px;color:var(--text2);margin-bottom:24px;max-width:520px}
+.badges{display:flex;flex-wrap:wrap;gap:10px 20px;margin-bottom:28px}
+.badge{font-size:13px;color:var(--text);display:flex;align-items:center;gap:6px;font-weight:500}
+.badge b{color:var(--primary2)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:30px;font-size:15px;font-weight:600;transition:.2s}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:var(--wa2);transform:translateY(-1px)}
+.btn-wa svg{width:18px;height:18px;fill:#fff}
+.btn-outline{background:transparent;border:1.5px solid var(--primary);color:var(--primary2)}
+.btn-outline:hover{background:var(--primary);color:#fff}
+.hero-visual{display:flex;justify-content:center}
+.hero-logo{width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.7);box-shadow:0 30px 70px -20px rgba(156,124,107,.4);display:flex;align-items:center;justify-content:center;will-change:transform}
+.hero-logo img{width:64%;border-radius:50%}
 
-/* ─── HERO BANNER ─── */
-.hero{position:relative;z-index:1;background:var(--terra);overflow:hidden;min-height:380px;display:flex;align-items:center}
-.hero-bg-pattern{position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 50% 50%,rgba(255,255,255,0.07) 0%,transparent 65%);pointer-events:none}
-.hero-inner{max-width:1400px;margin:0 auto;padding:60px 40px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:60px}
-.hero-left{flex:1;min-width:0}
-.hero-brand{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,7rem);font-weight:600;color:#FFFFFF;line-height:1;letter-spacing:-0.02em;margin-bottom:18px}
-.hero-brand em{font-style:italic;font-weight:400;opacity:0.85}
-.hero-eyebrow{font-size:0.68rem;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:24px;display:block}
-.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 32px;border-radius:3px;background:var(--white);color:var(--terra3);font-size:0.78rem;font-weight:600;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.3s var(--ease);border:none;margin-top:8px}
-.hero-cta:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.15)}
-.hero-right{flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.hero-logo-wrap{position:relative;display:inline-block}
-.hero-logo-glass{width:240px;height:240px;border-radius:50%;overflow:hidden;position:relative;border:2px solid rgba(255,255,255,0.35);box-shadow:0 8px 60px rgba(0,0,0,0.25),0 1px 0 rgba(255,255,255,0.3) inset;background:rgba(255,255,255,0.15);backdrop-filter:blur(12px) saturate(1.4);-webkit-backdrop-filter:blur(12px) saturate(1.4);transition:transform 0.7s var(--ease)}
-.hero-logo-glass:hover{transform:scale(1.03) translateY(-4px)}
-.hero-logo-glass img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
-.hero-logo-shine{position:absolute;inset:0;border-radius:50%;background:linear-gradient(140deg,rgba(255,255,255,0.28) 0%,transparent 55%);pointer-events:none;z-index:2}
-.hero-logo-ring1{position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(255,255,255,0.22);pointer-events:none;animation:ringPulse 4s ease-in-out infinite}
-.hero-logo-ring2{position:absolute;inset:-28px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);pointer-events:none;animation:ringPulse 4s ease-in-out infinite 0.8s}
-@keyframes ringPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.015)}}
-.hero-stats{display:flex;gap:36px;margin-top:32px;flex-wrap:wrap}
-.hero-stat .num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--white);display:block}
-.hero-stat .lbl{font-size:0.62rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;display:block}
+/* PRODUCT GRID */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 16px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{display:flex;flex-direction:column}
+.card-img{position:relative;aspect-ratio:1/1;background:var(--cream);border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-img .ph{font-family:'Playfair Display',serif;color:var(--primary);font-size:15px;text-align:center;padding:0 14px;opacity:.6}
+.card-badge{position:absolute;top:10px;left:10px;background:var(--white);color:var(--primary2);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:5px 10px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:500;margin:14px 0 4px;line-height:1.3}
+.card-price{font-size:15px;font-weight:700;color:var(--text)}
+.card-price .old{font-size:13px;font-weight:400;color:var(--text2);text-decoration:line-through;margin-left:6px}
+.qty-row{display:flex;align-items:center;gap:10px;margin:10px 0}
+.qty-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);font-size:17px;color:var(--text);display:flex;align-items:center;justify-content:center;background:var(--white)}
+.qty-btn:hover{background:var(--cream)}
+.qty-val{font-size:14px;font-weight:600;min-width:18px;text-align:center}
+.card-wa{margin-top:auto;background:var(--wa);color:#fff;border-radius:24px;padding:10px;font-size:13px;font-weight:600;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
+.card-wa:hover{background:var(--wa2)}
 
-@media(max-width:700px){
-  .hero-inner{flex-direction:column-reverse;padding:40px 20px;gap:28px;text-align:center}
-  .hero-stats{justify-content:center}
-  .hero-logo-glass{width:160px;height:160px}
-  .hero-brand{font-size:clamp(2.4rem,12vw,4rem)}
+/* WHY */
+.why{background:var(--primary);color:#fff}
+.why .sec-title,.why .sec-sub{color:#fff}
+.why .sec-sub{opacity:.85}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(min-width:760px){.why-grid{grid-template-columns:repeat(3,1fr)}}
+.why-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:24px}
+.why-card .ic{font-size:26px;margin-bottom:10px}
+.why-card h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.why-card p{font-size:14px;opacity:.9}
+
+/* SMART SEARCH */
+.smart{text-align:center}
+.smart-box{max-width:640px;margin:0 auto}
+.smart-input{width:100%;border:1.5px solid var(--border);background:var(--white);border-radius:30px;padding:18px 26px;font-size:16px;font-family:inherit;box-shadow:0 8px 30px -12px rgba(156,124,107,.25)}
+.smart-input:focus{outline:none;border-color:var(--primary)}
+.smart-count{margin-top:14px;font-size:13px;color:var(--text2);min-height:20px}
+
+/* CATALOG INDEX */
+.cat-toggle{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto;font-size:16px;font-weight:600;color:var(--primary2);background:var(--white);border:1px solid var(--border);padding:14px 28px;border-radius:30px}
+.cat-toggle:hover{background:var(--cream)}
+.cat-index{max-height:0;overflow:hidden;transition:max-height .4s ease;margin-top:0}
+.cat-index.open{max-height:1200px;margin-top:28px}
+.cat-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:760px){.cat-tiles{grid-template-columns:repeat(4,1fr)}}
+.cat-tile{background:var(--white);border-radius:14px;padding:18px 16px;font-size:14px;font-weight:500;color:var(--text);transition:.2s;display:block}
+.cat-tile:hover{background:var(--primary);color:#fff;transform:translateY(-2px)}
+.cat-tile small{display:block;font-size:11px;color:var(--text2);font-weight:400;margin-top:2px}
+.cat-tile:hover small{color:rgba(255,255,255,.8)}
+
+/* CATALOG SECTIONS */
+.catsec{padding:48px 0}
+.catsec-title{font-size:24px;font-weight:600;margin-bottom:6px}
+.catsec-line{width:48px;height:3px;background:var(--primary);border-radius:3px;margin-bottom:32px}
+
+/* TESTIMONIALS */
+.testi{background:var(--cream)}
+.testi-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
+.testi-track::-webkit-scrollbar{display:none}
+.testi-card{background:var(--white);border-radius:18px;padding:28px;flex:0 0 90%;max-width:380px;scroll-snap-align:center}
+@media(min-width:760px){.testi-card{flex:1}}
+.stars{color:#E0A458;font-size:15px;margin-bottom:12px;letter-spacing:2px}
+.testi-quote{font-family:'Playfair Display',serif;font-size:17px;line-height:1.5;margin-bottom:16px}
+.testi-name{font-size:13px;font-weight:600}
+.testi-city{font-size:12px;color:var(--text2)}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);max-width:760px;margin:0 auto}
+.faq-q{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:16px;font-weight:600;color:var(--text)}
+.faq-q span{font-size:22px;color:var(--primary);transition:.3s}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--text2);font-size:15px}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+
+/* FOOTER */
+.footer{background:#2E2520;color:#fff;padding:56px 0 32px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:12px}
+.footer p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:8px}
+.footer-links{display:flex;flex-wrap:wrap;gap:18px;margin:20px 0}
+.footer-links a{font-size:14px;color:#fff;display:flex;align-items:center;gap:7px}
+.footer-links a:hover{color:var(--primary)}
+.footer-links svg{width:18px;height:18px;fill:#fff}
+.footer-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:20px;font-size:12px;color:rgba(255,255,255,.5)}
+
+/* CART DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(46,37,32,.5);z-index:1500;opacity:0;visibility:hidden;transition:.3s}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;width:90%;max-width:400px;height:100%;background:var(--white);z-index:1600;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--border)}
+.drawer-head h3{font-size:20px;font-weight:600}
+.drawer-close{font-size:24px;color:var(--text2)}
+.drawer-body{flex:1;overflow-y:auto;padding:20px}
+.cart-empty{text-align:center;color:var(--text2);padding:40px 0;font-size:14px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.cart-item-img{width:56px;height:56px;border-radius:10px;background:var(--cream);object-fit:cover;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:14px;font-weight:500;margin-bottom:2px}
+.cart-item-price{font-size:13px;color:var(--text2)}
+.cart-item-ctrl{display:flex;align-items:center;gap:8px;margin-top:6px}
+.cart-item-ctrl .qty-btn{width:26px;height:26px;font-size:15px}
+.cart-rm{font-size:12px;color:#c0392b;margin-left:auto}
+.drawer-foot{padding:20px;border-top:1px solid var(--border)}
+.cart-total{display:flex;justify-content:space-between;font-size:17px;font-weight:700;margin-bottom:16px}
+.checkout-btn{width:100%;background:var(--wa);color:#fff;border-radius:30px;padding:15px;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+.checkout-btn:hover{background:var(--wa2)}
+.checkout-btn svg{width:18px;height:18px;fill:#fff}
+
+/* FLOATING */
+.fab-wa{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--wa);box-shadow:0 8px 24px rgba(37,211,102,.45);display:flex;align-items:center;justify-content:center;z-index:900}
+.fab-wa svg{width:28px;height:28px;fill:#fff}
+.scroll-top{position:fixed;bottom:90px;right:24px;width:46px;height:46px;border-radius:50%;background:var(--text);color:#fff;display:flex;align-items:center;justify-content:center;z-index:900;opacity:0;visibility:hidden;transition:.3s}
+.scroll-top.show{opacity:1;visibility:visible}
+
+/* AI ASSISTANT */
+.ai-fab{position:fixed;bottom:160px;right:24px;background:var(--primary);color:#fff;border-radius:30px;padding:12px 18px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(156,124,107,.45);z-index:900}
+.ai-fab:hover{background:var(--primary2)}
+.ai-panel{position:fixed;bottom:24px;right:24px;width:330px;max-width:calc(100vw - 32px);height:440px;max-height:calc(100vh - 48px);background:var(--white);border-radius:20px;box-shadow:0 20px 60px -10px rgba(46,37,32,.4);z-index:1700;display:none;flex-direction:column;overflow:hidden}
+.ai-panel.open{display:flex}
+.ai-head{background:var(--primary);color:#fff;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
+.ai-head h4{font-size:15px;font-weight:600;display:flex;align-items:center;gap:7px}
+.ai-head button{color:#fff;font-size:20px}
+.ai-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.ai-msg{max-width:85%;padding:11px 14px;border-radius:14px;font-size:13.5px;line-height:1.45}
+.ai-bot{background:var(--white);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px}
+.ai-user{background:var(--primary);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.ai-opts{display:flex;flex-wrap:wrap;gap:7px;align-self:flex-start;max-width:100%}
+.ai-opt{background:var(--white);border:1px solid var(--primary);color:var(--primary2);border-radius:18px;padding:7px 13px;font-size:12.5px;font-weight:500}
+.ai-opt:hover{background:var(--primary);color:#fff}
+.ai-rec{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:11px;align-self:stretch}
+.ai-rec b{font-size:13px;display:block}
+.ai-rec span{font-size:12px;color:var(--text2)}
+.ai-rec a{display:inline-block;margin-top:6px;background:var(--wa);color:#fff;font-size:11px;font-weight:600;padding:5px 12px;border-radius:14px}
+.ai-foot{padding:10px 14px;border-top:1px solid var(--border);display:flex;gap:6px}
+.ai-foot input{flex:1;border:1px solid var(--border);border-radius:16px;padding:8px 12px;font-size:12.5px;font-family:inherit}
+.ai-foot button{background:var(--primary);color:#fff;border-radius:50%;width:32px;height:32px;flex-shrink:0;font-size:14px}
+
+@media(min-width:760px){
+  .hero-grid{grid-template-columns:1.1fr .9fr}
+  .hero h1{font-size:52px}
+  .sec-title{font-size:36px}
+  .hero-logo{width:360px;height:360px}
 }
-
-/* ─── CATALOG INDEX ─── */
-.catalog-index{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px}
-.catalog-index-header{display:flex;align-items:center;justify-content:space-between;padding:24px 0 18px;cursor:pointer;user-select:none;border-bottom:1px solid rgba(255,255,255,0.15)}
-.catalog-index-title{font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.8);letter-spacing:0.14em;text-transform:uppercase}
-.catalog-index-toggle{display:flex;align-items:center;gap:8px;font-size:0.68rem;color:rgba(255,255,255,0.6);letter-spacing:0.08em;text-transform:uppercase}
-.toggle-icon{width:26px;height:26px;border-radius:3px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:rgba(255,255,255,0.8);transition:all 0.3s var(--ease)}
-.catalog-index-header:hover .toggle-icon{background:rgba(255,255,255,0.25);color:var(--white);border-color:rgba(255,255,255,0.5)}
-.catalog-index-body{overflow:hidden;max-height:0;transition:max-height 0.55s cubic-bezier(0.22,1,0.36,1),opacity 0.35s ease;opacity:0}
-.catalog-index-body.open{max-height:500px;opacity:1}
-.catalog-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:20px 0 24px}
-@media(max-width:1000px){.catalog-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:600px){.catalog-grid{grid-template-columns:repeat(3,1fr);gap:7px}}
-.catalog-tile{display:flex;flex-direction:column;align-items:center;gap:7px;padding:16px 8px;border-radius:4px;background:rgba(255,255,255,0.15);border:1px solid var(--border);text-decoration:none;color:#fff;transition:all 0.3s var(--ease);cursor:pointer;backdrop-filter:blur(6px)}
-.catalog-tile:hover{background:rgba(255,255,255,0.2);color:var(--white);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
-.catalog-tile-icon{font-size:1.6rem;line-height:1;transition:transform 0.3s ease}
-.catalog-tile:hover .catalog-tile-icon{transform:scale(1.15) translateY(-2px)}
-.catalog-tile-name{font-size:0.65rem;font-weight:600;color:inherit;text-align:center;line-height:1.3;letter-spacing:0.04em;text-transform:uppercase}
-.catalog-tile-count{font-size:0.58rem;color:inherit;opacity:0.65;letter-spacing:0.04em}
-.catalog-divider{border:none;border-top:1px solid rgba(255,255,255,0.15)}
-
-/* ─── MAIN ─── */
-main{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px 100px;background:transparent}
-
-/* ─── SECTION ─── */
-.section{margin-top:64px;opacity:0;transform:translateY(20px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
-.section.visible{opacity:1;transform:translateY(0)}
-.section-header{text-align:center;margin-bottom:28px;padding-bottom:16px;position:relative}
-.section-header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:48px;height:2px;background:rgba(255,255,255,0.4)}
-.section-icon{font-size:1.1rem;line-height:1}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.3rem);font-weight:600;color:#FFFFFF;letter-spacing:0.14em;text-transform:uppercase;margin-top:4px}
-.section-count{font-size:0.62rem;color:rgba(255,255,255,0.55);letter-spacing:0.08em;text-transform:uppercase;display:block;margin-top:4px}
-
-/* ─── GRID ─── */
-.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-@media(max-width:1200px){.product-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:900px){.product-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){.product-grid{grid-template-columns:repeat(2,1fr);gap:9px}}
-
-/* ─── CARD — Rare Beauty minimal ─── */
-.card{background:transparent;border:none;border-radius:0;overflow:visible;cursor:default;position:relative;transition:transform 0.35s var(--ease);display:flex;flex-direction:column;gap:0}
-.card:hover{transform:translateY(-4px)}
-.card-visual{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;background:var(--cream);border-radius:3px 3px 0 0}
-.card-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s var(--ease)}
-.card:hover .card-visual img{transform:scale(1.04)}
-.card-visual.catalog-img{background-repeat:no-repeat}
-.card-visual.catalog-img.crop-tl{background-size:400% auto;background-position:21% 18%}
-.card-visual.catalog-img.crop-tr{background-size:400% auto;background-position:78% 18%}
-.card-visual.catalog-img.crop-bl{background-size:400% auto;background-position:21% 74%}
-.card-visual.catalog-img.crop-br{background-size:400% auto;background-position:78% 74%}
-.card-visual.catalog-img.crop-solo{background-size:280% auto;background-position:27% 19%}
-.card-visual.catalog-img.crop-solo-bot{background-size:280% auto;background-position:27% 55%}
-.card-body{padding:12px 10px 14px;flex:1;display:flex;flex-direction:column;text-align:center;background:transparent}
-.card-name{font-family:'Playfair Display',serif;font-size:0.76rem;font-weight:600;color:#FFFFFF;line-height:1.4;margin-bottom:6px;flex:1;letter-spacing:0.01em}
-.card-footer{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px}
-.card-pricing{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
-.price-current{font-size:0.76rem;font-weight:400;color:rgba(255,255,255,0.8)}
-.price-original{font-size:0.65rem;color:rgba(255,255,255,0.5);text-decoration:line-through}
-/* +/- quantity control */
-.qty-ctrl{display:flex;align-items:center;width:100%}
-.qty-btn{width:30px;height:28px;border:1px solid var(--border);background:rgba(255,255,255,0.18);color:#fff;font-size:1rem;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;flex-shrink:0}
-.qty-btn.qty-minus{border-radius:2px 0 0 2px}
-.qty-btn.qty-plus{border-radius:0 2px 2px 0}
-.qty-btn:hover{background:rgba(255,255,255,0.32);border-color:rgba(255,255,255,0.7)}
-.qty-num{flex:1;text-align:center;font-size:0.72rem;font-weight:600;color:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);height:28px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);letter-spacing:0.04em}
-.badge-oferta{position:absolute;top:8px;left:8px;background:rgba(42,26,18,0.7);color:var(--white);font-size:0.52rem;font-weight:600;padding:2px 7px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;z-index:2}
-
-/* ─── CART FAB ─── */
-.cart-fab{position:fixed;bottom:88px;right:24px;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.18);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.35);color:var(--white);box-shadow:0 4px 20px rgba(0,0,0,0.2);cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s var(--ease);z-index:200}
-.cart-fab:hover{transform:translateY(-3px) scale(1.06);background:var(--terra);color:var(--white);box-shadow:0 10px 28px rgba(192,144,128,0.35)}
-.cart-fab .cart-badge{position:absolute;top:-4px;right:-4px;background:var(--terra3);color:var(--white);font-size:0.58rem;font-weight:700;min-width:18px;height:18px;border-radius:999px;display:flex;align-items:center;justify-content:center;padding:0 4px;opacity:0;transform:scale(0.5);transition:all 0.2s ease}
-.cart-fab .cart-badge.show{opacity:1;transform:scale(1)}
-
-/* ─── CART DRAWER ─── */
-.cart-overlay{position:fixed;inset:0;background:rgba(42,26,18,0.35);z-index:300;opacity:0;pointer-events:none;transition:opacity 0.3s}
-.cart-overlay.open{opacity:1;pointer-events:all}
-.cart-drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,100vw);background:#7A5A4A;border-left:1px solid rgba(255,255,255,0.15);z-index:301;transform:translateX(100%);transition:transform 0.38s var(--ease);box-shadow:-6px 0 32px rgba(0,0,0,0.25);display:flex;flex-direction:column}
-.cart-drawer.open{transform:translateX(0)}
-.cart-header{padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.cart-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--white);letter-spacing:0.08em;text-transform:uppercase}
-.cart-close{width:30px;height:30px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease}
-.cart-close:hover{background:var(--terra3);color:var(--white);border-color:var(--terra3)}
-.cart-items{flex:1;overflow-y:auto;padding:16px 20px}
-.cart-empty{text-align:center;padding:60px 20px;color:rgba(255,255,255,0.5);font-size:0.8rem;line-height:1.8}
-.cart-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
-.cart-item-name{flex:1;font-size:0.76rem;font-weight:400;color:rgba(255,255,255,0.9);line-height:1.35}
-.cart-item-qty{font-size:0.76rem;color:var(--text3);white-space:nowrap}
-.cart-item-price{font-size:0.82rem;font-weight:600;color:var(--terra3);white-space:nowrap}
-.cart-item-del{width:22px;height:22px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:0.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;flex-shrink:0}
-.cart-item-del:hover{background:var(--terra3);color:var(--white);border-color:var(--terra3)}
-.cart-footer{padding:16px 20px 28px;border-top:1px solid rgba(255,255,255,0.15);flex-shrink:0}
-.cart-total{display:flex;justify-content:space-between;font-size:0.88rem;font-weight:600;margin-bottom:16px;color:var(--white)}
-.cart-wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;border-radius:3px;background:linear-gradient(135deg,#25d366,#128c7e);color:white;font-size:0.82rem;font-weight:600;border:none;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.06em;text-transform:uppercase}
-.cart-wa-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,0.3)}
-.cart-clear-btn{display:block;width:100%;margin-top:8px;padding:10px;border-radius:3px;background:transparent;border:1px solid var(--border);color:var(--text3);font-size:0.72rem;cursor:pointer;transition:all 0.2s ease;letter-spacing:0.06em}
-.cart-clear-btn:hover{border-color:var(--terra3);color:var(--terra3)}
-
-/* ─── RIPPLE ─── */
-.ripple-container{position:relative;overflow:hidden}
-.ripple{position:absolute;border-radius:50%;transform:scale(0);animation:rippleAnim 0.6s linear;background:rgba(192,144,128,0.25);pointer-events:none}
-@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
-
-/* ─── FOOTER ─── */
-.footer{margin-top:80px;text-align:center;padding:64px 28px 80px;background:#7A5A4A;position:relative;z-index:1}
-.footer-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:600;color:var(--white);margin-bottom:10px;letter-spacing:0.06em;text-transform:uppercase}
-.footer-logo span{font-style:italic;font-weight:400;opacity:0.85}
-.footer-sub{color:rgba(255,255,255,0.65);font-size:0.78rem;margin-bottom:32px;letter-spacing:0.04em;line-height:1.75}
-.footer-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.wa-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:3px;background:var(--white);color:var(--terra3);font-size:0.8rem;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.3s ease}
-.wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
-.ig-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:3px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.5);font-size:0.8rem;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.3s ease}
-.ig-btn:hover{background:rgba(255,255,255,0.12);transform:translateY(-2px)}
-.wa-icon,.ig-icon{font-size:0.9rem}
-.footer-copy{margin-top:28px;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.06em}
-
-/* ─── SCROLL TOP ─── */
-.scroll-top{position:fixed;bottom:28px;right:28px;width:40px;height:40px;border-radius:3px;background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.3);box-shadow:0 4px 16px rgba(0,0,0,0.15);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:var(--white);transition:all 0.3s var(--ease);z-index:99;opacity:0;transform:translateY(20px)}
-.scroll-top.show{opacity:1;transform:translateY(0)}
-.scroll-top:hover{background:var(--terra3);color:var(--white)}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:600px){
-  main{padding:0 14px 80px} .section{margin-top:48px}
-  .footer{padding:48px 14px 64px} .footer-btns{flex-direction:column;align-items:center;gap:10px}
-  .wa-btn,.ig-btn{width:100%;max-width:300px;justify-content:center}
-  .cart-fab{bottom:70px;right:12px;width:46px;height:46px} .scroll-top{bottom:14px;right:14px}
-  .catalog-grid{gap:6px} .catalog-tile{padding:12px 6px}
-}
-@media(max-width:360px){.product-grid{gap:7px} .card-name{font-size:0.68rem}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
-<div class="bg-wrap" aria-hidden="true">
-  <div class="bg-orb bg-orb-1"></div>
-  <div class="bg-orb bg-orb-2"></div>
-  <div class="bg-orb bg-orb-3"></div>
-  <div class="bg-orb bg-orb-4"></div>
-</div>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">P<span>Shopper</span>.cl</a>
-    <div class="nav-pills">
-      <a href="#melatonina-kids" class="nav-pill">🌙 Melatonina Kids</a>
-      <a href="#melatonina-adulto" class="nav-pill">💜 Melatonina Adulto</a>
-      <a href="#vitaminas-ninos" class="nav-pill">🌈 Vitaminas Niños</a>
-      <a href="#gomitas" class="nav-pill">💊 Gomitas y Cápsulas</a>
-      <a href="#lemme" class="nav-pill">✨ Lemme</a>
-      <a href="#tums" class="nav-pill">🔵 Tums</a>
-      <a href="#botellas" class="nav-pill">🧊 Botellas y Termos</a>
-      <a href="#skincare" class="nav-pill">🌸 Skincare Coreano</a>
-      <a href="#byoma" class="nav-pill">🌿 Byoma</a>
-      <a href="#supergoop" class="nav-pill">☀️ Supergoop</a>
-      <a href="#capilares" class="nav-pill">💚 Capilares</a>
+<!-- NAV -->
+<header class="nav">
+  <div class="container">
+    <div class="nav-row">
+      <a href="#" class="logo"><img src="assets/img/logo.png" alt="PShopper">PShopper.cl</a>
+      <div class="nav-actions">
+        <button class="icon-btn" onclick="toggleNavSearch()" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="icon-btn" onclick="openCart()" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6L5 3H2"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <a class="wa-nav" href="https://wa.me/56912345678" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.3.1.7-.1 1.3z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="nav-search" id="navSearch">
+      <input type="text" id="navSearchInput" placeholder="Busca productos…" oninput="syncSearch(this.value)">
+    </div>
+    <div class="pills">
+      <a class="pill" href="#bestsellers">Más vendidos</a>
+      <a class="pill" href="#melatonina-kids">Melatonina Kids</a>
+      <a class="pill" href="#melatonina-adulto">Melatonina Adulto</a>
+      <a class="pill" href="#vitaminas-ninos">Vitaminas Niños</a>
+      <a class="pill" href="#gomitas">Gomitas y Cápsulas</a>
+      <a class="pill" href="#lemme">Lemme</a>
+      <a class="pill" href="#skincare">Skincare Coreano</a>
+      <a class="pill" href="#byoma">Byoma</a>
+      <a class="pill" href="#capilares">Capilares</a>
     </div>
   </div>
-</nav>
+</header>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg-pattern"></div>
-  <div class="hero-inner">
-    <div class="hero-left">
-      <span class="hero-eyebrow">Personal Shopper · USA → Chile</span>
-      <h1 class="hero-brand">P<em>Shopper</em>.cl</h1>
-      <a href="https://wa.me/56912345678" class="hero-cta" target="_blank">💬 Hacer pedido</a>
-      <div class="hero-stats">
-        <div class="hero-stat"><span class="num">+100</span><span class="lbl">Productos</span></div>
-        <div class="hero-stat"><span class="num">100%</span><span class="lbl">Originales</span></div>
-        <div class="hero-stat"><span class="num">⚡</span><span class="lbl">Entrega Rápida</span></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="reveal in">
+        <div class="eyebrow">Personal Shopper · USA → Chile</div>
+        <h1>Los productos más buscados de Estados Unidos, ahora en Chile.</h1>
+        <p class="hero-sub">Descubre suplementos, skincare y productos virales importados directamente desde USA.</p>
+        <div class="badges">
+          <div class="badge"><b>✓</b> Productos originales</div>
+          <div class="badge"><b>✓</b> Importación directa USA</div>
+          <div class="badge"><b>✓</b> Envíos a todo Chile</div>
+          <div class="badge"><b>✓</b> Atención personalizada</div>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-wa" href="https://wa.me/56912345678?text=Hola%20PShopper!%20Quiero%20hacer%20una%20consulta." target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.3.1.7-.1 1.3z"/></svg>
+            Comprar por WhatsApp
+          </a>
+          <a class="btn btn-outline" href="#bestsellers">Ver productos</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-logo" id="heroLogo"><img src="assets/img/logo.png" alt="PShopper.cl"></div>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-logo-wrap" id="heroLogo">
-        <div class="hero-logo-glass">
-          <img src="assets/img/logo.png" alt="PShopper.cl" id="heroLogoImg" onerror="this.closest('.hero-logo-wrap').style.display='none'">
-          <div class="hero-logo-shine"></div>
-        </div>
-        <div class="hero-logo-ring1"></div>
-        <div class="hero-logo-ring2"></div>
-      </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section id="bestsellers">
+  <div class="container">
+    <h2 class="sec-title reveal">Más Vendidos</h2>
+    <p class="sec-sub reveal">Los favoritos de nuestra comunidad</p>
+    <div class="grid" id="bestGrid"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="container">
+    <h2 class="sec-title reveal">¿Por qué comprar con nosotros?</h2>
+    <p class="sec-sub reveal">Tu personal shopper de confianza entre USA y Chile</p>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="ic">🇺🇸</div><h3>Productos originales USA</h3><p>Importamos directamente, garantizando autenticidad.</p></div>
+      <div class="why-card reveal"><div class="ic">💬</div><h3>Atención personalizada</h3><p>Te asesoramos en cada compra por WhatsApp.</p></div>
+      <div class="why-card reveal"><div class="ic">🚚</div><h3>Envíos a todo Chile</h3><p>Despachamos a cualquier región del país.</p></div>
+      <div class="why-card reveal"><div class="ic">✨</div><h3>Selección curada</h3><p>Solo los productos más buscados y virales de USA.</p></div>
+      <div class="why-card reveal"><div class="ic">⚡</div><h3>Compra rápida</h3><p>Pedidos simples y directos por WhatsApp.</p></div>
+      <div class="why-card reveal"><div class="ic">🔍</div><h3>Difícil de encontrar</h3><p>Productos no disponibles en Chile.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SMART SEARCH -->
+<section class="smart">
+  <div class="container">
+    <h2 class="sec-title reveal">Encuentra tu producto</h2>
+    <p class="sec-sub reveal">Busca por nombre, marca o beneficio</p>
+    <div class="smart-box reveal">
+      <input class="smart-input" id="smartInput" type="text" placeholder="Busca por nombre, marca o beneficio… ej: dormir, vitaminas, cabello" oninput="runSearch(this.value)">
+      <div class="smart-count" id="searchCount"></div>
     </div>
   </div>
 </section>
 
 <!-- CATALOG INDEX -->
-<div class="catalog-index">
-  <div class="catalog-index-header" id="catalogToggle" onclick="toggleCatalog()">
-    <span class="catalog-index-title">✦ Explorar categorías</span>
-    <span class="catalog-index-toggle">
-      <span id="toggleLabel">Ver todas</span>
-      <span class="toggle-icon" id="toggleIcon">↓</span>
-    </span>
-  </div>
-  <div class="catalog-index-body" id="catalogBody">
-    <div class="catalog-grid">
-      <a href="#melatonina-kids" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌙</span><span class="catalog-tile-name">Melatonina Kids</span><span class="catalog-tile-count">5 productos</span></a>
-      <a href="#melatonina-adulto" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">💜</span><span class="catalog-tile-name">Melatonina Adulto</span><span class="catalog-tile-count">8 productos</span></a>
-      <a href="#vitaminas-ninos" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌈</span><span class="catalog-tile-name">Vitaminas Niños</span><span class="catalog-tile-count">11 productos</span></a>
-      <a href="#gomitas" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">💊</span><span class="catalog-tile-name">Gomitas y Cápsulas</span><span class="catalog-tile-count">24 productos</span></a>
-      <a href="#lemme" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">✨</span><span class="catalog-tile-name">Lemme</span><span class="catalog-tile-count">5 productos</span></a>
-      <a href="#tums" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🔵</span><span class="catalog-tile-name">Tums</span><span class="catalog-tile-count">3 productos</span></a>
-      <a href="#botellas" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🧊</span><span class="catalog-tile-name">Botellas y Termos</span><span class="catalog-tile-count">4 productos</span></a>
-      <a href="#skincare" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌸</span><span class="catalog-tile-name">Skincare Coreano</span><span class="catalog-tile-count">10 productos</span></a>
-      <a href="#byoma" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">🌿</span><span class="catalog-tile-name">Byoma</span><span class="catalog-tile-count">11 productos</span></a>
-      <a href="#supergoop" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">☀️</span><span class="catalog-tile-name">Supergoop</span><span class="catalog-tile-count">2 productos</span></a>
-      <a href="#capilares" class="catalog-tile" onclick="closeCatalog()"><span class="catalog-tile-icon">💚</span><span class="catalog-tile-name">Capilares</span><span class="catalog-tile-count">8 productos</span></a>
+<section style="padding-top:0">
+  <div class="container" style="text-align:center">
+    <button class="cat-toggle" onclick="toggleCatIndex()">✦ Explorar categorías</button>
+    <div class="cat-index" id="catIndex">
+      <div class="cat-tiles">
+        <a class="cat-tile" href="#melatonina-kids">Melatonina Kids<small>5 productos</small></a>
+        <a class="cat-tile" href="#melatonina-adulto">Melatonina Adulto<small>8 productos</small></a>
+        <a class="cat-tile" href="#vitaminas-ninos">Vitaminas Niños<small>11 productos</small></a>
+        <a class="cat-tile" href="#gomitas">Gomitas y Cápsulas<small>24 productos</small></a>
+        <a class="cat-tile" href="#lemme">Lemme<small>5 productos</small></a>
+        <a class="cat-tile" href="#tums">Tums<small>3 productos</small></a>
+        <a class="cat-tile" href="#botellas">Botellas y Termos<small>4 productos</small></a>
+        <a class="cat-tile" href="#skincare">Skincare Coreano<small>10 productos</small></a>
+        <a class="cat-tile" href="#byoma">Byoma<small>11 productos</small></a>
+        <a class="cat-tile" href="#supergoop">Supergoop<small>2 productos</small></a>
+        <a class="cat-tile" href="#capilares">Capilares<small>8 productos</small></a>
+      </div>
     </div>
   </div>
-  <hr class="catalog-divider">
-</div>
+</section>
 
+<!-- PRODUCT CATALOG -->
+<div id="catalog"></div>
 
-<main>
-
-<!-- MELATONINA KIDS -->
-<section class="section" id="melatonina-kids">
-  <div class="section-header"><span class="section-icon">🌙</span><h2 class="section-title">Melatonina Kids</h2><span class="section-count">5 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual catalog-img" style="background-image:url('assets/img/melatonina-kids-zerozucar.jpg');background-size:cover;background-position:center 20%"></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Zero Azúcar (para niños desde 2 años)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual catalog-img" style="background-image:url('assets/img/sleep-and-calm.jpg');background-size:cover;background-position:center 20%"></div><div class="card-body"><p class="card-name">Gomitas Sleep and Calm Melatonina + Magnesio y L-Theanina</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#c4b5fd,#8b5cf655)"><span class="emoji">⭐</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Natrol 1mg (para niños desde 4 años)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#ede9fe,#a78bfa44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#ddd6fe,#8b5cf644)"><span class="emoji">⭐</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años) 30 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="container">
+    <h2 class="sec-title reveal">Lo que dicen nuestros clientes</h2>
+    <p class="sec-sub reveal">Miles de pedidos entregados en todo Chile</p>
+    <div class="testi-track" id="testiTrack">
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"Pedí melatonina para mis hijos y llegó rapidísimo. Producto original y atención de 10."</p><div class="testi-name">Camila R.</div><div class="testi-city">Santiago</div></div>
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"Por fin encontré los productos de skincare coreano que no llegan a Chile. Excelente."</p><div class="testi-name">Valentina M.</div><div class="testi-city">Viña del Mar</div></div>
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"Compré Lemme y Goli, todo original y envío a regiones sin problema. Súper recomendados."</p><div class="testi-name">Francisca L.</div><div class="testi-city">Concepción</div></div>
+    </div>
   </div>
 </section>
 
-<!-- MELATONINA ADULTO -->
-<section class="section" id="melatonina-adulto">
-  <div class="section-header"><span class="section-icon">💜</span><h2 class="section-title">Melatonina Adulto</h2><span class="section-count">8 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#3b186622,#c4b5fd44)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 140 cápsulas (Natrol)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#4c1d9522,#a78bfa44)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 90 cápsulas (Natrol)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#1e1b4b22,#818cf844)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 120 cápsulas (Spring Valley)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#2e106522,#7c3aed44)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 5mg 90 cápsulas (Natrol)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#3b186622,#c4b5fd44)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg Sugar Free 50 unidades (Olly)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#130d3322,#6d28d955)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 10mg 30 cápsulas (Sleep3)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#1a0a3322,#7c3aed44)"><span class="emoji">🫐</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 12mg 90 cápsulas (Olly)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#2d2a6622,#818cf833)"><span class="emoji">🔮</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 10mg 60 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$17.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <h2 class="sec-title reveal">Preguntas frecuentes</h2>
+    <p class="sec-sub reveal">Todo lo que necesitas saber</p>
+    <div id="faqList">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Los productos son originales?<span>+</span></button><div class="faq-a">Sí. Todos nuestros productos son 100% originales e importados directamente desde Estados Unidos. Garantizamos su autenticidad.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Hacen envíos a todo Chile?<span>+</span></button><div class="faq-a">Sí, despachamos a todas las regiones del país a través de los principales couriers. El costo de envío se calcula según tu ubicación.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Cómo realizo un pedido?<span>+</span></button><div class="faq-a">Muy simple: agrega productos al carrito o haz clic en "Consultar" y finaliza tu pedido por WhatsApp. Te confirmamos disponibilidad y total al instante.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Qué medios de pago aceptan?<span>+</span></button><div class="faq-a">Aceptamos transferencia bancaria y otros medios coordinados directamente por WhatsApp al momento de confirmar tu pedido.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Cuánto demora la entrega?<span>+</span></button><div class="faq-a">Los productos de entrega inmediata se despachan en 24–48 hrs hábiles. Para regiones, el tiempo depende del courier elegido.</div></div>
+    </div>
   </div>
 </section>
 
-<!-- VITAMINAS NIÑOS -->
-<section class="section" id="vitaminas-ninos">
-  <div class="section-header"><span class="section-icon">🌈</span><h2 class="section-title">Vitaminas Niños</h2><span class="section-count">11 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fde68a55)"><span class="emoji">😌</span></div><div class="card-body"><p class="card-name">Olly Gomitas Chillax Calma y Relajación L-Theanine y Magnesio 50 und.</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fcd34d55)"><span class="emoji">🧘</span></div><div class="card-body"><p class="card-name">Olly Gomitas Chillax 70 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#6ee7b755)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Olly Kids Sleep Libres de Melatonina 75 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fed7aa55)"><span class="emoji">🐟</span></div><div class="card-body"><p class="card-name">Nordic Omega 3 en gomitas 30 unidades</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe55)"><span class="emoji">🐠</span></div><div class="card-body"><p class="card-name">Nordic Omega 2 en cápsulas 90 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#fca5a555)"><span class="emoji">🐡</span></div><div class="card-body"><p class="card-name">Lil Critters Omega 3 en gomitas 90 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c44)"><span class="emoji">🦕</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids 70 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#a3e63555)"><span class="emoji">🦖</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids Sin Azúcar</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">📏</span></div><div class="card-body"><p class="card-name">Nurest Tall Suplemento que ayuda a los niños a crecer 90 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span><span class="price-original">$55.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39944)"><span class="emoji">🗣️</span></div><div class="card-body"><p class="card-name">Lingo Leap Suplemento en gotas para estimular el habla en niños TEA</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#f9731655)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Multivitamínico en gomitas Kids 190 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- GOMITAS Y CÁPSULAS -->
-<section class="section" id="gomitas">
-  <div class="section-header"><span class="section-icon">💊</span><h2 class="section-title">Gomitas y Cápsulas</h2><span class="section-count">24 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#ef444433)"><span class="emoji">🍎</span></div><div class="card-body"><p class="card-name">Gomitas Vinagre de Manzana Goli 60 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#ef444422)"><span class="emoji">🍏</span></div><div class="card-body"><p class="card-name">Gomitas Vinagre de Manzana Sin Azúcar Goli</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#dc262633)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Cápsulas Vinagre de Manzana 90 tabletas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#f59e0b44)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Gomitas de Cúrcuma y Gengibre 70 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#16a34a44)"><span class="emoji">🧲</span></div><div class="card-body"><p class="card-name">Spring Valley Citrato de Magnesio 100 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#22c55e44)"><span class="emoji">🍊</span></div><div class="card-body"><p class="card-name">Spring Valley Citrato de Magnesio 60 gomitas Sabor Naranja Vainilla</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fbcfe844)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Bloom Sabor Peach</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span><span class="price-original">$40.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#14b8a655)"><span class="emoji">🦠</span></div><div class="card-body"><p class="card-name">Gomitas Probiotic + Prebiotic Olly 30 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f955)"><span class="emoji">😮‍💨</span></div><div class="card-body"><p class="card-name">Olly Gomitas Goodbye Stress 42 unidades</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#d946ef55)"><span class="emoji">🧘</span></div><div class="card-body"><p class="card-name">Olly Gomitas Goodbye Stress 60 unidades</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#f43f5e44)"><span class="emoji">🍬</span></div><div class="card-body"><p class="card-name">Olly Cápsulas para combatir Antojos 60 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$25.000</span><span class="price-original">$32.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">⚡</span></div><div class="card-body"><p class="card-name">Olly Citrato de Magnesio Gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$22.000</span><span class="price-original">$27.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fbbf2444)"><span class="emoji">👩</span></div><div class="card-body"><p class="card-name">Centrum Women +50 Multivitamínico en gomitas 140 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#f9731655)"><span class="emoji">💃</span></div><div class="card-body"><p class="card-name">Centrum Women Multivitamínico en gomitas 170 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c026d355)"><span class="emoji">🌺</span></div><div class="card-body"><p class="card-name">Uno Probióticos Vaginales 30 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#f9a8d455)"><span class="emoji">💖</span></div><div class="card-body"><p class="card-name">Multivitamínico de Mujer con Colágeno incluido</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$15.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#e879f944)"><span class="emoji">💅</span></div><div class="card-body"><p class="card-name">Gomitas Hair Nails Skin 80 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#ec489955)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Gomitas Hair Nails Skin 140 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$35.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fcd34d55)"><span class="emoji">💇</span></div><div class="card-body"><p class="card-name">Biotina en Gomitas 90 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#f59e0b33)"><span class="emoji">🧴</span></div><div class="card-body"><p class="card-name">Biotina en Cápsulas 120 unidades para 4 meses</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#86efac55)"><span class="emoji">🔬</span></div><div class="card-body"><p class="card-name">NAD + Resveratrol Suplemento Antienvejecimiento</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#a3e63555)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Gomitas Ashwagandha Sin Azúcar Goli</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0f9ff,#7dd3fc55)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Cápsulas para la Ansiedad y Stress 30 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- LEMME -->
-<section class="section" id="lemme">
-  <div class="section-header"><span class="section-icon">✨</span><h2 class="section-title">Lemme <span style="font-size:0.65em;font-weight:400;color:var(--text-muted)">by Kourtney Kardashian</span></h2><span class="section-count">5 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#faf5ff,#a855f744)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Lemme Debloat</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$40.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fdf4ff,#c084fc44)"><span class="emoji">🌺</span></div><div class="card-body"><p class="card-name">Lemme Purr Gomitas de Probióticos Vaginales</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$40.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual " style="background:linear-gradient(135deg,#fce7f3,#f9a8d455)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Lemme Tone</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#faf5ff,#a855f744)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Lemme Focus Gomitas para la Concentración Cortizol-Melena de León 30 gomitas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f944)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Lemme Smooth Reduce la Celulitis 30 cápsulas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- TUMS -->
-<section class="section" id="tums">
-  <div class="section-header"><span class="section-icon">🔵</span><h2 class="section-title">Tums</h2><span class="section-count">3 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#eff6ff,#93c5fd44)"><span class="emoji">💙</span></div><div class="card-body"><p class="card-name">Anti Ácido Formato Cálcico</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$13.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#dbeafe,#60a5fa44)"><span class="emoji">🔵</span></div><div class="card-body"><p class="card-name">Anti Ácido y Antigas Masticable</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#e0f2fe,#38bdf844)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Anti Ácido Ultra Strength 1000 72 tabletas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$16.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- BOTELLAS Y TERMOS -->
-<section class="section" id="botellas">
-  <div class="section-header"><span class="section-icon">🧊</span><h2 class="section-title">Botellas y Termos</h2><span class="section-count">4 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual " style="background:linear-gradient(135deg,#ecfeff,#67e8f944)"><span class="emoji">💧</span></div><div class="card-body"><p class="card-name">Botella Owala Kids Celeste 16 onzas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual " style="background:linear-gradient(135deg,#f0f9ff,#7dd3fc44)"><span class="emoji">🥤</span></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$39.000</span><span class="price-original">$45.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fff1f2,#fda4af44)"><span class="emoji">🍶</span></div><div class="card-body"><p class="card-name">Botella Owala Fucsia 24 onzas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$39.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#f0fdf4,#86efac44)"><span class="emoji">♨️</span></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes 20 onzas</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$55.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- SKINCARE COREANO -->
-<section class="section" id="skincare">
-  <div class="section-header"><span class="section-icon">🌸</span><h2 class="section-title">Skincare Coreano</h2><span class="section-count">10 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fdf2f8,#fbcfe844)"><span class="emoji">🌸</span></div><div class="card-body"><p class="card-name">Radiance Mascarilla de Colágeno (Biodance)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$8.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fce7f3,#f9a8d444)"><span class="emoji">💆</span></div><div class="card-body"><p class="card-name">TXA Niacinamide Serum 15% (Medicube)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fdf4ff,#e879f944)"><span class="emoji">🧴</span></div><div class="card-body"><p class="card-name">Collagen Jelly Cream (Medicube)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fff1f2,#fecaca44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Collagen Night Wrapping Mask (Medicube)</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$33.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fbbf2455)"><span class="emoji">🍋</span></div><div class="card-body"><p class="card-name">Deep Vita C Capsule Cream</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$38.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#d9770655)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Kojic Acid Turmeric Night Wrapping Mask</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$32.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fcd34d44)"><span class="emoji">💎</span></div><div class="card-body"><p class="card-name">Tone Brightening Capsule Ampoule</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#f0abfc44)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Ampoule Foam</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fb718555)"><span class="emoji">🪡</span></div><div class="card-body"><p class="card-name">Mascarilla con 100 Micro Agujas VT Cosmetics</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$8.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#fda4af55)"><span class="emoji">💉</span></div><div class="card-body"><p class="card-name">Serum 500 Micro Agujas VT Cosmetics</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$29.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- BYOMA -->
-<section class="section" id="byoma">
-  <div class="section-header"><span class="section-icon">🌿</span><h2 class="section-title">Byoma</h2><span class="section-count">11 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#f0fdf4,#86efac44)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Hydrating Milky Toner</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$28.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual " style="background:linear-gradient(135deg,#ecfdf5,#6ee7b744)"><span class="emoji">💚</span></div><div class="card-body"><p class="card-name">Tónico Facial Aliviador de Rojeces</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual " style="background:linear-gradient(135deg,#f0fdf4,#4ade8044)"><span class="emoji">💦</span></div><div class="card-body"><p class="card-name">Face Mist 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual " style="background:linear-gradient(135deg,#dcfce7,#16a34a44)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Milky Gel Cleanser 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$17.000</span><span class="price-original">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fbbf2455)"><span class="emoji">☀️</span></div><div class="card-body"><p class="card-name">Bloqueador de Cara SPF 30 Ácido Hialurónico Textura Leviana</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#86efac55)"><span class="emoji">💚</span></div><div class="card-body"><p class="card-name">Serum Hidratante 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c084fc44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Aceite de Retinol 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fde68a55)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Serum Clarifying 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fda4af55)"><span class="emoji">👁️</span></div><div class="card-body"><p class="card-name">Gel Contorno de Ojos Vitamina C y Triple Hialurónico</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c55)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Glow Serum 30 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#f9a8d455)"><span class="emoji">💋</span></div><div class="card-body"><p class="card-name">Lip Gel</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$13.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- SUPERGOOP -->
-<section class="section" id="supergoop">
-  <div class="section-header"><span class="section-icon">☀️</span><h2 class="section-title">Supergoop</h2><span class="section-count">2 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fefce8,#fde04744)"><span class="emoji">☀️</span></div><div class="card-body"><p class="card-name">Unseen Sunscreen SPF 50</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$45.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#fffbeb,#fbbf2444)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Glowscreen SPF 40</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$45.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-<!-- PRODUCTOS CAPILARES -->
-<section class="section" id="capilares">
-  <div class="section-header"><span class="section-icon">💚</span><h2 class="section-title">Productos Capilares</h2><span class="section-count">8 productos</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#f0fdf4,#bbf7d044)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero para Fomentar el Crecimiento del Pelo</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#ecfdf5,#6ee7b744)"><span class="emoji">💆</span></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero Light para Fomentar el Crecimiento del Pelo</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$20.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual " style="background:linear-gradient(135deg,#f0fdf4,#4ade8044)"><span class="emoji">💇</span></div><div class="card-body"><p class="card-name">TIGI Bed Head After Party Crema Suavidad y Brillo</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$23.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual " style="background:linear-gradient(135deg,#d1fae5,#34d39944)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">TIGI Bed Head Cera Capilar para Peinar</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#05966955)"><span class="emoji">💦</span></div><div class="card-body"><p class="card-name">Spray WOW 200 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$39.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#6d28d955)"><span class="emoji">🌀</span></div><div class="card-body"><p class="card-name">Spray WOW Curly 200 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$21.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#d1fae5,#065f4655)"><span class="emoji">💪</span></div><div class="card-body"><p class="card-name">Spray WOW Extra Fuerte 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$24.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39944)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Spray WOW 50 ml</p><div class="card-footer"><div class="card-pricing"><span class="price-current">$21.000</span></div><div class="qty-ctrl"><button class="qty-btn qty-minus">−</button><span class="qty-num">0</span><button class="qty-btn qty-plus">+</button></div></div></div></div>
-  </div>
-</section>
-
-</main>
-
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-logo">P<span>Shopper</span>.cl</div>
-  <p class="footer-sub">Personal Shopper • Productos originales importados desde USA 🇺🇸 a Chile 🇨🇱</p>
-  <div class="footer-btns">
-    <a href="https://wa.me/56912345678?text=Hola%20PShopper!%20Me%20interesa%20hacer%20un%20pedido" class="wa-btn" target="_blank" rel="noopener">
-      <span class="wa-icon">💬</span> Hacer pedido por WhatsApp
-    </a>
-    <a href="https://www.instagram.com/pshoppper.cl?igsh=YTZtanE3ZmZlb3g4" class="ig-btn" target="_blank" rel="noopener">
-      <span class="ig-icon">📷</span> Seguir en Instagram
-    </a>
+  <div class="container">
+    <div class="footer-logo">PShopper.cl</div>
+    <p>Tu personal shopper entre Estados Unidos y Chile.</p>
+    <p>Lun–Sáb 9:00–20:00</p>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/pshoppper.cl?igsh=YTZtanE3ZmZlb3g4" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1018.6 12 6.6 6.6 0 0012 5.4zm0 10.9A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.8-11.1a1.5 1.5 0 11-1.5-1.5 1.5 1.5 0 011.5 1.5z"/></svg>
+        Instagram
+      </a>
+      <a href="https://wa.me/56912345678" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="footer-copy">© 2026 PShopper.cl · Personal Shopper USA → Chile. Todos los derechos reservados.</div>
   </div>
-  <p class="footer-copy">© 2024 PShopper.cl — Todos los derechos reservados · IG: @PSHOPPER.CL</p>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Volver arriba">↑</button>
-
-<!-- CART FAB -->
-<button class="cart-fab" id="cartFab" aria-label="Ver carrito">
-  🛒
-  <span class="cart-badge" id="cartBadge">0</span>
-</button>
-
 <!-- CART DRAWER -->
-<div class="cart-overlay" id="cartOverlay"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <span class="cart-title">🛒 Mi Pedido</span>
-    <button class="cart-close" id="cartClose">✕</button>
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head"><h3>Tu carrito</h3><button class="drawer-close" onclick="closeCart()">×</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">$0</span></div>
+    <button class="checkout-btn" onclick="checkout()">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2z"/></svg>
+      Finalizar por WhatsApp
+    </button>
   </div>
-  <div class="cart-items" id="cartItems">
-    <div class="cart-empty">Tu carrito está vacío.<br>Agrega productos con los botones + de cada tarjeta.</div>
-  </div>
-  <div class="cart-footer" id="cartFooter" style="display:none">
-    <div class="cart-total">
-      <span>Total</span>
-      <span id="cartTotal">$0</span>
-    </div>
-    <button class="cart-wa-btn" id="cartWaBtn">💬 Pedir por WhatsApp</button>
-    <button class="cart-clear-btn" id="cartClearBtn">Vaciar carrito</button>
+</aside>
+
+<!-- FLOATING -->
+<a class="fab-wa" href="https://wa.me/56912345678" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.3.1.7-.1 1.3z"/></svg>
+</a>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Subir">↑</button>
+
+<!-- AI ASSISTANT -->
+<button class="ai-fab" id="aiFab" onclick="toggleAI()">✨ Asistente</button>
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-head"><h4>✨ Asistente PShopper</h4><button onclick="toggleAI()">×</button></div>
+  <div class="ai-body" id="aiBody"></div>
+  <div class="ai-foot">
+    <input id="aiInput" type="text" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')aiSend()">
+    <button onclick="aiSend()">➤</button>
   </div>
 </div>
 
 <script>
-// Scroll reveal — opacity stays 1, only translateY moves
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.section').forEach(s => revealObs.observe(s));
+/* ============ DATA ============ */
+const WA="56912345678";
+const fmt=n=>"$"+n.toLocaleString("es-CL");
 
-// Active nav pill
-const pillLinks = document.querySelectorAll('.nav-pill');
-const pillObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const id = e.target.id;
-      pillLinks.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#' + id));
-    }
-  });
-}, { threshold: 0.25 });
-document.querySelectorAll('section[id]').forEach(s => pillObs.observe(s));
+const SECTIONS=[
+ {id:"melatonina-kids",title:"Melatonina Kids",items:[
+   {n:"Melatonina Kids Zero Azúcar",p:20000,img:"assets/img/melatonina-kids-zerozucar.jpg",badge:"Bestseller",tags:"dormir sueño niños melatonina"},
+   {n:"Sleep and Calm Kids",p:20000,img:"assets/img/sleep-and-calm.jpg",badge:"Viral",tags:"dormir calma niños melatonina estrés"},
+   {n:"Melatonina Gomitas Kids 60u",p:18000,badge:"Más vendido",tags:"dormir sueño niños melatonina gomitas"},
+   {n:"Melatonina Líquida Kids",p:19000,tags:"dormir sueño niños melatonina"},
+   {n:"Kids Sleep Berry",p:17000,tags:"dormir sueño niños melatonina"},
+ ]},
+ {id:"melatonina-adulto",title:"Melatonina Adulto",items:[
+   {n:"Melatonina 10mg Gomitas",p:21000,badge:"Más vendido",tags:"dormir sueño melatonina adulto"},
+   {n:"Olly Sleep Gummies",p:22000,badge:"Viral",tags:"dormir sueño melatonina olly"},
+   {n:"Natrol Melatonin Fast Dissolve",p:20000,tags:"dormir sueño melatonina"},
+   {n:"ZzzQuil Pure Zzzs",p:23000,tags:"dormir sueño melatonina"},
+   {n:"Melatonina Time Release",p:21000,tags:"dormir sueño melatonina"},
+   {n:"Sleep Well Magnesio",p:24000,tags:"dormir magnesio relax sueño"},
+   {n:"Olly Restful Sleep",p:23000,tags:"dormir sueño melatonina olly"},
+   {n:"Vicks Melatonin Gummies",p:20000,tags:"dormir sueño melatonina"},
+ ]},
+ {id:"vitaminas-ninos",title:"Vitaminas Niños",items:[
+   {n:"Olly Kids Multi",p:19000,badge:"Más vendido",tags:"vitaminas niños multivitamínico"},
+   {n:"L'il Critters Gummy Vites",p:18000,tags:"vitaminas niños gomitas"},
+   {n:"Vitamina C Kids",p:16000,tags:"vitaminas niños defensas vitamina c"},
+   {n:"Vitamina D Kids",p:16000,tags:"vitaminas niños vitamina d"},
+   {n:"Omega 3 Kids",p:21000,tags:"vitaminas niños omega concentración"},
+   {n:"Probióticos Kids",p:23000,tags:"vitaminas niños digestión probióticos"},
+   {n:"Iron Gummies Kids",p:20000,tags:"vitaminas niños hierro"},
+   {n:"Calcio + Vitamina D Kids",p:19000,tags:"vitaminas niños calcio"},
+   {n:"Immunity Kids Elderberry",p:22000,tags:"vitaminas niños defensas inmunidad"},
+   {n:"Focus Kids Gummies",p:24000,tags:"vitaminas niños concentración focus"},
+   {n:"Sleep & Multi Kids",p:21000,tags:"vitaminas niños dormir"},
+ ]},
+ {id:"gomitas",title:"Gomitas y Cápsulas",items:[
+   {n:"Olly Goodbye Stress 42u",p:23000,badge:"Bestseller",tags:"estrés ansiedad calma olly gomitas"},
+   {n:"Biotina en Gomitas 90u",p:23000,badge:"Viral",tags:"cabello biotina belleza piel uñas gomitas"},
+   {n:"Goli Vinagre de Manzana",p:24000,badge:"Viral",tags:"digestión vinagre manzana goli detox"},
+   {n:"Olly Sleep",p:22000,tags:"dormir sueño olly gomitas"},
+   {n:"Olly Stress Gummies",p:23000,tags:"estrés ansiedad olly calma"},
+   {n:"Olly Beauty Hair Skin Nails",p:24000,tags:"cabello piel uñas belleza olly"},
+   {n:"Olly Probiotic + Prebiotic",p:25000,tags:"digestión probióticos olly"},
+   {n:"Goli Ashwagandha",p:25000,tags:"estrés ansiedad ashwagandha goli calma"},
+   {n:"Goli Supergreens",p:26000,tags:"detox greens digestión goli"},
+   {n:"Vital Proteins Collagen",p:32000,tags:"colágeno cabello piel belleza"},
+   {n:"Nature Made Multi Gummies",p:19000,tags:"vitaminas multivitamínico"},
+   {n:"Vitafusion Women's Multi",p:21000,tags:"vitaminas mujer multivitamínico"},
+   {n:"Vitafusion Men's Multi",p:21000,tags:"vitaminas hombre multivitamínico"},
+   {n:"Emergen-C Immune",p:18000,tags:"defensas inmunidad vitamina c"},
+   {n:"Magnesium Glycinate",p:24000,tags:"magnesio relax dormir"},
+   {n:"Ashwagandha Capsules",p:23000,tags:"estrés ansiedad ashwagandha calma"},
+   {n:"Biotin 10000mcg",p:20000,tags:"cabello biotina uñas"},
+   {n:"Collagen Peptides Caps",p:28000,tags:"colágeno piel belleza"},
+   {n:"Hair Skin Nails Gummies",p:22000,tags:"cabello piel uñas belleza"},
+   {n:"Vitamin D3 + K2",p:22000,tags:"vitamina d defensas"},
+   {n:"Omega 3 Fish Oil",p:25000,tags:"omega corazón concentración"},
+   {n:"Probiotic 50 Billion",p:30000,tags:"digestión probióticos"},
+   {n:"Apple Cider Vinegar Caps",p:21000,tags:"digestión vinagre detox"},
+   {n:"Elderberry Immune Gummies",p:20000,tags:"defensas inmunidad elderberry"},
+ ]},
+ {id:"lemme",title:"Lemme",items:[
+   {n:"Lemme Debloat",p:40000,badge:"Viral",tags:"digestión debloat lemme hinchazón"},
+   {n:"Lemme Sleep",p:38000,tags:"dormir sueño lemme"},
+   {n:"Lemme Curb",p:42000,tags:"apetito lemme metabolismo"},
+   {n:"Lemme Glow",p:40000,tags:"piel belleza glow lemme cabello"},
+   {n:"Lemme Chill",p:39000,tags:"estrés ansiedad calma lemme"},
+ ]},
+ {id:"tums",title:"Tums",items:[
+   {n:"Tums Ultra Strength",p:12000,tags:"digestión acidez tums"},
+   {n:"Tums Chewy Bites",p:13000,tags:"digestión acidez tums"},
+   {n:"Tums Smoothies",p:13000,tags:"digestión acidez tums"},
+ ]},
+ {id:"botellas",title:"Botellas y Termos",items:[
+   {n:"Stanley Quencher 40oz",p:55000,badge:"Viral",img:"assets/img/botellas.jpg",tags:"botella termo stanley hidratación"},
+   {n:"Owala FreeSip 32oz",p:38000,badge:"Bestseller",tags:"botella owala hidratación"},
+   {n:"Hydro Flask 32oz",p:48000,tags:"botella termo hidro flask"},
+   {n:"Simple Modern Tumbler",p:32000,tags:"botella termo hidratación"},
+ ]},
+ {id:"skincare",title:"Skincare Coreano",items:[
+   {n:"Beauty of Joseon Serum",p:22000,badge:"Viral",img:"assets/img/glossier.jpg",tags:"skincare coreano serum piel"},
+   {n:"COSRX Snail Mucin",p:24000,badge:"Bestseller",tags:"skincare coreano cosrx piel hidratación"},
+   {n:"Anua Heartleaf Toner",p:23000,tags:"skincare coreano toner piel"},
+   {n:"Beauty of Joseon Sunscreen",p:21000,tags:"skincare coreano protector solar"},
+   {n:"Some By Mi AHA BHA",p:25000,tags:"skincare coreano exfoliante piel"},
+   {n:"Laneige Lip Sleeping Mask",p:28000,tags:"skincare coreano labios laneige"},
+   {n:"Innisfree Green Tea Serum",p:26000,tags:"skincare coreano serum piel"},
+   {n:"Round Lab Toner",p:22000,tags:"skincare coreano toner piel"},
+   {n:"Medicube Zero Pore Pad",p:30000,tags:"skincare coreano poros piel"},
+   {n:"Torriden Dive In Serum",p:24000,tags:"skincare coreano serum hidratación piel"},
+ ]},
+ {id:"byoma",title:"Byoma",items:[
+   {n:"Byoma Moisturizing Gel Cream",p:23000,badge:"Bestseller",img:"assets/img/byoma.jpg",tags:"byoma skincare hidratante piel crema"},
+   {n:"Byoma Hydrating Serum",p:24000,badge:"Viral",tags:"byoma serum hidratación piel"},
+   {n:"Byoma Brightening Serum",p:24000,tags:"byoma serum piel iluminador"},
+   {n:"Byoma Creamy Jelly Cleanser",p:21000,tags:"byoma limpiador piel"},
+   {n:"Byoma Clarifying Serum",p:24000,tags:"byoma serum piel poros"},
+   {n:"Byoma Moisturizing Rich Cream",p:24000,tags:"byoma crema hidratante piel"},
+   {n:"Byoma Hydrating Mist",p:20000,tags:"byoma mist hidratación piel"},
+   {n:"Byoma Lip Treatment",p:18000,tags:"byoma labios piel"},
+   {n:"Byoma Balancing Face Wash",p:21000,tags:"byoma limpiador piel"},
+   {n:"Byoma Tinted Moisturizer SPF",p:26000,tags:"byoma protector hidratante piel"},
+   {n:"Byoma Set Esencial",p:60000,badge:"Nuevo",tags:"byoma set skincare piel"},
+ ]},
+ {id:"supergoop",title:"Supergoop",items:[
+   {n:"Unseen Sunscreen SPF50",p:45000,badge:"Bestseller",img:"assets/img/supergoop.jpg",tags:"protector solar supergoop spf piel"},
+   {n:"Glowscreen SPF40",p:46000,badge:"Viral",tags:"protector solar supergoop glow spf piel"},
+ ]},
+ {id:"capilares",title:"Capilares",items:[
+   {n:"Mielle Aceite de Romero",p:20000,badge:"Bestseller",img:"assets/img/capilares.jpg",tags:"cabello aceite romero mielle crecimiento"},
+   {n:"Olaplex No.3 Hair Perfector",p:35000,badge:"Viral",tags:"cabello olaplex tratamiento"},
+   {n:"K18 Leave-In Mask",p:42000,tags:"cabello k18 tratamiento"},
+   {n:"Got2b Glued Gel",p:14000,tags:"cabello gel peinado got2b"},
+   {n:"Mielle Pomegranate Leave-In",p:18000,tags:"cabello mielle hidratación"},
+   {n:"Batiste Dry Shampoo",p:13000,tags:"cabello shampoo seco batiste"},
+   {n:"Color Wow Dream Coat",p:32000,tags:"cabello color wow frizz"},
+   {n:"Rosemary Mint Scalp Oil",p:21000,tags:"cabello aceite romero crecimiento cuero"},
+ ]},
+];
 
-// Ripple
-document.querySelectorAll('.ripple-container').forEach(el => {
-  el.addEventListener('click', function(e) {
-    const r = this.getBoundingClientRect();
-    const rip = document.createElement('span');
-    rip.className = 'ripple';
-    const sz = Math.max(r.width, r.height);
-    rip.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-r.left-sz/2}px;top:${e.clientY-r.top-sz/2}px`;
-    this.appendChild(rip);
-    rip.addEventListener('animationend', () => rip.remove());
+const BEST=[
+ {n:"Melatonina Kids Zero Azúcar",p:20000,img:"assets/img/melatonina-kids-zerozucar.jpg",badge:"Bestseller"},
+ {n:"Sleep and Calm",p:20000,img:"assets/img/sleep-and-calm.jpg",badge:"Viral"},
+ {n:"Olly Goodbye Stress 42u",p:23000,badge:"Más vendido"},
+ {n:"Mielle Aceite de Romero",p:20000,badge:"Más vendido"},
+ {n:"Biotina en Gomitas 90u",p:23000,badge:"Viral"},
+ {n:"Goli Vinagre de Manzana",p:24000,badge:"Viral"},
+ {n:"Lemme Debloat",p:40000,badge:"Viral"},
+ {n:"Unseen Sunscreen SPF50",p:45000,badge:"Bestseller"},
+];
+
+/* ============ RENDER ============ */
+let pid=0;
+function esc(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function cardHTML(it){
+  const id="p"+(pid++);
+  const visual = it.img ? '<img src="'+it.img+'" alt="'+esc(it.n)+'" loading="lazy">' : '<div class="ph">'+it.n+'</div>';
+  const badge = it.badge ? '<span class="card-badge">'+it.badge+'</span>' : '';
+  const price = it.old ? fmt(it.p)+'<span class="old">'+fmt(it.old)+'</span>' : fmt(it.p);
+  return '<div class="card" data-name="'+esc(it.n.toLowerCase())+'" data-tags="'+(it.tags||"")+'">'
+    +'<div class="card-img">'+badge+visual+'</div>'
+    +'<div class="card-name">'+it.n+'</div>'
+    +'<div class="card-price">'+price+'</div>'
+    +'<div class="qty-row"><button class="qty-btn" onclick="stepQty(\''+id+'\',-1)">−</button>'
+    +'<span class="qty-val" id="q_'+id+'">1</span>'
+    +'<button class="qty-btn" onclick="stepQty(\''+id+'\',1)">+</button></div>'
+    +'<button class="card-wa" onclick="consult(\''+id+'\',\''+esc(it.n)+'\','+it.p+',\''+(it.img||"")+'\')">Consultar →</button>'
+    +'</div>';
+}
+
+document.getElementById("bestGrid").innerHTML = BEST.map(cardHTML).join("");
+document.getElementById("catalog").innerHTML = SECTIONS.map(s=>
+  '<section class="catsec reveal" id="'+s.id+'"><div class="container">'
+  +'<h2 class="catsec-title">'+s.title+'</h2><div class="catsec-line"></div>'
+  +'<div class="grid">'+s.items.map(cardHTML).join("")+'</div></div></section>'
+).join("");
+
+/* ============ QTY + CART ============ */
+const qtys={};
+function stepQty(id,d){qtys[id]=Math.max(1,(qtys[id]||1)+d);document.getElementById("q_"+id).textContent=qtys[id];}
+let cart=[];
+function addToCart(name,price,image,qty){
+  const ex=cart.find(c=>c.name===name);
+  if(ex)ex.qty+=qty;else cart.push({name,price,image,qty});
+  renderCart();
+}
+function consult(id,name,price,image){
+  const q=qtys[id]||1;
+  addToCart(name,price,image,q);
+  const msg="Hola PShopper! Me interesa: "+name+". ¿Está disponible?";
+  window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank");
+}
+function renderCart(){
+  const count=cart.reduce((a,c)=>a+c.qty,0);
+  document.getElementById("cartCount").textContent=count;
+  const body=document.getElementById("cartBody");
+  if(!cart.length){body.innerHTML='<div class="cart-empty">Tu carrito está vacío.<br>Agrega productos para comenzar.</div>';}
+  else{body.innerHTML=cart.map((c,i)=>{
+    const vis=c.image?'<img class="cart-item-img" src="'+c.image+'">':'<div class="cart-item-img"></div>';
+    return '<div class="cart-item">'+vis+'<div class="cart-item-info"><div class="cart-item-name">'+c.name+'</div>'
+    +'<div class="cart-item-price">'+fmt(c.price)+'</div>'
+    +'<div class="cart-item-ctrl"><button class="qty-btn" onclick="cartStep('+i+',-1)">−</button>'
+    +'<span class="qty-val">'+c.qty+'</span>'
+    +'<button class="qty-btn" onclick="cartStep('+i+',1)">+</button>'
+    +'<button class="cart-rm" onclick="cartRemove('+i+')">Eliminar</button></div></div></div>';
+  }).join("");}
+  document.getElementById("cartTotal").textContent=fmt(cart.reduce((a,c)=>a+c.price*c.qty,0));
+}
+function cartStep(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);renderCart();}
+function cartRemove(i){cart.splice(i,1);renderCart();}
+function openCart(){document.getElementById("drawer").classList.add("open");document.getElementById("overlay").classList.add("open");}
+function closeCart(){document.getElementById("drawer").classList.remove("open");document.getElementById("overlay").classList.remove("open");}
+function checkout(){
+  if(!cart.length){alert("Tu carrito está vacío.");return;}
+  let msg="Hola PShopper! Quiero hacer este pedido:\n\n";
+  cart.forEach(c=>{msg+="• "+c.qty+"x "+c.name+" — "+fmt(c.price)+"\n";});
+  msg+="\nTotal: "+fmt(cart.reduce((a,c)=>a+c.price*c.qty,0));
+  window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank");
+}
+renderCart();
+
+/* ============ SEARCH ============ */
+const KEYWORDS={dormir:"dormir sueño melatonina",sueño:"dormir sueño",estrés:"estrés ansiedad calma",estres:"estrés ansiedad calma",ansiedad:"estrés ansiedad",vitaminas:"vitaminas multivitamínico defensas",cabello:"cabello biotina capilar",pelo:"cabello capilar",skincare:"skincare piel serum",piel:"piel skincare serum",digestión:"digestión vinagre debloat",digestion:"digestión vinagre debloat",concentración:"concentración focus omega",concentracion:"concentración focus omega"};
+function runSearch(raw){
+  const q=raw.trim().toLowerCase();
+  const navI=document.getElementById("navSearchInput");if(navI&&navI.value!==raw)navI.value=raw;
+  const smartI=document.getElementById("smartInput");if(smartI&&smartI.value!==raw)smartI.value=raw;
+  let expanded=q;
+  Object.keys(KEYWORDS).forEach(k=>{if(q.includes(k))expanded+=" "+KEYWORDS[k];});
+  const terms=expanded.split(/\s+/).filter(Boolean);
+  let shown=0;
+  document.querySelectorAll(".card").forEach(c=>{
+    const hay=(c.dataset.name+" "+c.dataset.tags).toLowerCase();
+    const match=!q || terms.some(t=>hay.includes(t));
+    c.style.display=match?"":"none";
+    if(match)shown++;
   });
+  document.querySelectorAll(".catsec").forEach(sec=>{
+    const any=sec.querySelectorAll('.card:not([style*="none"])').length;
+    sec.style.display=(!q||any)?"":"none";
+  });
+  document.getElementById("searchCount").textContent=q?(shown+" producto"+(shown!==1?"s":"")+" encontrado"+(shown!==1?"s":"")):"";
+}
+function syncSearch(v){runSearch(v);}
+function toggleNavSearch(){const n=document.getElementById("navSearch");n.classList.toggle("open");if(n.classList.contains("open"))n.querySelector("input").focus();}
+
+/* ============ UI TOGGLES ============ */
+function toggleCatIndex(){document.getElementById("catIndex").classList.toggle("open");}
+function toggleFaq(btn){btn.parentElement.classList.toggle("open");}
+
+/* ============ REVEAL + PARALLAX + SCROLLTOP ============ */
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+const heroLogo=document.getElementById("heroLogo");
+window.addEventListener("scroll",()=>{
+  const y=window.scrollY;
+  if(heroLogo&&y<700)heroLogo.style.transform="translateY("+(y*0.12)+"px)";
+  document.getElementById("scrollTop").classList.toggle("show",y>500);
 });
 
-// Scroll-to-top
-const stBtn = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => stBtn.classList.toggle('show', window.scrollY > 400), { passive: true });
-stBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-// Parallax blobs + logo
-let tick = false;
-const heroLogo = document.getElementById('heroLogo');
-window.addEventListener('scroll', () => {
-  if (!tick) {
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      const b = document.querySelectorAll('.bg-orb');
-      if (b[0]) b[0].style.transform += ` translateY(${y*0.06}px)`;
-      if (b[1]) b[1].style.transform += ` translateY(${-y*0.04}px)`;
-      if (b[2]) b[2].style.transform += ` translateY(${y*0.03}px)`;
-      if (b[3]) b[3].style.transform += ` translateY(${-y*0.05}px)`;
-      if (heroLogo) heroLogo.style.transform = `translateY(${y*0.18}px) scale(${1 - y*0.0003})`;
-      tick = false;
-    });
-    tick = true;
-  }
-}, { passive: true });
-
-// 3D card tilt
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mousemove', function(e) {
-    const r = this.getBoundingClientRect();
-    const rx = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -4;
-    const ry = ((e.clientX - r.left - r.width/2) / (r.width/2)) * 4;
-    this.style.transform = `translateY(-4px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-  });
-  card.addEventListener('mouseleave', function() { this.style.transform = ''; });
-});
-
-// ─── CART ───────────────────────────────────────────────────────────────────
-const cart = {}; // { cardId: { name, price, qty } }
-
-function parsePrice(str) {
-  return parseInt(str.replace(/\D/g, ''), 10) || 0;
-}
-function formatPrice(n) {
-  return '$' + n.toLocaleString('es-CL');
+/* ============ TESTIMONIAL AUTO-SCROLL (mobile) ============ */
+const track=document.getElementById("testiTrack");
+if(window.innerWidth<760){
+  let ti=0;setInterval(()=>{ti=(ti+1)%track.children.length;track.scrollTo({left:track.children[ti].offsetLeft-20,behavior:"smooth"});},3500);
 }
 
-function updateCartUI() {
-  const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
-  const totalQty = Object.values(cart).reduce((s, i) => s + i.qty, 0);
-  const badge = document.getElementById('cartBadge');
-  badge.textContent = totalQty;
-  badge.classList.toggle('show', totalQty > 0);
-
-  const itemsEl = document.getElementById('cartItems');
-  const footerEl = document.getElementById('cartFooter');
-  document.getElementById('cartTotal').textContent = formatPrice(total);
-
-  if (totalQty === 0) {
-    itemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío.<br>Agrega productos con los botones + de cada tarjeta.</div>';
-    footerEl.style.display = 'none';
-    return;
-  }
-  footerEl.style.display = '';
-  itemsEl.innerHTML = Object.entries(cart).map(([id, item]) => `
-    <div class="cart-item">
-      <div class="cart-item-name">${item.name}</div>
-      <div class="cart-item-qty">×${item.qty}</div>
-      <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
-      <button class="cart-item-del" data-id="${id}">✕</button>
-    </div>`).join('');
-
-  itemsEl.querySelectorAll('.cart-item-del').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.id;
-      if (cart[id]) {
-        const card = document.querySelector(`[data-card-id="${id}"]`);
-        if (card) { card.querySelector('.qty-num').textContent = '0'; }
-        delete cart[id];
-        updateCartUI();
-      }
-    });
-  });
+/* ============ AI ASSISTANT ============ */
+const aiBody=document.getElementById("aiBody");
+let aiStarted=false;
+function toggleAI(){
+  const p=document.getElementById("aiPanel");
+  p.classList.toggle("open");
+  if(p.classList.contains("open")&&!aiStarted){aiStarted=true;aiWelcome();}
 }
-
-function openCart() {
-  document.getElementById('cartDrawer').classList.add('open');
-  document.getElementById('cartOverlay').classList.add('open');
+function bot(html){const d=document.createElement("div");d.className="ai-msg ai-bot";d.innerHTML=html;aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;}
+function usr(t){const d=document.createElement("div");d.className="ai-msg ai-user";d.textContent=t;aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;}
+function opts(list){
+  const d=document.createElement("div");d.className="ai-opts";
+  list.forEach(o=>{const b=document.createElement("button");b.className="ai-opt";b.textContent=o.label;b.onclick=()=>{usr(o.label);d.remove();o.fn();};d.appendChild(b);});
+  aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
 }
-function closeCart() {
-  document.getElementById('cartDrawer').classList.remove('open');
-  document.getElementById('cartOverlay').classList.remove('open');
+function recCard(name,price){
+  const msg=encodeURIComponent("Hola PShopper! Me interesa: "+name+". ¿Está disponible?");
+  const d=document.createElement("div");d.className="ai-rec";
+  d.innerHTML='<b>'+name+'</b><span>'+fmt(price)+'</span><br><a href="https://wa.me/'+WA+'?text='+msg+'" target="_blank">Consultar por WhatsApp</a>';
+  aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
 }
-
-document.getElementById('cartFab').addEventListener('click', openCart);
-document.getElementById('cartClose').addEventListener('click', closeCart);
-document.getElementById('cartOverlay').addEventListener('click', closeCart);
-
-document.getElementById('cartClearBtn').addEventListener('click', () => {
-  Object.keys(cart).forEach(id => {
-    delete cart[id];
-    const card = document.querySelector(`[data-card-id="${id}"]`);
-    if (card) card.querySelector('.qty-num').textContent = '0';
-  });
-  updateCartUI();
-});
-
-document.getElementById('cartWaBtn').addEventListener('click', () => {
-  const lines = Object.values(cart).map(i => `• ${i.name} ×${i.qty} — ${formatPrice(i.price * i.qty)}`).join('\n');
-  const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
-  const msg = `Hola PShopper! 👋 Quiero hacer el siguiente pedido:\n\n${lines}\n\n*Total: ${formatPrice(total)}*\n\nQuedo atent@, gracias!`;
-  window.open(`https://wa.me/56912345678?text=${encodeURIComponent(msg)}`, '_blank');
-});
-
-// Wire up qty buttons on all cards
-document.querySelectorAll('.card').forEach((card, idx) => {
-  const id = 'p' + idx;
-  card.dataset.cardId = id;
-  const nameEl = card.querySelector('.card-name');
-  const priceEl = card.querySelector('.price-current');
-  const qtyNumEl = card.querySelector('.qty-num');
-  const minusBtn = card.querySelector('.qty-minus');
-  const plusBtn = card.querySelector('.qty-plus');
-  if (!nameEl || !priceEl || !qtyNumEl) return;
-
-  const name = nameEl.textContent.trim();
-  const price = parsePrice(priceEl.textContent);
-
-  plusBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const prev = cart[id] ? cart[id].qty : 0;
-    cart[id] = { name, price, qty: prev + 1 };
-    qtyNumEl.textContent = cart[id].qty;
-    updateCartUI();
-  });
-
-  minusBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (!cart[id] || cart[id].qty === 0) return;
-    cart[id].qty -= 1;
-    qtyNumEl.textContent = cart[id].qty;
-    if (cart[id].qty === 0) delete cart[id];
-    updateCartUI();
-  });
-});
-
-// ─── CATALOG INDEX ───────────────────────────────────────────
-function toggleCatalog() {
-  const body = document.getElementById('catalogBody');
-  const icon = document.getElementById('toggleIcon');
-  const label = document.getElementById('toggleLabel');
-  const open = body.classList.toggle('open');
-  icon.textContent = open ? '↑' : '↓';
-  icon.style.transform = open ? 'rotate(0deg)' : '';
-  label.textContent = open ? 'Cerrar' : 'Ver todas';
+function aiWelcome(){
+  bot("¡Hola! Soy tu asistente PShopper ✨ ¿Para quién buscas el producto?");
+  opts([
+    {label:"Niño/a",fn:()=>aiNeed("nino")},
+    {label:"Adulto/a",fn:()=>aiNeed("adulto")},
+    {label:"Para mí",fn:()=>aiNeed("adulto")},
+  ]);
 }
-function closeCatalog() {
-  setTimeout(() => {
-    const body = document.getElementById('catalogBody');
-    const icon = document.getElementById('toggleIcon');
-    const label = document.getElementById('toggleLabel');
-    body.classList.remove('open');
-    icon.textContent = '↓';
-    label.textContent = 'Ver todas';
-  }, 300);
+function aiNeed(who){
+  bot("¿Qué necesitas?");
+  const mk=(label,key)=>({label,fn:()=>aiRecommend(key,who)});
+  opts([
+    mk("Dormir mejor","dormir"),mk("Estrés/Ansiedad","estrés"),mk("Vitaminas","vitaminas"),
+    mk("Skincare","skincare"),mk("Cabello","cabello"),mk("Digestión","digestión"),mk("Concentración","concentración"),
+  ]);
+}
+function aiRecommend(key,who){
+  const terms=(KEYWORDS[key]||key).split(" ");
+  let pool=[];
+  SECTIONS.forEach(s=>s.items.forEach(it=>{
+    const hay=(it.n+" "+(it.tags||"")).toLowerCase();
+    let score=terms.reduce((a,t)=>a+(hay.includes(t)?1:0),0);
+    if(who==="nino"&&/niñ|kids/.test(hay))score+=2;
+    if(score>0)pool.push({it,score});
+  }));
+  pool.sort((a,b)=>b.score-a.score);
+  const recs=pool.slice(0,3);
+  if(!recs.length){bot("No encontré coincidencias exactas, pero te puedo ayudar por WhatsApp.");aiFallback();return;}
+  bot("Te recomiendo estos productos ✨");
+  recs.forEach(r=>recCard(r.it.n,r.it.p));
+  bot("¿Quieres ver algo más? Escríbeme tu pregunta o pídeme que te derive por WhatsApp.");
+}
+function aiFallback(){
+  const msg=encodeURIComponent("Hola PShopper! Necesito ayuda para elegir un producto.");
+  bot("Te derivo por WhatsApp para una atención personalizada 💬");
+  const d=document.createElement("div");d.className="ai-rec";
+  d.innerHTML='<a href="https://wa.me/'+WA+'?text='+msg+'" target="_blank">Hablar por WhatsApp</a>';
+  aiBody.appendChild(d);aiBody.scrollTop=aiBody.scrollHeight;
+}
+const AI_FAQ=[
+  {k:["original","autentic","falso"],a:"Sí, todos nuestros productos son 100% originales e importados directamente desde USA. 🇺🇸"},
+  {k:["envío","envio","despacho","llega"],a:"Hacemos envíos a todo Chile. El costo depende de tu región y lo coordinamos por WhatsApp. 🚚"},
+  {k:["pago","pagar","transfer"],a:"Aceptamos transferencia y otros medios que coordinamos por WhatsApp al confirmar tu pedido. 💳"},
+  {k:["región","region","regiones"],a:"¡Sí! Despachamos a todas las regiones de Chile mediante courier. 📦"},
+  {k:["pedido","comprar","orden"],a:"Para pedir: agrega al carrito o haz clic en Consultar y finaliza por WhatsApp. ¡Es muy rápido! ✨"},
+];
+function aiSend(){
+  const inp=document.getElementById("aiInput");
+  const t=inp.value.trim();if(!t)return;
+  usr(t);inp.value="";
+  const low=t.toLowerCase();
+  const f=AI_FAQ.find(f=>f.k.some(k=>low.includes(k)));
+  if(f){bot(f.a);return;}
+  const kw=Object.keys(KEYWORDS).find(k=>low.includes(k));
+  if(kw){aiRecommend(kw,/niñ|kids|hijo/.test(low)?"nino":"adulto");return;}
+  bot("No estoy seguro de eso 🤔");aiFallback();
 }
 </script>
 </body>
 </html>
-
