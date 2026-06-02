@@ -73,22 +73,22 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 /* CARD */
 .card { background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:var(--card-radius);overflow:hidden;cursor:pointer;transition:var(--transition);position:relative;box-shadow:0 2px 12px rgba(0,0,0,0.06);transform-style:preserve-3d; }
 .card:hover { transform:translateY(-6px)rotateX(2deg)rotateY(1deg);box-shadow:0 20px 50px rgba(0,0,0,0.12);border-color:rgba(200,149,110,0.4); }
-.card-visual { height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden; }
-.card-visual img { width:100%;height:100%;object-fit:contain;padding:16px;position:relative;z-index:1;transition:transform 0.3s ease; }
-.card:hover .card-visual img { transform:scale(1.08)translateY(-4px); }
+.card-visual { height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden; }
 .card-visual .emoji { font-size:3rem;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));transition:transform 0.3s ease; }
 .card:hover .card-visual .emoji { transform:scale(1.15)translateY(-4px); }
+.card-visual.catalog-img { background-size:200% auto;background-repeat:no-repeat;background-position:center; }
+.crop-tl { background-position:0% 22%; }
+.crop-tr { background-position:100% 22%; }
+.crop-bl { background-position:0% 80%; }
+.crop-br { background-position:100% 80%; }
+.crop-solo { background-size:cover;background-position:center 25%; }
+.crop-solo-bot { background-size:cover;background-position:center 60%; }
 .card-body { padding:16px; }
 .card-name { font-size:0.88rem;font-weight:600;color:var(--text-primary);line-height:1.4;margin-bottom:12px;min-height:2.5em; }
 .card-pricing { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
 .price-current { font-size:1.1rem;font-weight:700;color:var(--gold-dark); }
 .price-original { font-size:0.82rem;color:var(--text-muted);text-decoration:line-through; }
 .badge-oferta { position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#ef4444,#f97316);color:white;font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:0.05em;text-transform:uppercase;box-shadow:0 2px 8px rgba(239,68,68,0.4);z-index:2; }
-
-/* COMING SOON CARD */
-.card-pronto { opacity:0.55; }
-.card-pronto .card-visual { background:linear-gradient(135deg,#f5f0eb,#e8e0d5) !important; }
-.pronto-label { font-size:0.75rem;color:var(--text-muted);font-style:italic;text-align:center;margin-top:4px; }
 
 /* RIPPLE */
 .ripple-container { position:relative;overflow:hidden; }
@@ -132,37 +132,6 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
       <a href="#byoma" class="nav-pill">🌿 Byoma</a>
       <a href="#supergoop" class="nav-pill">☀️ Supergoop</a>
       <a href="#capilares" class="nav-pill">💚 Capilares</a>
-      <a href="#daise" class="nav-pill">🌷 Daise</a>
-      <a href="#eos" class="nav-pill">🫧 EOS</a>
-      <a href="#aquaphor" class="nav-pill">💧 Aquaphor</a>
-      <a href="#sets" class="nav-pill">🎁 Sets</a>
-      <a href="#morphe" class="nav-pill">💄 Morphe</a>
-      <a href="#huda" class="nav-pill">👑 Huda Beauty</a>
-      <a href="#minis" class="nav-pill">🔬 Minis</a>
-      <a href="#got2b" class="nav-pill">💈 Got 2b</a>
-      <a href="#vaseline" class="nav-pill">🫙 Vaseline</a>
-      <a href="#soldejaneio" class="nav-pill">🌺 Sol de Janeiro</a>
-      <a href="#touchland" class="nav-pill">✋ Touchland</a>
-      <a href="#athena" class="nav-pill">🏛️ Athena</a>
-      <a href="#frenshe" class="nav-pill">🌸 Frenshe</a>
-      <a href="#glossier" class="nav-pill">💗 Glossier</a>
-      <a href="#toofaced" class="nav-pill">🐶 Too Faced</a>
-      <a href="#rarebeauty" class="nav-pill">💫 Rare Beauty</a>
-      <a href="#fentybeauty" class="nav-pill">💋 Fenty Beauty</a>
-      <a href="#rembeauty" class="nav-pill">🎀 REM Beauty</a>
-      <a href="#rhode" class="nav-pill">🤍 Rhode</a>
-      <a href="#sacheu" class="nav-pill">🌙 Sacheu</a>
-      <a href="#tarte" class="nav-pill">🍑 Tarte</a>
-      <a href="#starface" class="nav-pill">⭐ Starface</a>
-      <a href="#nyx" class="nav-pill">🖤 NYX</a>
-      <a href="#elf" class="nav-pill">🧝 ELF</a>
-      <a href="#pixi" class="nav-pill">✨ Pixi</a>
-      <a href="#loreal" class="nav-pill">💅 L'Oréal</a>
-      <a href="#nars" class="nav-pill">🖤 NARS</a>
-      <a href="#mac" class="nav-pill">💋 MAC</a>
-      <a href="#maybelline" class="nav-pill">👁️ Maybelline</a>
-      <a href="#otros" class="nav-pill">🛍️ Otros</a>
-      <a href="#sale" class="nav-pill">🔥 SALE</a>
     </div>
   </div>
 </nav>
@@ -173,7 +142,7 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
   <p class="hero-sub">Importamos los productos de salud, belleza y bienestar más populares de Estados Unidos — con precios accesibles y entrega en Chile.</p>
   <a href="https://wa.me/56912345678" class="hero-cta" target="_blank">💬 Hacer pedido por WhatsApp</a>
   <div class="hero-stats">
-    <div class="hero-stat"><span class="num">+200</span><span class="lbl">Productos</span></div>
+    <div class="hero-stat"><span class="num">+100</span><span class="lbl">Productos</span></div>
     <div class="hero-stat"><span class="num">100%</span><span class="lbl">Originales</span></div>
     <div class="hero-stat"><span class="num">🇺🇸→🇨🇱</span><span class="lbl">USA a Chile</span></div>
     <div class="hero-stat"><span class="num">⚡</span><span class="lbl">Entrega Rápida</span></div>
@@ -182,26 +151,26 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
 
 <main>
 
-<!-- 1. MELATONINA KIDS -->
+<!-- MELATONINA KIDS -->
 <section class="section" id="melatonina-kids">
   <div class="section-header"><span class="section-icon">🌙</span><h2 class="section-title">Melatonina Kids</h2><span class="section-count">5 productos</span></div>
   <div class="product-grid">
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ede9fe,#c4b5fd55)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Zero Azúcar (para niños desde 2 años)</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ddd6fe,#a78bfa44)"><span class="emoji">😴</span></div><div class="card-body"><p class="card-name">Gomitas Sleep and Calm Melatonina + Magnesio y L-Theanina</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#c4b5fd,#8b5cf655)"><span class="emoji">⭐</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Natrol 1mg (para niños desde 4 años)</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f3e8ff,#d8b4fe55)"><span class="emoji">🐨</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años) 50 gomitas</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ede9fe,#7c3aed33)"><span class="emoji">🐻</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años) 30 gomitas</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-solo" style="background-image:url('assets/img/melatonina-kids.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-solo" style="background-image:url('assets/img/melatonina-kids-2.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina Kids Olly (para niños desde 4 años) 30 gomitas</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
   </div>
 </section>
 
-<!-- 2. MELATONINA ADULTO -->
+<!-- MELATONINA ADULTO -->
 <section class="section" id="melatonina-adulto">
   <div class="section-header"><span class="section-icon">💜</span><h2 class="section-title">Melatonina Adulto</h2><span class="section-count">8 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#2e1a5522,#7c3aed44)"><span class="emoji">💜</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 140 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#2d2a6622,#6366f144)"><span class="emoji">🌛</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 90 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#1e1b4b33,#818cf855)"><span class="emoji">🌑</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 120 cápsulas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#322d8822,#a5b4fc44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 5mg 90 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 140 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg 90 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 120 cápsulas (Spring Valley)</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/melatonina-adulto.jpg')"></div><div class="card-body"><p class="card-name">Gomitas Melatonina 5mg 90 cápsulas (Natrol)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#3b186622,#c4b5fd44)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Gomitas Melatonina 10mg Sugar Free 50 unidades (Olly)</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#130d3322,#6d28d955)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 10mg 30 cápsulas (Sleep3)</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#1a0a3322,#7c3aed44)"><span class="emoji">🫐</span></div><div class="card-body"><p class="card-name">Cápsulas Melatonina 12mg 90 cápsulas (Olly)</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
@@ -209,7 +178,7 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
   </div>
 </section>
 
-<!-- 3. VITAMINAS NIÑOS -->
+<!-- VITAMINAS NIÑOS -->
 <section class="section" id="vitaminas-ninos">
   <div class="section-header"><span class="section-icon">🌈</span><h2 class="section-title">Vitaminas Niños</h2><span class="section-count">11 productos</span></div>
   <div class="product-grid">
@@ -217,7 +186,7 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fcd34d55)"><span class="emoji">🧘</span></div><div class="card-body"><p class="card-name">Olly Gomitas Chillax 70 gomitas</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#6ee7b755)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Olly Kids Sleep Libres de Melatonina 75 gomitas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fed7aa55)"><span class="emoji">🐟</span></div><div class="card-body"><p class="card-name">Nordic Omega 3 en gomitas 30 unidades</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe55)"><span class="emoji">🐠</span></div><div class="card-body"><p class="card-name">Nordic Omega 3 en cápsulas 90 cápsulas</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe55)"><span class="emoji">🐠</span></div><div class="card-body"><p class="card-name">Nordic Omega 2 en cápsulas 90 cápsulas</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#fca5a555)"><span class="emoji">🐡</span></div><div class="card-body"><p class="card-name">Lil Critters Omega 3 en gomitas 90 gomitas</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c44)"><span class="emoji">🦕</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids 70 gomitas</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#a3e63555)"><span class="emoji">🦖</span></div><div class="card-body"><p class="card-name">Flintstones Multivitamínico en gomitas Kids Sin Azúcar</p><div class="card-pricing"><span class="price-current">$30.000</span></div></div></div>
@@ -227,7 +196,7 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
   </div>
 </section>
 
-<!-- 4. GOMITAS Y CÁPSULAS -->
+<!-- GOMITAS Y CÁPSULAS -->
 <section class="section" id="gomitas">
   <div class="section-header"><span class="section-icon">💊</span><h2 class="section-title">Gomitas y Cápsulas</h2><span class="section-count">24 productos</span></div>
   <div class="product-grid">
@@ -257,343 +226,95 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
   </div>
 </section>
 
-<!-- 5. LEMME -->
+<!-- LEMME -->
 <section class="section" id="lemme">
   <div class="section-header"><span class="section-icon">✨</span><h2 class="section-title">Lemme <span style="font-size:0.65em;font-weight:400;color:var(--text-muted)">by Kourtney Kardashian</span></h2><span class="section-count">5 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#faf5ff,#d8b4fe55)"><span class="emoji">🌸</span></div><div class="card-body"><p class="card-name">Lemme Debloat</p><div class="card-pricing"><span class="price-current">$40.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#f0abfc55)"><span class="emoji">🌺</span></div><div class="card-body"><p class="card-name">Lemme Purr Gomitas de Probióticos Vaginales</p><div class="card-pricing"><span class="price-current">$40.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f5f3ff,#c084fc44)"><span class="emoji">💪</span></div><div class="card-body"><p class="card-name">Lemme Tone</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#faf5ff,#a855f744)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Lemme Focus Gomitas para la Concentración 30 gomitas</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Debloat</p><div class="card-pricing"><span class="price-current">$40.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Purr Gomitas de Probióticos Vaginales</p><div class="card-pricing"><span class="price-current">$40.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/lemme.jpg')"></div><div class="card-body"><p class="card-name">Lemme Tone</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#faf5ff,#a855f744)"><span class="emoji">🧠</span></div><div class="card-body"><p class="card-name">Lemme Focus Gomitas para la Concentración Cortizol-Melena de León 30 gomitas</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
     <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f944)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Lemme Smooth Reduce la Celulitis 30 cápsulas</p><div class="card-pricing"><span class="price-current">$32.000</span><span class="price-original">$43.000</span></div></div></div>
   </div>
 </section>
 
-<!-- 6. TUMS -->
+<!-- TUMS -->
 <section class="section" id="tums">
   <div class="section-header"><span class="section-icon">🔵</span><h2 class="section-title">Tums</h2><span class="section-count">3 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#3b82f655)"><span class="emoji">💙</span></div><div class="card-body"><p class="card-name">Anti Ácido Formato Cálcico</p><div class="card-pricing"><span class="price-current">$13.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#dbeafe,#1d4ed855)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Anti Ácido y Antigas Masticable</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#e0e7ff,#60a5fa44)"><span class="emoji">💊</span></div><div class="card-body"><p class="card-name">Anti Ácido Ultra Strength 1000 72 tabletas</p><div class="card-pricing"><span class="price-current">$18.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido Formato Cálcico</p><div class="card-pricing"><span class="price-current">$13.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido y Antigas Masticable</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/tums.jpg')"></div><div class="card-body"><p class="card-name">Anti Ácido Ultra Strength 1000 72 tabletas</p><div class="card-pricing"><span class="price-current">$16.000</span></div></div></div>
   </div>
 </section>
 
-<!-- 7. BOTELLAS Y TERMOS -->
+<!-- BOTELLAS Y TERMOS -->
 <section class="section" id="botellas">
   <div class="section-header"><span class="section-icon">🧊</span><h2 class="section-title">Botellas y Termos</h2><span class="section-count">4 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#e0f2fe,#38bdf844)"><span class="emoji">🩵</span></div><div class="card-body"><p class="card-name">Botella Owala Kids Celeste 14 onzas</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#e2e8f022,#94a3b855)"><span class="emoji">🥃</span></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes</p><div class="card-pricing"><span class="price-current">$39.000</span><span class="price-original">$45.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#f43f5e44)"><span class="emoji">🩷</span></div><div class="card-body"><p class="card-name">Botella Owala Fucsia 24 onzas</p><div class="card-pricing"><span class="price-current">$39.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#e0f2fe,#0ea5e955)"><span class="emoji">🧊</span></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes 20 onzas</p><div class="card-pricing"><span class="price-current">$55.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Botella Owala Kids Celeste 16 onzas</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$30.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes</p><div class="card-pricing"><span class="price-current">$39.000</span><span class="price-original">$45.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Botella Owala Fucsia 24 onzas</p><div class="card-pricing"><span class="price-current">$39.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/botellas.jpg')"></div><div class="card-body"><p class="card-name">Termo Stanley para Líquidos Fríos y Calientes 20 onzas</p><div class="card-pricing"><span class="price-current">$55.000</span></div></div></div>
   </div>
 </section>
 
-<!-- 8. SKINCARE COREANO -->
+<!-- SKINCARE COREANO -->
 <section class="section" id="skincare">
   <div class="section-header"><span class="section-icon">🌸</span><h2 class="section-title">Skincare Coreano</h2><span class="section-count">10 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fda4af44)"><span class="emoji">🌸</span></div><div class="card-body"><p class="card-name">Radiance Mascarilla de Colágeno</p><div class="card-pricing"><span class="price-current">$8.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fcd34d55)"><span class="emoji">💫</span></div><div class="card-body"><p class="card-name">TXA Niacinamide Serum 15%</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#fda4af55)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Collagen Jelly Cream</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#f9a8d455)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Collagen Night Wrapping Mask</p><div class="card-pricing"><span class="price-current">$33.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Radiance Mascarilla de Colágeno (Biodance)</p><div class="card-pricing"><span class="price-current">$8.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">TXA Niacinamide Serum 15% (Medicube)</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Collagen Jelly Cream (Medicube)</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/skincare-coreano.jpg')"></div><div class="card-body"><p class="card-name">Collagen Night Wrapping Mask (Medicube)</p><div class="card-pricing"><span class="price-current">$33.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fbbf2455)"><span class="emoji">🍋</span></div><div class="card-body"><p class="card-name">Deep Vita C Capsule Cream</p><div class="card-pricing"><span class="price-current">$38.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#d9770655)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Kojic Acid Turmeric Night Wrapping Mask</p><div class="card-pricing"><span class="price-current">$32.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fcd34d44)"><span class="emoji">💎</span></div><div class="card-body"><p class="card-name">Tone Brightening Capsule Ampoule</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#f0abfc44)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Ampoule Foam</p><div class="card-pricing"><span class="price-current">$24.000</span></div></div></div>
     <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fb718555)"><span class="emoji">🪡</span></div><div class="card-body"><p class="card-name">Mascarilla con 100 Micro Agujas VT Cosmetics</p><div class="card-pricing"><span class="price-current">$8.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#10b98155)"><span class="emoji">💉</span></div><div class="card-body"><p class="card-name">Serum 300 Micro Agujas VT Cosmetics</p><div class="card-pricing"><span class="price-current">$29.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#fda4af55)"><span class="emoji">💉</span></div><div class="card-body"><p class="card-name">Serum 500 Micro Agujas VT Cosmetics</p><div class="card-pricing"><span class="price-current">$29.000</span></div></div></div>
   </div>
 </section>
 
-<!-- 9. BYOMA -->
+<!-- BYOMA -->
 <section class="section" id="byoma">
   <div class="section-header"><span class="section-icon">🌿</span><h2 class="section-title">Byoma</h2><span class="section-count">11 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#6ee7b755)"><span class="emoji">💧</span></div><div class="card-body"><p class="card-name">Hydrating Milky Toner</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff1f2,#fb923c55)"><span class="emoji">🌹</span></div><div class="card-body"><p class="card-name">Tónico Facial Aliviador de Rojeces</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0f9ff,#7dd3fc55)"><span class="emoji">💦</span></div><div class="card-body"><p class="card-name">Face Mist 50 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$25.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39955)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Milky Gel Cleanser 50 ml</p><div class="card-pricing"><span class="price-current">$17.000</span><span class="price-original">$23.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c55)"><span class="emoji">☀️</span></div><div class="card-body"><p class="card-name">Bloqueador de Cara con Ácido Hialurónico Textura Liviana SPF 30</p><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#93c5fd55)"><span class="emoji">💧</span></div><div class="card-body"><p class="card-name">Serum Hidratante 30 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Aceite de Retinol 30 ml</p><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39933)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Serum Clarifying 30 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Hydrating Milky Toner</p><div class="card-pricing"><span class="price-current">$28.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Tónico Facial Aliviador de Rojeces</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Face Mist 50 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$25.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/byoma.jpg')"></div><div class="card-body"><p class="card-name">Milky Gel Cleanser 50 ml</p><div class="card-pricing"><span class="price-current">$17.000</span><span class="price-original">$23.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#fbbf2455)"><span class="emoji">☀️</span></div><div class="card-body"><p class="card-name">Bloqueador de Cara SPF 30 Ácido Hialurónico Textura Leviana</p><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#86efac55)"><span class="emoji">💚</span></div><div class="card-body"><p class="card-name">Serum Hidratante 30 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c084fc44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Aceite de Retinol 30 ml</p><div class="card-pricing"><span class="price-current">$24.000</span><span class="price-original">$30.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fde68a55)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Serum Clarifying 30 ml</p><div class="card-pricing"><span class="price-current">$20.000</span><span class="price-original">$26.000</span></div></div></div>
     <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fda4af55)"><span class="emoji">👁️</span></div><div class="card-body"><p class="card-name">Gel Contorno de Ojos Vitamina C y Triple Hialurónico</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$23.000</span></div></div></div>
     <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c55)"><span class="emoji">🌟</span></div><div class="card-body"><p class="card-name">Glow Serum 30 ml</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div></div></div>
     <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#f9a8d455)"><span class="emoji">💋</span></div><div class="card-body"><p class="card-name">Lip Gel</p><div class="card-pricing"><span class="price-current">$13.000</span><span class="price-original">$25.000</span></div></div></div>
   </div>
 </section>
 
-<!-- 10. SUPERGOOP -->
+<!-- SUPERGOOP -->
 <section class="section" id="supergoop">
   <div class="section-header"><span class="section-icon">☀️</span><h2 class="section-title">Supergoop</h2><span class="section-count">2 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fde04755)"><span class="emoji">☀️</span></div><div class="card-body"><p class="card-name">Unseen Sunscreen SPF 40</p><div class="card-pricing"><span class="price-current">$43.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#f59e0b55)"><span class="emoji">🌞</span></div><div class="card-body"><p class="card-name">Glowscreen SPF 40</p><div class="card-pricing"><span class="price-current">$43.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/supergoop.jpg')"></div><div class="card-body"><p class="card-name">Unseen Sunscreen SPF 50</p><div class="card-pricing"><span class="price-current">$45.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/supergoop.jpg')"></div><div class="card-body"><p class="card-name">Glowscreen SPF 40</p><div class="card-pricing"><span class="price-current">$45.000</span></div></div></div>
   </div>
 </section>
 
-<!-- 11. PRODUCTOS CAPILARES -->
+<!-- PRODUCTOS CAPILARES -->
 <section class="section" id="capilares">
   <div class="section-header"><span class="section-icon">💚</span><h2 class="section-title">Productos Capilares</h2><span class="section-count">8 productos</span></div>
   <div class="product-grid">
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8055)"><span class="emoji">🌿</span></div><div class="card-body"><p class="card-name">Aceite de Romero para Fomentar el Crecimiento del Pelo</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#86efac55)"><span class="emoji">🪴</span></div><div class="card-body"><p class="card-name">Aceite de Romero Light para Fomentar el Crecimiento del Pelo</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#fef3c7,#a1620755)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Crema Suavidad y Brillo</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
-    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c084fc44)"><span class="emoji">💈</span></div><div class="card-body"><p class="card-name">Cera Capilar para Peinar</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f1f5f9,#cbd5e155)"><span class="emoji">💨</span></div><div class="card-body"><p class="card-name">Spray WOW Dream Coat 200 ml</p><div class="card-pricing"><span class="price-current">$39.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#1e293b22,#47556944)"><span class="emoji">🌀</span></div><div class="card-body"><p class="card-name">Spray WOW Curly 200 ml</p><div class="card-pricing"><span class="price-current">$21.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#0f172a22,#1e293b44)"><span class="emoji">💪</span></div><div class="card-body"><p class="card-name">Spray WOW Extra Fuerte 50 ml</p><div class="card-pricing"><span class="price-current">$24.000</span></div></div></div>
-    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f8fafc,#e2e8f055)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Spray WOW 50 ml</p><div class="card-pricing"><span class="price-current">$21.000</span></div></div></div>
-  </div>
-</section>
-
-<!-- 12. DAISE -->
-<section class="section" id="daise">
-  <div class="section-header"><span class="section-icon">🌷</span><h2 class="section-title">Daise</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fda4af33)"><span class="emoji">🌷</span></div><div class="card-body"><p class="card-name">Productos Daise</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 13. EOS -->
-<section class="section" id="eos">
-  <div class="section-header"><span class="section-icon">🫧</span><h2 class="section-title">EOS</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fde68a33)"><span class="emoji">🫧</span></div><div class="card-body"><p class="card-name">Productos EOS</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 14. AQUAPHOR -->
-<section class="section" id="aquaphor">
-  <div class="section-header"><span class="section-icon">💧</span><h2 class="section-title">Aquaphor</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe33)"><span class="emoji">💧</span></div><div class="card-body"><p class="card-name">Productos Aquaphor</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 15. SETS -->
-<section class="section" id="sets">
-  <div class="section-header"><span class="section-icon">🎁</span><h2 class="section-title">Sets</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#faf5ff,#d8b4fe33)"><span class="emoji">🎁</span></div><div class="card-body"><p class="card-name">Sets especiales</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 16. MORPHE -->
-<section class="section" id="morphe">
-  <div class="section-header"><span class="section-icon">💄</span><h2 class="section-title">Morphe</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#1c1917,#57534e44)"><span class="emoji">💄</span></div><div class="card-body"><p class="card-name">Productos Morphe</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 17. HUDA BEAUTY -->
-<section class="section" id="huda">
-  <div class="section-header"><span class="section-icon">👑</span><h2 class="section-title">Huda Beauty</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#431407,#92400e44)"><span class="emoji">👑</span></div><div class="card-body"><p class="card-name">Productos Huda Beauty</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 18. MINIS -->
-<section class="section" id="minis">
-  <div class="section-header"><span class="section-icon">🔬</span><h2 class="section-title">Minis</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f933)"><span class="emoji">🔬</span></div><div class="card-body"><p class="card-name">Minis y tamaños viaje</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 19. GOT 2B -->
-<section class="section" id="got2b">
-  <div class="section-header"><span class="section-icon">💈</span><h2 class="section-title">Got 2b</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#ef444433)"><span class="emoji">💈</span></div><div class="card-body"><p class="card-name">Productos Got 2b</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 20. VASELINE -->
-<section class="section" id="vaseline">
-  <div class="section-header"><span class="section-icon">🫙</span><h2 class="section-title">Vaseline</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fffbeb,#fde68a33)"><span class="emoji">🫙</span></div><div class="card-body"><p class="card-name">Productos Vaseline</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 21. SOL DE JANEIRO -->
-<section class="section" id="soldejaneio">
-  <div class="section-header"><span class="section-icon">🌺</span><h2 class="section-title">Sol de Janeiro</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#fb923c44)"><span class="emoji">🌺</span></div><div class="card-body"><p class="card-name">Productos Sol de Janeiro</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 22. TOUCHLAND -->
-<section class="section" id="touchland">
-  <div class="section-header"><span class="section-icon">✋</span><h2 class="section-title">Touchland</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#a855f744)"><span class="emoji">✋</span></div><div class="card-body"><p class="card-name">Productos Touchland</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 23. ATHENA -->
-<section class="section" id="athena">
-  <div class="section-header"><span class="section-icon">🏛️</span><h2 class="section-title">Athena</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#d9770644)"><span class="emoji">🏛️</span></div><div class="card-body"><p class="card-name">Productos Athena</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 24. FRENSHE -->
-<section class="section" id="frenshe">
-  <div class="section-header"><span class="section-icon">🌸</span><h2 class="section-title">Frenshe</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#f9a8d433)"><span class="emoji">🌸</span></div><div class="card-body"><p class="card-name">Productos Frenshe</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 25. GLOSSIER -->
-<section class="section" id="glossier">
-  <div class="section-header"><span class="section-icon">💗</span><h2 class="section-title">Glossier</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#fbcfe844)"><span class="emoji">💗</span></div><div class="card-body"><p class="card-name">Productos Glossier</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 26. TOO FACED -->
-<section class="section" id="toofaced">
-  <div class="section-header"><span class="section-icon">🐶</span><h2 class="section-title">Too Faced</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fdf2f8,#ec489933)"><span class="emoji">🐶</span></div><div class="card-body"><p class="card-name">Productos Too Faced</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 27. RARE BEAUTY -->
-<section class="section" id="rarebeauty">
-  <div class="section-header"><span class="section-icon">💫</span><h2 class="section-title">Rare Beauty</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#c084fc44)"><span class="emoji">💫</span></div><div class="card-body"><p class="card-name">Productos Rare Beauty</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 28. FENTY BEAUTY -->
-<section class="section" id="fentybeauty">
-  <div class="section-header"><span class="section-icon">💋</span><h2 class="section-title">Fenty Beauty</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#1c0a00,#78350f44)"><span class="emoji">💋</span></div><div class="card-body"><p class="card-name">Productos Fenty Beauty</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 29. REM BEAUTY -->
-<section class="section" id="rembeauty">
-  <div class="section-header"><span class="section-icon">🎀</span><h2 class="section-title">REM Beauty</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fdf4ff,#e879f944)"><span class="emoji">🎀</span></div><div class="card-body"><p class="card-name">Productos REM Beauty</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 30. RHODE -->
-<section class="section" id="rhode">
-  <div class="section-header"><span class="section-icon">🤍</span><h2 class="section-title">Rhode</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#f8fafc,#e2e8f055)"><span class="emoji">🤍</span></div><div class="card-body"><p class="card-name">Productos Rhode</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 31. SACHEU -->
-<section class="section" id="sacheu">
-  <div class="section-header"><span class="section-icon">🌙</span><h2 class="section-title">Sacheu</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#0f172a,#1e293b44)"><span class="emoji">🌙</span></div><div class="card-body"><p class="card-name">Productos Sacheu</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 32. TARTE -->
-<section class="section" id="tarte">
-  <div class="section-header"><span class="section-icon">🍑</span><h2 class="section-title">Tarte</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fff7ed,#fb923c44)"><span class="emoji">🍑</span></div><div class="card-body"><p class="card-name">Productos Tarte</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 33. STARFACE -->
-<section class="section" id="starface">
-  <div class="section-header"><span class="section-icon">⭐</span><h2 class="section-title">Starface</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fef9c3,#facc1555)"><span class="emoji">⭐</span></div><div class="card-body"><p class="card-name">Productos Starface</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 34. NYX COSMETICS -->
-<section class="section" id="nyx">
-  <div class="section-header"><span class="section-icon">🖤</span><h2 class="section-title">NYX Cosmetics</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#09090b,#27272a44)"><span class="emoji">🖤</span></div><div class="card-body"><p class="card-name">Productos NYX Cosmetics</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 35. ELF -->
-<section class="section" id="elf">
-  <div class="section-header"><span class="section-icon">🧝</span><h2 class="section-title">ELF</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#4ade8044)"><span class="emoji">🧝</span></div><div class="card-body"><p class="card-name">Productos ELF Cosmetics</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 36. PIXI -->
-<section class="section" id="pixi">
-  <div class="section-header"><span class="section-icon">✨</span><h2 class="section-title">Pixi</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fce7f3,#f9a8d444)"><span class="emoji">✨</span></div><div class="card-body"><p class="card-name">Productos Pixi</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 37. L'ORÉAL -->
-<section class="section" id="loreal">
-  <div class="section-header"><span class="section-icon">💅</span><h2 class="section-title">L'Oréal</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#18181b,#3f3f4644)"><span class="emoji">💅</span></div><div class="card-body"><p class="card-name">Productos L'Oréal</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 38. NARS -->
-<section class="section" id="nars">
-  <div class="section-header"><span class="section-icon">🖤</span><h2 class="section-title">NARS</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#09090b,#18181b44)"><span class="emoji">🖤</span></div><div class="card-body"><p class="card-name">Productos NARS</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 39. MAC COSMETICS -->
-<section class="section" id="mac">
-  <div class="section-header"><span class="section-icon">💋</span><h2 class="section-title">MAC Cosmetics</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#1c1917,#44403c44)"><span class="emoji">💋</span></div><div class="card-body"><p class="card-name">Productos MAC Cosmetics</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 40. MAYBELLINE -->
-<section class="section" id="maybelline">
-  <div class="section-header"><span class="section-icon">👁️</span><h2 class="section-title">Maybelline</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#ef444433)"><span class="emoji">👁️</span></div><div class="card-body"><p class="card-name">Productos Maybelline</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 41. OTROS -->
-<section class="section" id="otros">
-  <div class="section-header"><span class="section-icon">🛍️</span><h2 class="section-title">Otros</h2><span class="section-count">próximamente</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#faf7f2,#e8d5c244)"><span class="emoji">🛍️</span></div><div class="card-body"><p class="card-name">Otros productos</p><p class="pronto-label">Próximamente — enviando catálogo</p></div></div>
-  </div>
-</section>
-
-<!-- 42. SALE 🔥 -->
-<section class="section" id="sale">
-  <div class="section-header"><span class="section-icon">🔥</span><h2 class="section-title" style="color:#ef4444">SALE</h2><span class="section-count" style="background:rgba(239,68,68,0.1);color:#ef4444">Ofertas especiales</span></div>
-  <div class="product-grid">
-    <div class="card ripple-container card-pronto"><div class="card-visual" style="background:linear-gradient(135deg,#fef2f2,#ef444433)"><span class="emoji">🔥</span></div><div class="card-body"><p class="card-name">Próximamente — sección SALE</p><p class="pronto-label">Enviando catálogo con ofertas especiales</p></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tl" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero para Fomentar el Crecimiento del Pelo</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-tr" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">Mielle Aceite de Romero Light para Fomentar el Crecimiento del Pelo</p><div class="card-pricing"><span class="price-current">$20.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual catalog-img crop-bl" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">TIGI Bed Head After Party Crema Suavidad y Brillo</p><div class="card-pricing"><span class="price-current">$23.000</span></div></div></div>
+    <div class="card ripple-container"><span class="badge-oferta">OFERTA</span><div class="card-visual catalog-img crop-br" style="background-image:url('assets/img/capilares.jpg')"></div><div class="card-body"><p class="card-name">TIGI Bed Head Cera Capilar para Peinar</p><div class="card-pricing"><span class="price-current">$19.000</span><span class="price-original">$25.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#05966955)"><span class="emoji">💦</span></div><div class="card-body"><p class="card-name">Spray WOW 200 ml</p><div class="card-pricing"><span class="price-current">$39.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#f0fdf4,#6d28d955)"><span class="emoji">🌀</span></div><div class="card-body"><p class="card-name">Spray WOW Curly 200 ml</p><div class="card-pricing"><span class="price-current">$21.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#d1fae5,#065f4655)"><span class="emoji">💪</span></div><div class="card-body"><p class="card-name">Spray WOW Extra Fuerte 50 ml</p><div class="card-pricing"><span class="price-current">$24.000</span></div></div></div>
+    <div class="card ripple-container"><div class="card-visual" style="background:linear-gradient(135deg,#ecfdf5,#34d39944)"><span class="emoji">🌱</span></div><div class="card-body"><p class="card-name">Spray WOW 50 ml</p><div class="card-pricing"><span class="price-current">$21.000</span></div></div></div>
   </div>
 </section>
 
@@ -605,13 +326,13 @@ main { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px
   <a href="https://wa.me/56912345678?text=Hola%20PShopper!%20Me%20interesa%20hacer%20un%20pedido" class="wa-btn" target="_blank" rel="noopener">
     <span class="wa-icon">💬</span> Hacer pedido por WhatsApp
   </a>
-  <p class="footer-copy">© 2025 PShopper.cl — Todos los derechos reservados · IG: @PSHOPPER.CL</p>
+  <p class="footer-copy">© 2024 PShopper.cl — Todos los derechos reservados · IG: @PSHOPPER.CL</p>
 </footer>
 
 <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">↑</button>
 
 <script>
-// Scroll reveal
+// Scroll reveal — opacity stays 1, only translateY moves
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
